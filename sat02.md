@@ -42,7 +42,7 @@ NOTA: El servidor en el cual se instalara satellite deberá ser dedicado para es
 |/var/lib/mongodb/ | 3.5 GB | 50 GB|
 |/var/lib/qpidd/ | 25 MB | Not Applicable|
 |/var/log/ |10 MB | 10 GB |
-|/var/lib/pgsql/ | 100 MB | 10 GB |
+|/var/opt/rh/rh-postgresql12 | 100 MB | 10 GB |
 |/var/spool/squid/ | 0 MB | 10 GB |
 | /usr | 3 GB | Not Applicable |
 | /opt | 3 GB | Not Applicable |
