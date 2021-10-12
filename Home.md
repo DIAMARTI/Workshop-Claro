@@ -1,5 +1,5 @@
 <h1><p align="center">
-<br>Workshop elaborado para el cliente Global Bank Panamá
+<br>Workshop elaborado para el cliente Claro Puerto Rico
 <p align="center"><img src="https://raw.githubusercontent.com/workshopopennova/tecnologiasredhat/master/images/rh001.png" alt="IDM logo">
 <br><a href="https://www.redhat.com"><strong>Red Hat</strong></a>
 <br>
@@ -9,9 +9,6 @@
 <h3><a href="wiki/rhel">Red Hat Enterprise Linux</a></h3>
 
 <h3><a href="wiki/sat">Red Hat Satellite</a></h3>
-
-<h3><a href="wiki/idm">Red Hat Identity Management</a></h3>
-
 
 
 | Nombre | Correo | Estación | IP | Client name | Client IP |
