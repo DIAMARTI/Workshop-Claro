@@ -230,7 +230,7 @@ There is a screen on:
 
 ### **Instalacion offline**
 
-Validar que el cliente tenga el repositorio local para Red Hat Enteprise Linux 7.8
+Validar que el cliente tenga el repositorio local para Red Hat Enteprise Linux 7.9
 ```
 [root@satellite ~]# cat /etc/yum.repos.d/rhel.repo
 [rhel]
