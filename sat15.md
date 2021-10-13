@@ -109,7 +109,7 @@ Ahora modificamos el archivo de configuración `/etc/puppetlabs/puppet/puppet.co
 Validamos la configuración del cliente
 <br>`# puppet agent --test --noop`
 
-Se creo una petición de certificado digital pero esta pendiente de aprobación, para ello vamos a la sección de Infraestructura > Proxis inteligentes y seleccionamos el servidor satellite
+Se creo una petición de certificado digital pero esta pendiente de aprobación, para ello vamos a la sección de Infraestructura > Capsulas inteligentes y seleccionamos el servidor satellite
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1502.png?raw=true"></p>
 
 En la sección de CA Puppet se vera una alerta de certificado, ingresamos
@@ -161,6 +161,18 @@ Con lo aprendido sobre clases de puppet implemente un nuevo grupo llamado <stron
 <br>- El paquete tuned ya viene implementado en los RHEL8
 <br>- El comando para listar los perfiles disponibles es <strong>tuned-adm list</strong> y el comando para validar el perfil actual es  <strong>tuned-adm active</strong>
 <br>- El instructor ya habilito la clase tuned para que pueda ejecutar la configuración</strong>
+
+<br>- <strong>Solucion </strong>
+
+Con el cliente listo y la clase de puppet habilitada por el instructor podemos crear nuestro grupo de configuración personalizadoTESTX-TUNED para enviar parámetros de configuración del perfil de tuned, el objetivo de crear un grupo de configuración es segmentar la cantidad de servidores que requieren esa configuración especifica, el primer paso es ir a la sección Configurar > Grupos de configuración y creamos un grupo nuevo
+
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet01.png?raw=true"></p>
+
+
+
+
+
+
 
 <h3><strong>## Ejercicio propuesto 02</strong></h3>
 El auditor de la empresa considera que el login via SSH con el usuario ROOT es inseguro sugiere deshabilitar esa caracteristica en los servidores, utilizando lo aprendido realice las siguientes operaciones en secuencia:
