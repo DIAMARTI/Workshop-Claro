@@ -274,9 +274,9 @@ Instalar paquetes necesarios para su administracion
 ```
 ```
 [root@satellite ~]# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-[root@satellite ~]# mkdir /mnt/sat67
-[root@satellite ~]# mount /dev/cdrom /mnt/sat67
-[root@satellite ~]# cd /mnt/sat67; ./install_packages
+[root@satellite ~]# mkdir /mnt/sat69
+[root@satellite ~]# mount /dev/cdrom /mnt/sat69
+[root@satellite ~]# cd /mnt/sat69; ./install_packages
 [root@satellite ~]# satellite-installer --help
 [root@satellite ~]# satellite-installer --scenario satellite \
 --foreman-initial-admin-username admin \
