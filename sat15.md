@@ -168,6 +168,31 @@ Con el cliente listo y la clase de puppet habilitada por el instructor podemos c
 
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet01.png?raw=true"></p>
 
+Creamos el grupo TUNED y asignamos la clase de tunes
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet02.png?raw=true"></p>
+
+Regresamos a la secciond e HOSTS > Todos los Host y seleccionamos nuestro cliente de prueba
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet03.png?raw=true"></p>
+
+Editamos las propiedades del cliente de prueba
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet04.png?raw=true"></p>
+
+En clases de puppet, añadimos el grupo de configuracion nuevo con opciones de tunes
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet05.png?raw=true"></p>
+
+Ahora podemos editar el perfil del sistema cliente
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet06.png?raw=true"></p>
+
+Para verificar el perfil actual de tuned usamos
+<br>`# tuned-adm active`
+
+Para verificar los perfiles de tuned disponible usamos
+<br>`# tuned-adm list`
+
+Realice algunas modificaciones al perfil de tuned y ejecutelo inmediatamente con el comando
+<br>`# puppet agent --test `
+
+
 
 
 
