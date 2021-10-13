@@ -2,7 +2,7 @@
 </p>
 <h1 align="center">Red Hat Satellite</h1>
 <p align="center">
-<br>Workshop elaborado para el cliente Global Bank Panamá
+<br>Workshop elaborado para el cliente Claro Puerto Rico
   <br><a href="https://www.redhat.com"><strong>Red Hat</strong></a>
   <br>
   <br>
@@ -11,7 +11,7 @@
 
 <h2>Alcance</h2>
 
-Manual de procedimientos del workshop de la solución Red Hat Satellite versión 6.7 sobre plataforma Red Hat Enterprise Linux 8.2
+Manual de procedimientos del workshop de la solución Red Hat Satellite versión 6.9 sobre plataforma Red Hat Enterprise Linux 7.9
 
 <h2>Tabla de contenidos</h2>
 <br><a href="sat01">- Introduccion a Red Hat Satellite
