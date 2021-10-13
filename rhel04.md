@@ -124,14 +124,14 @@ A continuación se indicaran los pasos necesario para la creación de repositori
 **3. Configuración del repositorio local**
 ```
 [root@nova ~]# cat /etc/yum.repos.d/rhel84.repo
-[rhel82-BaseOS]
-name=RHEL82 BaseOS Local Repository
+[rhel84-BaseOS]
+name=RHEL84 BaseOS Local Repository
 baseurl=file:///mnt/rhel84/BaseOS
 enabled=1
 gpgecheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-[rhel82-AppStream]
-name=RHEL82 AppStream Local Repository
+[rhel84-AppStream]
+name=RHEL84 AppStream Local Repository
 baseurl=file:///mnt/rhel84/AppStream
 enabled=1
 gpgecheck=1
@@ -159,14 +159,14 @@ A continuación se indicaran los pasos necesario para la creación de repositori
 **1. Configuración del repositorio local**
 ```
 [root@nova ~]# cat /etc/yum.repos.d/rhel84.repo
-[rhel82-BaseOS]
-name=RHEL82 BaseOS Local Repository
+[rhel84-BaseOS]
+name=RHEL84 BaseOS Local Repository
 baseurl=ftp://classroom.opennova.pe/rhel8/BaseOS
 enabled=1
 gpgecheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-[rhel82-AppStream]
-name=RHEL82 AppStream Local Repository
+[rhel84-AppStream]
+name=RHEL84 AppStream Local Repository
 baseurl=ftp://classroom.opennova.pe/rhel8/AppStream
 enabled=1
 gpgecheck=1
