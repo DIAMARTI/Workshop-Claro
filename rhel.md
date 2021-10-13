@@ -2,7 +2,7 @@
 </p>
 <h1 align="center">Red Hat Enterprise Linux</h1>
 <p align="center">
-Workshop elaborado para el cliente ABC  <br>
+Workshop elaborado para el cliente Claro Puerto Rico  <br>
   <a href="https://www.opennova.pe/"><strong>OpenNova Training </strong></a>
   <br>
   <br>
