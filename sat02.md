@@ -236,7 +236,7 @@ Validar que el cliente tenga el repositorio local para Red Hat Enteprise Linux 7
 [rhel]
 name=rhel
 enabled=1
-baseurl=ftp://192.168.0.120/rhel7
+baseurl=ftp://classroom.opennova.pe/rhel7
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 ```
@@ -428,5 +428,5 @@ Reset to user: admin, password: zaJxRftxb7Gbvca
 <br>- Setear el timeout de sesión a 30 minutos
 <br>- Validar por hammer los servicios principales
 <br>- Utilizar satellite-maintain service para listar, ver el estado y reiniciar los servicios de satellite.
-<br>- Configurar un mensaje de inicio de sesión que diga la frase: "Red Hat Satellite Global Bank"
+<br>- Configurar un mensaje de inicio de sesión que diga la frase: "Red Hat Satellite Claro"
 <br>- Cambiar la contraseña del usuario admin por los 2 métodos: Con el uso de clave autogeneradas luego cambiarlo por la GUI y luego cambiarla indicando el password exacto que debe tener.
