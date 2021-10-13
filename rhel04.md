@@ -201,18 +201,18 @@ En el siguiente laboratorio tendrá que realizar las siguientes operaciones:
 
 Solución:
 
-1. Configurar un repositorio local con la iso y/o url proporcionada. El nombre del repositorio deberá ser rhel82.repo y debera contener las directivas de configuración para los repositorios BaseOS y AppStream.
+1. Configurar un repositorio local con la iso y/o url proporcionada. El nombre del repositorio deberá ser rhel84.repo y deberá contener las directivas de configuración para los repositorios BaseOS y AppStream.
 ```
 [root@nova ~]# cat /etc/yum.repos.d/rhel82.repo
-[rhel82-BaseOS]
-name=RHEL82 BaseOS Local Repository
-baseurl=ftp:///192.168.0.120/rhel8/BaseOS
+[rhel84-BaseOS]
+name=RHEL84 BaseOS Local Repository
+baseurl=ftp://classroom.opennova.pe/rhel8/BaseOS
 enabled=1
 gpgecheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-[rhel82-AppStream]
-name=RHEL82 AppStream Local Repository
-baseurl=ftp:///192.168.0.120/rhel8/AppStream
+[rhel84-AppStream]
+name=RHEL84 AppStream Local Repository
+baseurl=ftp://classroom.opennova.pe/rhel8/AppStream
 enabled=1
 gpgecheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
