@@ -276,7 +276,7 @@ Instalar paquetes necesarios para su administracion
 [root@satellite ~]# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 [root@satellite ~]# wget ftp://classroom.opennova.pe/sat69.iso
 [root@satellite ~]# mkdir /mnt/sat69
-[root@satellite ~]# mount /dev/cdrom /mnt/sat69
+[root@satellite ~]# mount /root/sat69.iso /mnt/sat69
 [root@satellite ~]# cd /mnt/sat69; ./install_packages
 [root@satellite ~]# satellite-installer --help
 [root@satellite ~]# satellite-installer --scenario satellite \
