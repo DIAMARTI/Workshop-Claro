@@ -239,6 +239,12 @@ enabled=1
 baseurl=ftp://classroom.opennova.pe/rhel7
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[selinux]
+name=selinux
+enabled=1
+baseurl=ftp://classroom.opennova.pe/selinux
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 ```
 ```
 [root@satellite ~]# yum repolist
@@ -252,7 +258,7 @@ Es buena idea indicar el el archivo /etc/hosts
 
 Instalar paquetes necesarios para su administracion
 ```
-[root@satellite ~]# yum install sos git net-tools vim mlocate chrony screen bash-completion
+[root@satellite ~]# yum install sos wget git net-tools vim mlocate chrony screen bash-completion selinux-policy
 [root@satellite ~]# systemctl start chronyd
 [root@satellite ~]# systemctl enable chronyd
 ```
