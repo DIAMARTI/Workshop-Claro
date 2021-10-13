@@ -11,7 +11,7 @@ Workshop elaborado para el cliente Claro Puerto Rico  <br>
 
 <h2>Alcance</h2>
 
-Manual de procedimientos del workshop de la plataforma Red Hat Enterprise Linux 8.2 - Introduccion
+Manual de procedimientos del workshop de la plataforma Red Hat Enterprise Linux 8.4 - Introducción
 
 <h2>Tabla de contenidos</h2>
 <br><a href="rhel02">- Sistema de archivos linux</a>
