@@ -119,20 +119,20 @@ A continuación se indicaran los pasos necesario para la creación de repositori
 
 **2. Crear una carpeta en el sistema y montar la iso**
 ```
-[root@nova ~]# mkdir /mnt/rhel82 ; mount -o loop /root/rhel82.iso /mnt/rhel82
+[root@nova ~]# mkdir /mnt/rhel84 ; mount -o loop /root/rhel84.iso /mnt/rhel84
 ```
 **3. Configuración del repositorio local**
 ```
-[root@nova ~]# cat /etc/yum.repos.d/rhel82.repo
+[root@nova ~]# cat /etc/yum.repos.d/rhel84.repo
 [rhel82-BaseOS]
 name=RHEL82 BaseOS Local Repository
-baseurl=ftp:///192.168.0.120/rhel8/BaseOS
+baseurl=file:///mnt/rhel84/BaseOS
 enabled=1
 gpgecheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 [rhel82-AppStream]
 name=RHEL82 AppStream Local Repository
-baseurl=ftp:///192.168.0.120/rhel8/AppStream
+baseurl=file:///mnt/rhel84/AppStream
 enabled=1
 gpgecheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
@@ -144,8 +144,8 @@ Updating Subscription Management repositories.
 Unable to read consumer identity
 This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
 repo id                                                               repo name
-rhel82-AppStream                                                      RHEL82 AppStream Local Repository
-rhel82-BaseOS                                                         RHEL82 BaseOS Local Repository
+rhel84-AppStream                                                      RHEL84 AppStream Local Repository
+rhel84-BaseOS                                                         RHEL84 BaseOS Local Repository
 [root@nova ~]# yum list all
 ```
 **Instalar software para validar que el repositorio es funcional**
@@ -153,9 +153,45 @@ rhel82-BaseOS                                                         RHEL82 Bas
 [root@nova ~]# yum install -y vim git net-tools
 ```
 
+# Creando repositorios locales mediante enlaces locales (Demostrativo)
+A continuación se indicaran los pasos necesario para la creación de repositorios locales mediante el uso enlaces (ftp - http) locales.
+<br>
+**1. Configuración del repositorio local**
+```
+[root@nova ~]# cat /etc/yum.repos.d/rhel84.repo
+[rhel82-BaseOS]
+name=RHEL82 BaseOS Local Repository
+baseurl=ftp://classroom.opennova.pe/rhel8/BaseOS
+enabled=1
+gpgecheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[rhel82-AppStream]
+name=RHEL82 AppStream Local Repository
+baseurl=ftp://classroom.opennova.pe/rhel8/AppStream
+enabled=1
+gpgecheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+```
+**Verificar que el repositorio cargue sin problema**
+```
+[root@nova ~]# yum repolist
+Updating Subscription Management repositories.
+Unable to read consumer identity
+This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
+repo id                                                               repo name
+rhel84-AppStream                                                      RHEL84 AppStream Local Repository
+rhel84-BaseOS                                                         RHEL84 BaseOS Local Repository
+[root@nova ~]# yum list all
+```
+**Instalar software para validar que el repositorio es funcional**
+```
+[root@nova ~]# yum install -y vim git net-tools
+```
+
+
 # Laboratorio: Configurando repositorio local e instalando software
 En el siguiente laboratorio tendrá que realizar las siguientes operaciones:
-1. Configurar un repositorio local con la iso y/o url proporcionada. El nombre del repositorio deberá ser rhel82.repo y debera contener las directivas de configuración para los repositorios BaseOS y AppStream.
+1. Configurar un repositorio local con la iso y/o url proporcionada. El nombre del repositorio deberá ser rhel84.repo y deberá contener las directivas de configuración para los repositorios BaseOS y AppStream.
 2. Instalar el paquete bash-completion, sos.
 3. Instalar el grupo de paquetes Networking Tools.
 4. Instalar el servicio vsftpd.
