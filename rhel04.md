@@ -203,7 +203,7 @@ Solución:
 
 1. Configurar un repositorio local con la iso y/o url proporcionada. El nombre del repositorio deberá ser rhel84.repo y deberá contener las directivas de configuración para los repositorios BaseOS y AppStream.
 ```
-[root@nova ~]# cat /etc/yum.repos.d/rhel82.repo
+[root@nova ~]# cat /etc/yum.repos.d/rhel84.repo
 [rhel84-BaseOS]
 name=RHEL84 BaseOS Local Repository
 baseurl=ftp://classroom.opennova.pe/rhel8/BaseOS
