@@ -193,12 +193,6 @@ Realice algunas modificaciones al perfil de tuned y ejecutelo inmediatamente con
 <br>`# puppet agent --test `
 
 
-
-
-
-
-
-
 <h3><strong>## Ejercicio propuesto 02</strong></h3>
 El auditor de la empresa considera que el login via SSH con el usuario ROOT es inseguro sugiere deshabilitar esa caracteristica en los servidores, utilizando lo aprendido realice las siguientes operaciones en secuencia:
 
@@ -208,6 +202,54 @@ El auditor de la empresa considera que el login via SSH con el usuario ROOT es i
 <br>- Loguese con su usuario personal y realice el cambio a root con el comando <strong>su - root</strong>
 <br>- Modifique la política para que vuelva a permitir el acceso remoto ssh para root y certifique la politica para responder al informe de auditoria
 <br>- El instructor ya habilito la clase sshd_config para que pueda modificar la configuración del archivo /etc/ssh/sshd_config 
+
+
+<strong>Solucion</strong>
+Creamos el usuario remote
+<br>`# useradd remote`
+
+Cambiamos la clave de remote
+<br>`# passwd remote`
+
+Creamos un nuevo grupo de configuracion 
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet01.png?raw=true"></p>
+
+Nombramos el grupo de configuracion y añadimos la clase de ssh
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet07.png?raw=true"></p>
+
+Volvemos a seleccionar nuestro cliente
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet02.png?raw=true"></p>
+
+Editamos el cliente
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet03.png?raw=true"></p>
+
+Agregamos el grupo de configuracion al cliente
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet08.png?raw=true"></p>
+
+Modificamos el parametro de acceso remoto como root de yes a no
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet09.png?raw=true"></p>
+
+Aplicamos los cambios en el sistema cliente
+<br>`# puppet agent --test `
+
+Intentemos crear una nueva session SSH con el usuario root, en caso de no poder crearla el ejercicio es correcto, podemos regresar a la configuracion anterior con el usuario remote
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
