@@ -22,11 +22,8 @@ Manual de procedimientos del workshop de la solución Red Hat Satellite versión
 <br><a href="sat06">- Entendimiento y Gestión de usuarios</a>
 <br><a href="sat07">- Registro de por lo menos 1 maquina a Red Hat Satellite de forma manual o a través de Activation Key</a>
 <br><a href="sat08">- Entendimiento y Gestión de paquetes de software</a>
-<br><a href="sat09">- Validación de los reportes sacados por RH Satellite</a>
 <br><a href="sat10">- Gestión de vistas</a>
-<br><a href="sat11">- Visualización de despliegue automatizado</a>
-<br><a href="sat12">- Visualización de despliegue de capsula</a>
-<br><a href="sat14">- Ejemplo de casos de soporte y acceso a la documentación oficial</a>
+<br><a href="sat09">- Validación de los reportes sacados por RH Satellite</a>
 <br><a href="sat15">- Realizar por lo menos una tarea automatizada con puppet y/o ansible</a>
-<br><a href="sat16">- Actualización de un sistema cliente</a>
+<br><a href="sat14">- Ejemplo de casos de soporte y acceso a la documentación oficial</a>
 <br><a href="sat13">- Tareas de mantenimiento sobre la infraestructura de RH Satellite</a>
