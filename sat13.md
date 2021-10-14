@@ -1,13 +1,12 @@
-<h1>Actualización de un sistema cliente</h1>
+<h1>Tareas de Mantenimiento</h1>
 
 <p>
 <strong>Meta:</strong>
-<br>Conocer el flujo de actualización de un sistema cliente
+<br>Realizar operaciones de mantenimiento sobre la plataforma RH Satellite
 </p>
 <p>
 <strong>Objetivos:</strong>
-<br>- Registar un sistema RHEL cliente
-<br>- Aplicar actualizaciones del sistema RHEL cliente
+<br>- Respaldar la solucion
 </p>
 <p>
 <strong>Secciones:</strong>
