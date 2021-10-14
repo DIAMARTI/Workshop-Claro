@@ -82,13 +82,13 @@ Haga un análisis del kernel instalado  y proponga una actualización con susten
 
 <br><h3><strong>Ejercicio propuesto 02:</strong></h3>
 El desarrollador de la pagina web requiere gestionar el contenido del portal, por ello le pide instalar el siguiente RPM desde el servidor FTP del salón, instalelo con el comando:
-<br>`# yum install ftp://192.168.0.120/rhel8/AppStream/Packages/git-2.18.2-1.el8_1.x86_64.rpm`
+<br>`# yum install git-2.18.2-1.el8_1.x86_64`
 
 Por linea de comandos intente hacer un análisis y proponga la actualización de ser necesario
 
 <br><h3><strong>Ejercicio prepuesto 03:</strong></h3>
 El mismo desarrallador ahora requiere contar con librerías del navegador firefox, por ello le pide instalar el paquete desde el recurso FTP con el comando
-<br>`# yum install ftp://192.168.0.120/rhel8/AppStream/Packages/firefox-68.6.0-1.el8_1.x86_64.rpm`
+<br>`# yum install firefox-68.6.0-1.el8_1.x86_64`
 
 Por interface gráfica intente hacer un análisis y proponga la actualización de ser necesario
 
