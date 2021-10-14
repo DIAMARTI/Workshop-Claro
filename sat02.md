@@ -398,6 +398,10 @@ Reiniciar servicios Red Hat Satellite
 ```
 [root@satellite ~]# satellite-maintain service restart
 ```
+Hacer una revision de salud de Red Hat Satellite
+```
+[root@satellite ~]# satellite-maintain health check
+```
 
 **Configurar mensaje personalizado para pagina de Login**
 
