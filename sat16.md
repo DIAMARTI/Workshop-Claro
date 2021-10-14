@@ -33,7 +33,8 @@ Desde la linea de comandos descargamos los requisitos para registrar el sistema 
 <br>`# yum localinstall katello-ca-consumer-latest.noarch.rpm`
 
 Registramos el sistema usando el Activation Key `rhel8` que ya fue creador por el administrador
-<br>`# subscription-manager register --org="Default_Organization" --activationkey="rhel8" --force`
+<br>`# subscription-manager register --org="OpenNova" --activationkey="rhel8" --force`
+<br>`# subscription-manager attach --auto`
 
 Debera validar que tenga al menos 3 repostorios: Base, AppStream y Tools de Satellite con el comando
 <br>`# yum repolist`
