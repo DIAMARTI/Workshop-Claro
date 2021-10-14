@@ -235,24 +235,6 @@ Aplicamos los cambios en el sistema cliente
 Intentemos crear una nueva session SSH con el usuario root, en caso de no poder crearla el ejercicio es correcto, podemos regresar a la configuracion anterior con el usuario remote
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h3><br><strong>## Otras opciones para programación de tareas</strong></h3>
 
 Satellite ademas de puppet cuenta con diferentes opción de integración con otra herramientas de ejecución de tareas, entre ellas ansible o incluso lo mas simple como comandos SSH, en el siguiente ejemplo ejecutamos la tarea remota de copia de un log importante
@@ -284,6 +266,10 @@ Es importante respaldar la configuración de un sistema, por buena practica esta
 <br>- el comando <strong>tar -czvf carpeta.tar.gz carpeta/</strong> permite crear el archivo comprimido
 <br>- el comando <strong>date '+%d%m%Y%H%M%S'</strong> entrega la fecha en formato DiaMesAñoHoraMinutoSegundo
 
+
+<strong>Solucion</strong>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet10.png?raw=true"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/puppet11.png?raw=true"></p>
 
 
 <p><br><a href="sat">volver</a></p>
