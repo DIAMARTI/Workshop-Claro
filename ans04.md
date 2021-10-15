@@ -172,16 +172,11 @@ rhel-8-for-x86_64-baseos-rpms
 [root@server08 ~]# reboot
 ```
 
-**Instalar paquetes de instalación para Red Hat Satellite**
-
-``` 
-[root@satellite ~]# yum install satellite
-```
 **Instalar Red Hat Ansible Tower**
 
 Descargamos desde el ftp del salon el instalador de Ansible Tower y descomprimirlo
 
-```
+---
 [root@server08 ~]# wget ftp://classroom.opennova.pe/ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz
 [root@server08 ~]# tar -xzvf ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz
 [root@server08 ~]# cd ansible-automation-platform-setup-bundle-1.2.5-1
@@ -197,7 +192,6 @@ Ejecutar el instalador con
 
 ---
 [root@server08 ~]# ./setup.sh
-
 ```
 
 **Nota: Para evitar problemas de perdida de conectividad hacia la terminar virtual se recomienda ejecutar elprocedimiento de instalación por screen**
