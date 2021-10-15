@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat_logo.png?raw=true" alt="SAT logo">
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/ans/ans01.png?raw=true" alt="ANS logo">
 </p>
 <h1 align="center">Red Hat Satellite</h1>
 <p align="center">
