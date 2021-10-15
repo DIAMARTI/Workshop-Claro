@@ -94,16 +94,16 @@ Puertos para la comunicación de satélite a Red Hat CDN
 # Instalación de Red Hat Ansible Tower. (Demostración)
 **Verificando conectividad y resolución DNS**
 ```
-[root@satellite ~]# ping -c1 localhost
+[root@server08 ~]# ping -c1 localhost
 ```
 ```
-[root@satellite ~]# ping -c1 $(hostname -f)
+[root@server08 ~]# ping -c1 $(hostname -f)
 ```
 ```
-[root@satellite ~]# ping -c1 $(hostname -s)
+[root@server08 ~]# ping -c1 $(hostname -s)
 ```
 ```
-[root@satellite ~]# nslookup server08.opennova.pe
+[root@server08 ~]# nslookup server08.opennova.pe
 Server:         192.168.10.178
 Address:        192.168.10.120#53
 
@@ -111,7 +111,7 @@ Name:   server08.opennova.pe
 Address: 192.168.10.178
 ```
 ```
-[root@server08~]# nslookup 192.168.10.178
+[root@server08 ~]# nslookup 192.168.10.178
 178.10.168.192.in-addr.arpa      name = server08.opennova.pe
 ```
 
@@ -122,20 +122,20 @@ Es buena idea indicar el el archivo /etc/hosts
 ```
 **Habilitación de conexiones de un cliente a un servidor satélite**
 ```
-[root@satellite ~]# firewall-cmd \
+[root@server08 ~]# firewall-cmd \
 --add-port="80/tcp" --add-port="443/tcp" \
 --add-port="22/tcp" --add-port="5432/tcp"
 ```
 ```
-[root@satellite ~]# firewall-cmd --runtime-to-permanent
+[root@server08 ~]# firewall-cmd --runtime-to-permanent
 ```
 ```
-[root@satellite ~]# firewall-cmd --list-all
+[root@server08 ~]# firewall-cmd --list-all
 ```
 <br>**Instalacion Online**
 **Habilitación de los siguientes repositorios:**
 ```
-[root@satellite ~]# subscription-manager repos --enable=rhel-7-server-rpms \
+[root@server08 ~]# subscription-manager repos --enable=rhel-7-server-rpms \
 --enable=rhel-7-server-satellite-6.7-rpms \
 --enable=rhel-7-server-satellite-maintenance-6-rpms \
 --enable=rhel-server-rhscl-7-rpms \
