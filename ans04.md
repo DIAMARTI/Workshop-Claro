@@ -154,8 +154,11 @@ Registrar el servidor a un sistema que permita el acceso a repositorios de paque
 Validamos que el sistema tenga al menos los siguientes repositorios
 
 ansible-2.9-for-rhel-8-x86_64-rpms
+
 rhel-8-for-x86_64-appstream-rpms
+
 rhel-8-for-x86_64-baseos-rpms
+
 
 **Realizar una lista de paquetes necesarios para la administración de la maquina virtual.**
 
@@ -176,11 +179,9 @@ rhel-8-for-x86_64-baseos-rpms
 
 Descargamos desde el ftp del salon el instalador de Ansible Tower y descomprimirlo
 
----
-[root@server08 ~]# wget ftp://classroom.opennova.pe/ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz
-[root@server08 ~]# tar -xzvf ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz
-[root@server08 ~]# cd ansible-automation-platform-setup-bundle-1.2.5-1
----
+<br>`[root@server08 ~]# wget ftp://classroom.opennova.pe/ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz`
+<br>`[root@server08 ~]# tar -xzvf ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz`
+<br>`[root@server08 ~]# cd ansible-automation-platform-setup-bundle-1.2.5-1`
 
 Modificar el archivo inventory para que pueda uztomizar las claves de admin y de awx a redhat
 
