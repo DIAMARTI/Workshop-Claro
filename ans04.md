@@ -20,50 +20,49 @@
 
 # Validación de pre-requisitos para la instalación de Red Hat Satellite
 
-Los siguientes requisitos se aplican al sistema operativo base:
-* arquitectura x86_64
-* La última versión de Red Hat Enterprise Linux 8 Server
-* CPU de 4 núcleos a 2,0 GHz como mínimo
-* Se requiere un mínimo de 20 GB de RAM para que el servidor satélite funcione. Además, también se recomienda un mínimo de 4 GB de RAM para SWAP. Es posible que el satélite que se ejecuta con menos RAM que el valor mínimo no funcione correctamente
-* Un nombre de host único, que puede contener letras minúsculas, números, puntos (.) Y guiones (-)
-* Una suscripción actual a Red Hat Satellite
-* Acceso de usuario administrativo (root)
-* Una máscara de sistema de 0022 (umask 0022)
-* Resolución DNS completa registro A y PTR usando un nombre de dominio completamente calificado
+Ansible Tower tiene los siguientes requisitos:
 
-NOTA: El servidor en el cual se instalara satellite deberá ser dedicado para este servicio.
+Sistemas operativos compatibles:
 
-**Requerimientos de almacenamiento**
+Red Hat Enterprise Linux 6 de 64 bits
+Red Hat Enterprise Linux 7 de 64 bits
+CentOS 6 de 64 bits
+CentOS 7 de 64 bits
+Ubuntu 12.04 LTS de 64 bits
+Ubuntu 14.04 LTS de 64 bits
+La última versión estable de Ansible
 
-| Directorio | Tamaño en instalacion | Tamaño en ejecucion|
-| --- | --- | --- |
-| /var/cache/pulp/ | 1 MB | 20 GB |
-| /var/lib/pulp/ | 1 MB | 300 GB |
-|/var/lib/mongodb/ | 3.5 GB | 50 GB|
-|/var/lib/qpidd/ | 25 MB | Not Applicable|
-|/var/log/ |10 MB | 10 GB |
-|/var/lib/pgsql/ | 100 MB | 10 GB |
-|/var/spool/squid/ | 0 MB | 10 GB |
-| /usr | 3 GB | Not Applicable |
-| /opt | 3 GB | Not Applicable |
-| /opt/puppetlabs | 500 MB | Not Applicable |
+2 GB de RAM como mínimo (se recomiendan más de 4 GB de RAM)
 
-**Directrices para sistema de archivos**
-* Utilice el sistema de archivos XFS para Red Hat Satellite 6 porque no tiene las limitaciones de inodo que tiene ext4. Debido a que Satellite Server usa muchos enlaces simbólicos, es probable que su sistema se quede sin inodos si usa ext4 con su configuracion por defecto.
-* No use NFS con MongoDB porque MongoDB no usa I/O convencional para acceder a archivos de datos y ocurren problemas de rendimiento cuando tanto los archivos de datos como los archivos de diario están alojados en NFS. Si es necesario para usar NFS, monte el volumen con las siguientes opciones en el archivo /etc/fstab: bg, nolock y noatime.
-* No utilice NFS para el almacenamiento de datos de Pulp. El uso de NFS para Pulp tiene un impacto negativo en el rendimiento de la sincronización de contenido.
-* Do not use the GFS2 file system as the input-output latency is too high.
+2 GB de RAM (mínimo y recomendado para instalaciones de prueba de Vagrant)
+Se recomiendan 4 GB de RAM por cada 100 bifurcaciones
+Disco duro de 20 GB
 
-**Almacenamiento de archivos de log**
-* Los archivos de log son escritos en `/var/log/messages/`, `/var/log/httpd/`, and `/var/lib/foreman-proxy/openscap/content/`
+Se requiere soporte de 64 bits (kernel y tiempo de ejecución)
 
-NOTA: La cantidad exacta de almacenamiento que necesita para los mensajes de registro depende de su instalación y configuración
+Para Amazon EC2:
 
-**Navegadores soportados**
-Satellite soporta versiones recientes de: Firefox y Google Chrome.
+Tamaño de instancia de m3. Mediano o mayor
+Un tamaño de instancia de m3.xlarge o mayor si hay más de 100 hosts
+Para configuraciones HA MongoDB:
 
+Si planea ejecutar MongoDB, las siguientes pautas proporcionan una estimación aproximada de la cantidad de espacio requerido. El cálculo básico es:
 
-*El tamaño del tiempo de ejecución se midió con los repositorios de Red Hat Enterprise Linux 6, 7 y 8 sincronizados.
+(number of hosts in inventory) * (number of scans) * (average module fact size) * (number of modules scanning)
+
+Por ejemplo:
+
+hosts = 1,000
+
+número de escaneos = 365 (1 escaneo por día durante un año)
+
+tamaño medio de los hechos del módulo = 100 kb
+
+número de módulos = 4 (ansible, paquetes, servicios, archivos)
+
+= 146 GB
+
+La operación de escaneo predeterminada tiene los cuatro (4) módulos enumerados, pero puede agregar los suyos propios. Dependiendo de los tipos de módulos y del tamaño de los datos que esté recopilando, ese tamaño puede ser mayor.
 
 **Requerimientos de puertos y firewall**
 
