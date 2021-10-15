@@ -1,6 +1,6 @@
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/ans/ans01.png?raw=true" alt="ANS logo">
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans01.png?raw=true" alt="ANS logo">
 </p>
-<h1 align="center">Red Hat Satellite</h1>
+<h1 align="center">Red Hat Ansible</h1>
 <p align="center">
 <br>Workshop elaborado para el cliente Claro Puerto Rico
   <br><a href="https://www.redhat.com"><strong>Red Hat</strong></a>
