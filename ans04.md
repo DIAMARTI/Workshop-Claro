@@ -124,9 +124,7 @@ Es buena idea indicar el el archivo /etc/hosts
 ```
 [root@satellite ~]# firewall-cmd \
 --add-port="80/tcp" --add-port="443/tcp" \
---add-port="5647/tcp" --add-port="8000/tcp" \
---add-port="8140/tcp" --add-port="22/tcp" \
---add-port="53/udp" --add-port="5432/tcp" \
+--add-port="22/tcp" --add-port="5432/tcp"
 ```
 ```
 [root@satellite ~]# firewall-cmd --runtime-to-permanent
