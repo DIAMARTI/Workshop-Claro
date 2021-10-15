@@ -171,7 +171,9 @@ rhel-8-for-x86_64-baseos-rpms
 ```
 [root@server08 ~]# reboot
 ```
+
 **Instalar paquetes de instalación para Red Hat Satellite**
+
 ``` 
 [root@satellite ~]# yum install satellite
 ```
@@ -185,7 +187,8 @@ Descargamos desde el ftp del salon el instalador de Ansible Tower y descomprimir
 [root@server08 ~]# cd ansible-automation-platform-setup-bundle-1.2.5-1
 ```
 
-Modificar el archivo inventory para que pueda uztomizar las claves de admin y de awx 'redhat'
+Modificar el archivo inventory para que pueda uztomizar las claves de admin y de awx a redhat
+
 ---
 [root@server08 ~]# vi inventory
 ---
