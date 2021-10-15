@@ -152,13 +152,13 @@ Registrar el servidor a un sistema que permita el acceso a repositorios de paque
 ```
 
 Validamos que el sistema tenga al menos los siguientes repositorios
----
+
 ansible-2.9-for-rhel-8-x86_64-rpms
 rhel-8-for-x86_64-appstream-rpms
 rhel-8-for-x86_64-baseos-rpms
----
 
 **Realizar una lista de paquetes necesarios para la administración de la maquina virtual.**
+
 ```
 [root@server08 ~]# yum install ansible git
 ```
