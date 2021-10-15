@@ -18,7 +18,7 @@
 <br>- Instalación de Red Hat Ansible Tower
 </p>
 
-# Validación de pre-requisitos para la instalación de Red Hat Satellite
+# Validación de pre-requisitos para la instalación de Red Hat Ansible Tower
 
 Ansible Tower tiene los siguientes requisitos:
 
