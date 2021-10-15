@@ -28,9 +28,13 @@ Red Hat Enterprise Linux 6 de 64 bits
 
 Red Hat Enterprise Linux 7 de 64 bits
 
+Red Hat Enterprise Linux 8 de 64 bits
+
 CentOS 6 de 64 bits
 
 CentOS 7 de 64 bits
+
+CentOS 8 de 64 bits
 
 Ubuntu 12.04 LTS de 64 bits
 
