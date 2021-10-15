@@ -168,9 +168,11 @@ rhel-8-for-x86_64-baseos-rpms
 
 
 **Actualizar el sistema en conjunto y reiniciar**
+
 ```
 [root@server08 ~]# yum update
 ```
+
 ```
 [root@server08 ~]# reboot
 ```
@@ -185,15 +187,12 @@ Descargamos desde el ftp del salon el instalador de Ansible Tower y descomprimir
 
 Modificar el archivo inventory para que pueda uztomizar las claves de admin y de awx a redhat
 
----
-[root@server08 ~]# vi inventory
----
+<br>`[root@server08 ~]# vi inventory`
+
 
 Ejecutar el instalador con
 
----
-[root@server08 ~]# ./setup.sh
-```
+<br>`[root@server08 ~]# ./setup.sh`
 
 **Nota: Para evitar problemas de perdida de conectividad hacia la terminar virtual se recomienda ejecutar elprocedimiento de instalación por screen**
 <br>**Instalar screen**
