@@ -69,8 +69,48 @@ Aplicamos el cambio en el filesystem con
 Finalmente validamos el nuevo espacio con
 <br>`# df -h`
 
+<h3><br><strong>## Gestión de actualizaciones de un sistema cliente</strong></h3>
+
+Validamos la cantidad de erratas descubiertas en el servidor, tome nota de estos datos
+<br>`# yum list-security`
+
+Si queremos validar el detalle de esas actualizaciones usamos
+<br>`# yum list-security info`
+
+Seleccionamos una actualizacion del tipo bugfix para corregirlas
+<br>`# yum update --advisory=RHBA-2020:3009`
+
+Vuelva a validar la cantidad de erratas descubiertas en el servidor y compare con el dato anterior
+<br>`# yum list-security`
+
+Este mismo procedimiento puede ser realizado con la interface gráfica, logueese en la plataforma y en Hosts de contenido busque su sistema cliente
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1601.png?raw=true"></p>
+
+En el TAB de Errata busque una actualización que considere critica para el sistema, tome nota del codigo
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1602.png?raw=true"></p>
+
+Seleccione la actualización y aplíquela
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1603.png?raw=true"></p>
+
+Espere que que termine de actualizarse, vuelva a examinar el servidor y busque si la actualizacion aun esta por aplicar
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1604.png?raw=true"></p>
 
 
+
+<h3><br><strong>Ejercicio propuesto 01:</strong></h3>
+Haga un análisis del kernel instalado  y proponga una actualización con sustento para luego ejecutarla
+
+<br><h3><strong>Ejercicio propuesto 02:</strong></h3>
+El desarrollador de la pagina web requiere gestionar el contenido del portal, por ello le pide instalar el siguiente RPM desde el servidor FTP del salón, instalelo con el comando:
+<br>`# yum install git-2.18.2-1.el8_1.x86_64`
+
+Por linea de comandos intente hacer un análisis y proponga la actualización de ser necesario
+
+<br><h3><strong>Ejercicio prepuesto 03:</strong></h3>
+El mismo desarrallador ahora requiere contar con librerías del navegador firefox, por ello le pide instalar el paquete desde el recurso FTP con el comando
+<br>`# yum install firefox-68.6.0-1.el8_1.x86_64`
+
+Por interface gráfica intente hacer un análisis y proponga la actualización de ser necesario
 
 
 
