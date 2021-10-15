@@ -225,6 +225,9 @@ Abrir los puertos del firewall correspondiente al acceso HTTP, HTTPS y SSH, opci
 --add-port="22/tcp" --add-port="5432/tcp"
 ```
 
+En este punto indicar a su instructor que active la plataforma de Ansible Tower con una suscripcion de prueba, luego ingresar con un navegador web para validar su instalacion
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/ans/ans02.png?raw=true"></p>
+
 
 
 # Laboratorio: Instalando Red Hat Satellite
