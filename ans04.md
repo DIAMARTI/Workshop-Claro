@@ -226,14 +226,15 @@ Abrir los puertos del firewall correspondiente al acceso HTTP, HTTPS y SSH, opci
 ```
 
 En este punto indicar a su instructor que active la plataforma de Ansible Tower con una suscripcion de prueba, luego ingresar con un navegador web para validar su instalacion
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/ans/ans02.png?raw=true"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans02.png?raw=true"></p>
 
 
 
 # Laboratorio: Instalando Red Hat Satellite
 
-<br>**1. Instalar Red Hat Satellite utilizando el procedimiento INSTALACIÓN OFFLINE**
+<br>**1. Instalar Red Hat Ansible Tower utilizando el procedimiento INSTALACIÓN**
 <br>- Utilizar el procedimiento indicado en la explicación.
+<br>- Solicite a su instructor la activacion de su instalacion.
 <br>- Una vez finalizada la instalación logearse con el usuario: admin password: redhat
 <br>- Post-instalación instalar el paquete bind-utils
 <br>**2. Configurar el cliente hammer**
