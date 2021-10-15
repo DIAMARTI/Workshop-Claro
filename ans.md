@@ -11,7 +11,7 @@
 
 <h2>Alcance</h2>
 
-Manual de procedimientos del workshop de la solución Red Hat Satellite versión 6.9 sobre plataforma Red Hat Enterprise Linux 7.9
+Manual de procedimientos del workshop de la solución Red Hat Ansible versión 2.9 sobre plataforma Red Hat Enterprise Linux 8.4
 
 <h2>Tabla de contenidos</h2>
 <br><a href="ans01">- Qué es Ansible</a>
