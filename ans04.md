@@ -83,11 +83,11 @@ Puertos para la comunicación de satélite a Red Hat CDN
 | 80 | TCP |HTTP|Servicios de administración web|
 | 443 | TCP |HTTPS|Servicios de administración web seguro|
 | 22| TCP |SSH|Servicios de administración remota via ssh|
-| 5432| TCP | |Servicios de conexion a la base de datos|
+| 5432| TCP | DB |Servicios de conexion a la base de datos|
 
 
 
-# Instalación de Red Hat Satellite. (Demostración)
+# Instalación de Red Hat Ansible Tower. (Demostración)
 **Verificando conectividad y resolución DNS**
 ```
 [root@satellite ~]# ping -c1 localhost
@@ -99,32 +99,30 @@ Puertos para la comunicación de satélite a Red Hat CDN
 [root@satellite ~]# ping -c1 $(hostname -s)
 ```
 ```
-[root@satellite ~]# nslookup satellite.opennova.pe
-Server:         192.168.0.120
-Address:        192.168.0.120#53
+[root@satellite ~]# nslookup server08.opennova.pe
+Server:         192.168.10.178
+Address:        192.168.10.120#53
 
-Name:   satellite.opennova.pe
-Address: 192.168.0.140
+Name:   server08.opennova.pe
+Address: 192.168.10.178
 ```
 ```
-[root@satellite ~]# nslookup 192.168.0.140
-140.0.168.192.in-addr.arpa      name = satellite.opennova.pe
+[root@server08~]# nslookup 192.168.10.178
+178.10.168.192.in-addr.arpa      name = server08.opennova.pe
 ```
 
 Es buena idea indicar el el archivo /etc/hosts
-<br>**\<IP\> \<FQDN Satellite\> \<Short name Satellite\>**
+<br>**\<IP\> \<FQDN Ansiblee\> \<Short name Ansible\>**
 ```
-192.168.0.140 satellite.opennova.pe satellite
+192.168.10.178 server08.opennova.pe server08
 ```
 **Habilitación de conexiones de un cliente a un servidor satélite**
 ```
 [root@satellite ~]# firewall-cmd \
 --add-port="80/tcp" --add-port="443/tcp" \
 --add-port="5647/tcp" --add-port="8000/tcp" \
---add-port="8140/tcp" --add-port="9090/tcp" \
---add-port="53/udp" --add-port="53/tcp" \
---add-port="67/udp" --add-port="69/udp" \
---add-port="5000/tcp"
+--add-port="8140/tcp" --add-port="22/tcp" \
+--add-port="53/udp" --add-port="5432/tcp" \
 ```
 ```
 [root@satellite ~]# firewall-cmd --runtime-to-permanent
