@@ -28,7 +28,6 @@ Red Hat Enterprise Linux 6 de 64 bits
 
 Red Hat Enterprise Linux 7 de 64 bits
 
-
 CentOS 6 de 64 bits
 
 CentOS 7 de 64 bits
@@ -36,6 +35,8 @@ CentOS 7 de 64 bits
 Ubuntu 12.04 LTS de 64 bits
 
 Ubuntu 14.04 LTS de 64 bits
+
+
 
 La última versión estable de Ansible
 
@@ -47,6 +48,8 @@ Se recomiendan 4 GB de RAM por cada 100 bifurcaciones
 Disco duro de 20 GB
 
 Se requiere soporte de 64 bits (kernel y tiempo de ejecución)
+
+
 
 Para Amazon EC2:
 
