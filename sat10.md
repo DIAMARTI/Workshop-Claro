@@ -22,9 +22,18 @@
 <strong>Requisitos:</strong>
 <br><strong>- Satellite</strong>
 
+
 <h3><br><strong>## Crear un nuevo entorno</strong></h3>
 Para crear un nuevo entorno, nos dirigimos a la seccion Content > Lifecycle Environments  y le damos crear un nuevo entorno
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1001.png?raw=true"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat10101R.jpg?raw=true"width="800" height="400"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat10102R.jpg?raw=true"width="800" height="400"></p>
+<br>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat10103R.jpg?raw=true"width="800" height="400"></p>
+<br>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat10104R.jpg?raw=true"width="800" height="400"></p>
+<br>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat10105R.jpg?raw=true"width="800" height="400"></p>
+
 
 Nombremos el entorno nuevo entorno personal
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat1002.png?raw=true"></p>
