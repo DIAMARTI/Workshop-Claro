@@ -80,47 +80,12 @@ La operación de escaneo predeterminada tiene los cuatro (4) módulos enumerados
 Puertos para la comunicación de satélite a Red Hat CDN
 | Puerto | Protocolo | Servicio | Requerido para |
 | --- | --- | --- | --- |
-| 443 | TCP |HTTPS|Servicios de administración de suscripción (access.redhat.com) y conexión a Red Hat CDN (cdn.redhat.com).|
-
-Puertos para el acceso de la interfaz de usuario basada en navegador al satélite
-| Puerto | Protocolo | Servicio | Requerido para |
-| --- | --- | --- | --- |
-| 443 | TCP |HTTPS|Acceso a la interfaz de usuario basada en navegador para Satellite.|
-| 80 | TCP |HTTP|Redirección a HTTPS para acceder a la interfaz de usuario web a satélite (opcional).|
-
-Puertos para la comunicación de cliente a satélite
-| Puerto | Protocolo | Servicio | Requerido para |
-| --- | --- | --- | --- |
-| 80 | TCP |HTTP|Anaconda, yum, para obtener certificados, plantillas de Katello y para descargar el firmware de iPXE.|
-| 443 | TCP |HTTPS|Servicios de administración de suscripción, yum, servicios de telemetría y para la conexión al agente de Katello.|
-| 5646 | TCP |AMQP|El enrutador de despacho Capsule Qpid al enrutador de despacho Qpid en Satellite.|
-| 5647 | TCP |AMQP|Agente de Katello para comunicarse con el enrutador de despacho Qpid de Satellite.|
-| 8000 | TCP |HTTP|Anaconda para descargar plantillas kickstart a hosts y para descargar firmware iPXE.|
-| 8140 | TCP |HTTPS|Conexiones de Puppet agent a Puppet master.|
-| 9090 | TCP |HTTPS|Envío de informes SCAP a la cápsula integrada, para la imagen de descubrimiento durante el aprovisionamiento para comunicarse con Satellite Server y copiar las claves SSH para la configuración de ejecución remota (Rex).|
-| 7 | TCP,UDP |ICMP|DHCP externo en una red de cliente a satélite, ICMP ECHO para verificar que la dirección IP esté libre (opcional).|
-| 53 | TCP,UDP |DNS| Consultas de DNS del cliente al servicio de DNS cápsula integrado de un satélite (opcional).|
-| 67 | UDP |DHCP| Transmisiones de cápsula integradas de cliente a satélite, transmisiones DHCP para aprovisionamiento de clientes desde una cápsula integrada de satélite (opcional).|
-| 69 | UDP |TFTP| Clientes que descargan archivos de imagen de arranque PXE desde una cápsula integrada de satélites para aprovisionamiento (opcional).|
-| 5000 | TCP|HTTPS| Connection to Katello for the Docker registry (Optional).|
+| 80 | TCP |HTTP|Servicios de administración web|
+| 443 | TCP |HTTPS|Servicios de administración web seguro|
+| 22| TCP |SSH|Servicios de administración remota via ssh|
+| 5432| TCP | |Servicios de conexion a la base de datos|
 
 
-Puertos para comunicación satélite a cápsula
-| Puerto | Protocolo | Servicio | Requerido para |
-| --- | --- | --- | --- |
-| 443 | TCP |HTTPS|Conexiones al servidor Pulp en la cápsula.|
-| 9090 | TCP |HTTPS|Conexiones al proxy en la cápsula.|
-| 80| TCP |HTTP|Descarga de un disco de arranque (opcional)
-
-Puertos de red opcionales
-| Puerto | Protocolo | Servicio | Requerido para |
-| --- | --- | --- | --- |
-| 22 | TCP |SSH|Comunicaciones basadas en satélite y cápsula, para ejecución remota (Rex) y Ansible.|
-| 443 | TCP |HTTPS|Comunicaciones basadas en satélites, para recursos informáticos de vCenter.|
-| 5000| TCP |HTTP|Comunicaciones por satélite, para recursos informáticos en OpenStack o para ejecutar contenedores.|
-|22,16514| TCP |SSH,SSL/TLS|Comunicaciones por satélite, para recursos informáticos en libvirt.|
-|389,636|TCP|LDAP,LDAPS|Comunicaciones satellite, para LDAP y fuentes de autenticación LDAP seguras.|
-|5900 to 5930|TCP|SSL/TLS|Comunicaciones satellite, para la consola NoVNC en la interfaz de usuario web a los hipervisores.|
 
 # Instalación de Red Hat Satellite. (Demostración)
 **Verificando conectividad y resolución DNS**
