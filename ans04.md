@@ -25,12 +25,20 @@ Ansible Tower tiene los siguientes requisitos:
 Sistemas operativos compatibles:
 
 Red Hat Enterprise Linux 6 de 64 bits
+
 Red Hat Enterprise Linux 7 de 64 bits
+
+
 CentOS 6 de 64 bits
+
 CentOS 7 de 64 bits
+
 Ubuntu 12.04 LTS de 64 bits
+
 Ubuntu 14.04 LTS de 64 bits
+
 La última versión estable de Ansible
+
 
 2 GB de RAM como mínimo (se recomiendan más de 4 GB de RAM)
 
