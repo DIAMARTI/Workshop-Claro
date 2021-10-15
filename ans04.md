@@ -133,6 +133,7 @@ Es buena idea indicar el el archivo /etc/hosts
 [root@server08 ~]# firewall-cmd --list-all
 ```
 <br>**Instalacion**
+
 Registrar el servidor a un sistema que permita el acceso a repositorios de paquetes como Satellite
 ```
 [root@server08 ~]# curl --insecure --output katello-ca-consumer-latest.noarch.rpm https://satellite.opennova.pe/pub/katello-ca-consumer-latest.noarch.rpm
@@ -143,43 +144,56 @@ Registrar el servidor a un sistema que permita el acceso a repositorios de paque
 ```
 **Borrar metadata yum**
 ```
-[root@satellite ~]# yum clean all
+[root@server08 ~]# yum clean all
 ```
 **Verificar repositorios configurados**
 ``` 
-[root@satellite ~]# yum repolist enabled
+[root@server08 ~]# yum repolist enabled
 ```
+
+Validamos que el sistema tenga al menos los siguientes repositorios
+---
+ansible-2.9-for-rhel-8-x86_64-rpms
+rhel-8-for-x86_64-appstream-rpms
+rhel-8-for-x86_64-baseos-rpms
+---
 
 **Realizar una lista de paquetes necesarios para la administración de la maquina virtual.**
 ```
-[root@satellite ~]# yum install sos git net-tools bind-utils vim mlocate chrony
+[root@server08 ~]# yum install ansible git
 ```
 
-**NOTA: Si necesita instalar algún paquete adicional como bash-completion, dig, net-tools, git, vim, entre otros necesarios para su administración realizarlo antes de la instalación y configuración del producto**
 
 **Actualizar el sistema en conjunto y reiniciar**
 ```
-[root@satellite ~]# yum update
+[root@server08 ~]# yum update
 ```
 ```
-[root@satellite ~]# reboot
+[root@server08 ~]# reboot
 ```
 **Instalar paquetes de instalación para Red Hat Satellite**
 ``` 
 [root@satellite ~]# yum install satellite
 ```
-**Instalar Red Hat Satellite**
+**Instalar Red Hat Ansible Tower**
+
+Descargamos desde el ftp del salon el instalador de Ansible Tower y descomprimirlo
+
 ```
-[root@satellite ~]# satellite-installer --scenario satellite \
---foreman-initial-organization "initial_organization_name" \
---foreman-initial-location "initial_location_name" \
---foreman-initial-admin-username admin_user_name \
---foreman-initial-admin-password admin_password
+[root@server08 ~]# wget ftp://classroom.opennova.pe/ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz
+[root@server08 ~]# tar -xzvf ansible-automation-platform-setup-bundle-1.2.5-1.tar.gz
+[root@server08 ~]# cd ansible-automation-platform-setup-bundle-1.2.5-1
 ```
-```
-satellite-installer --scenario satellite \
---foreman-initial-admin-username admin \
---foreman-initial-admin-password redhat
+
+Modificar el archivo inventory para que pueda uztomizar las claves de admin y de awx 'redhat'
+---
+[root@server08 ~]# vi inventory
+---
+
+Ejecutar el instalador con
+---
+[root@server08 ~]# ./setup.sh
+
 ```
 
 **Nota: Para evitar problemas de perdida de conectividad hacia la terminar virtual se recomienda ejecutar el procedimiento de instalación por screen**
