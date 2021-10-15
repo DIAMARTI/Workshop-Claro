@@ -132,14 +132,14 @@ Es buena idea indicar el el archivo /etc/hosts
 ```
 [root@server08 ~]# firewall-cmd --list-all
 ```
-<br>**Instalacion Online**
-**Habilitación de los siguientes repositorios:**
+<br>**Instalacion**
+Registrar el servidor a un sistema que permita el acceso a repositorios de paquetes como Satellite
 ```
-[root@server08 ~]# subscription-manager repos --enable=rhel-7-server-rpms \
---enable=rhel-7-server-satellite-6.7-rpms \
---enable=rhel-7-server-satellite-maintenance-6-rpms \
---enable=rhel-server-rhscl-7-rpms \
---enable=rhel-7-server-ansible-2.8-rpms
+[root@server08 ~]# curl --insecure --output katello-ca-consumer-latest.noarch.rpm https://satellite.opennova.pe/pub/katello-ca-consumer-latest.noarch.rpm
+[root@server08 ~]# yum localinstall katello-ca-consumer-latest.noarch.rpm
+[root@server08 ~]# subscription-manager register --org="OpenNova" --activationkey="RHEL8"
+[root@server08 ~]# subscription-manager attach --auto
+[root@server08 ~]# subscription-manager repos --enable=ansible-2.9-for-rhel-8-x86_64-rpms
 ```
 **Borrar metadata yum**
 ```
@@ -200,20 +200,20 @@ There is a screen on:
 ```
 **En caso de des-conexión abrir otro terminal y ejecutar el comando indicado para restablecer la conexión, recordar poner el id que se genere en su terminal**
 ```
-[root@satellite ~]# screen -r 3081
+[root@server08 ~]# screen -r 3081
 ```
 
-### **Instalacion offline**
+### **Instalacion**
 
-Validar que el cliente tenga el repositorio local para Red Hat Enteprise Linux 7.8
+Registrar el sistema a una plataforma que permita el acceso a repositorios como Satellite
+
+
 ```
-[root@satellite ~]# cat /etc/yum.repos.d/rhel.repo
-[rhel]
-name=rhel
-enabled=1
-baseurl=ftp://192.168.0.120/rhel7
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+curl --insecure --output katello-ca-consumer-latest.noarch.rpm https://satellite.opennova.pe/pub/katello-ca-consumer-latest.noarch.rpm
+yum localinstall katello-ca-consumer-latest.noarch.rpm
+subscription-manager register --org="OpenNova" --activationkey="RHEL8"
+subscription-manager attach --auto
+subscription-manager repos --enable=ansible-2.9-for-rhel-8-x86_64-rpms
 ```
 ```
 [root@satellite ~]# yum repolist
