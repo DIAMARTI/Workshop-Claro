@@ -1,28 +1,28 @@
-<h1>Entendimiento y visualización del proceso de instalación</h1>
+<h1>Qué es Ansible Tower</h1>
 <p>
 <strong>Meta:</strong>
-<br>- Entender el proceso de instalación de la solución Red Hat Satellite así como el diseño sugerido para una correcta implementación.
+<br>- Entender el proceso de instalación de la solución Red Hat Ansible Tower así como el diseño sugerido para una correcta implementación.
 </p>
 <p>
 <strong>Objetivos:</strong>
-<br>- Instalación de Red Hat Satellite (Demostración)
+<br>- Instalación de Red Hat Ansible(Demostración)
 </p>
 <p>
 <strong>Secciones:</strong>
 <br>-  .(Teórico - Practico)
-<br>- Validación de pre-requisitos para la instalación de Red Hat Satellite.(Teórico)
-<br>- Instalación de Red Hat Satellite. (Demostración)
+<br>- Validación de pre-requisitos para la instalación de Red Hat Ansible Tower.(Teórico)
+<br>- Instalación de Red Hat Ansible. (Demostración)
 </p>
 <p>
 <strong>Laboratorios:</strong>
-<br>- Instalación de Red Hat Satellite
+<br>- Instalación de Red Hat Ansible Tower
 </p>
 
 # Validación de pre-requisitos para la instalación de Red Hat Satellite
 
 Los siguientes requisitos se aplican al sistema operativo base:
 * arquitectura x86_64
-* La última versión de Red Hat Enterprise Linux 7 Server
+* La última versión de Red Hat Enterprise Linux 8 Server
 * CPU de 4 núcleos a 2,0 GHz como mínimo
 * Se requiere un mínimo de 20 GB de RAM para que el servidor satélite funcione. Además, también se recomienda un mínimo de 4 GB de RAM para SWAP. Es posible que el satélite que se ejecuta con menos RAM que el valor mínimo no funcione correctamente
 * Un nombre de host único, que puede contener letras minúsculas, números, puntos (.) Y guiones (-)
