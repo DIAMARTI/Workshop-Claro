@@ -10,20 +10,17 @@
 </p>
 <p>
 <strong>Secciones:</strong>
-<br>- Gestión de clientes de satellite
+<br>- Respaldo FULL e INCREMENTAL
 </p>
 <p>
 <strong>Laboratorios:</strong>
-<br><strong>- Registrar un sistema RHEL a la plataforma Satellite</strong>
-<br><strong>- Gestión de actualizaciones de un sistema cliente</strong>
-<br><strong>- Ejercicio propuesto 01</strong>
-<br><strong>- Ejercicio propuesto 02</strong>
-<br><strong>- Ejercicio propuesto 03</strong>
+<br><strong>- Respaldo de la plataforma</strong>
+<br><strong>- Restauracion de la plataforma</strong>
+<br><strong>- Ampliando discos</strong>
 </p>
 
 <strong>Requisitos:</strong>
 <br><strong>- Satellite</strong>
-<br><strong>- RHEL client</strong>
 
 <h3><br><strong>## Respaldo y restauracion del sistema Satellite</strong></h3>
 
