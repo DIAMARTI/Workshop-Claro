@@ -236,12 +236,4 @@ En este punto indicar a su instructor que active la plataforma de Ansible Tower 
 <br>- Utilizar el procedimiento indicado en la explicación.
 <br>- Solicite a su instructor la activacion de su instalacion.
 <br>- Una vez finalizada la instalación logearse con el usuario: admin password: redhat
-<br>- Post-instalación instalar el paquete bind-utils
-<br>**2. Configurar el cliente hammer**
-<br>- Configurar hammer para que utilice sesiones **:use_sessions:**
-<br>- Logearse al satellite por la herramienta hammer utilizando **hammer auth login basic**
-<br>- Setear el timeout de sesión a 30 minutos
-<br>- Validar por hammer los servicios principales
-<br>- Utilizar satellite-maintain service para listar, ver el estado y reiniciar los servicios de satellite.
-<br>- Configurar un mensaje de inicio de sesión que diga la frase: "Red Hat Satellite Global Bank"
-<br>- Cambiar la contraseña del usuario admin por los 2 métodos: Con el uso de clave autogeneradas luego cambiarlo por la GUI y luego cambiarla indicando el password exacto que debe tener.
+
