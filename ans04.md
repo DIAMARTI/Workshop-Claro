@@ -230,7 +230,7 @@ En este punto indicar a su instructor que active la plataforma de Ansible Tower 
 
 
 
-# Laboratorio: Instalando Red Hat Satellite
+# Laboratorio: Instalando Red Hat Ansible Tower
 
 <br>**1. Instalar Red Hat Ansible Tower utilizando el procedimiento INSTALACIÓN**
 <br>- Utilizar el procedimiento indicado en la explicación.
