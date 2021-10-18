@@ -128,13 +128,13 @@ A continuación se indicaran los pasos necesario para la creación de repositori
 name=RHEL84 BaseOS Local Repository
 baseurl=file:///mnt/rhel84/BaseOS
 enabled=1
-gpgecheck=1
+gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 [rhel84-AppStream]
 name=RHEL84 AppStream Local Repository
 baseurl=file:///mnt/rhel84/AppStream
 enabled=1
-gpgecheck=1
+gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 ```
 **Verificar que el repositorio cargue sin problema**
@@ -208,13 +208,13 @@ Solución:
 name=RHEL84 BaseOS Local Repository
 baseurl=ftp://classroom.opennova.pe/rhel8/BaseOS
 enabled=1
-gpgecheck=1
+gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 [rhel84-AppStream]
 name=RHEL84 AppStream Local Repository
 baseurl=ftp://classroom.opennova.pe/rhel8/AppStream
 enabled=1
-gpgecheck=1
+gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 ```
 
@@ -224,7 +224,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 ```
 3. Instalar el grupo de paquetes Networking Tools.
 ```
-[root@nova ~]# yum group install 'Networking Tools'
+[root@nova ~]# yum groupinstall 'Networking Tools'
 ```
 4. Instalar el servicio vsftpd.
 ```
