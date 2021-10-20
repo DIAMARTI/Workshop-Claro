@@ -142,6 +142,18 @@ Finalmente en la vista de host de contenido podrán verificar que ahora pueden v
 
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat708.png?raw=true"width="800" height="400"></p>
 
+Para instalar un paquete de software ir al objeto de cliente registrado y darle a tab de Paquetes como se muestra a continuación.
+
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat708_1.jpg?raw=true"width="800" height="400"></p>
+
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat708_2.jpg?raw=true"width="800" height="400"></p>
+
+Para instalar una errata de software ir al objeto de cliente registrado y darle a tab de Erratas como se muestra a continuación.
+
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat708_3.jpg?raw=true"width="800" height="400"></p>
+
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat708_4.jpg?raw=true"width="800" height="400"></p>
+
 Para borrar el registro ejecutar la opción Delete Hosts como se muestra en la imagen
 
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat709.png?raw=true"width="800" height="400"></p>
