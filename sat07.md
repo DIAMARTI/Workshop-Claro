@@ -261,13 +261,13 @@ Reutilizar el cliente asignado, **des-registrar y registrar** con la nueva llave
 
 Borrar llave de activacion
 ```
-[nova@satellite ~]$ hammer activation-key delete --organization 'Default Organization' --name rhel82
+[nova@satellite ~]$ hammer activation-key delete --organization 'OpenNova' --name rhel84
 Activation key deleted.
 ```
 
 Verificar que la llave se haya borrado
 ```
-[nova@satellite ~]$ hammer activation-key list --organization 'Default Organization'
+[nova@satellite ~]$ hammer activation-key list --organization 'OpenNova'
 ---|-------|----------------|-----------------------|--------------------------
 ID | NAME  | HOST LIMIT     | LIFECYCLE ENVIRONMENT | CONTENT VIEW
 ---|-------|----------------|-----------------------|--------------------------
