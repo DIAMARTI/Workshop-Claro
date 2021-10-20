@@ -218,7 +218,7 @@ Finalmente verificar en la pagina de Host de contenido que se pueda visualizar e
 Crear la **llave de activación rhel82** como se muestra a continuación:
 
 ```
-[nova@satellite ~]$ hammer activation-key create --name rhel84 --description 'Llaves de activacion para clientes Red Hat Enterprise Linux 8.4' --organization 'OpenNova' --lifecycle-environment 'Library' --content-view 'Default Organization View' --unlimited-hosts --release-version '8.4'
+[nova@satellite ~]$ hammer activation-key create --name rhel84 --description 'Llaves de activacion para clientes Red Hat Enterprise Linux 8.4' --organization 'OpenNova' --lifecycle-environment 'Library' --content-view 'Default Organization View' --unlimited-hosts --release-version '8'
 Activation key created.
 ```
 
