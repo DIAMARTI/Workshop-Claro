@@ -218,7 +218,7 @@ Finalmente verificar en la pagina de Host de contenido que se pueda visualizar e
 Crear la **llave de activación rhel82** como se muestra a continuación:
 
 ```
-[nova@satellite ~]$ hammer activation-key create --name rhel82 --description 'Llaves de activacion para clientes Red Hat Enterprise Linux 8.2' --organization 'Default Organization' --lifecycle-environment 'Library' --content-view 'Default Organization View' --unlimited-hosts --release-version '8.2'
+[nova@satellite ~]$ hammer activation-key create --name rhel84 --description 'Llaves de activacion para clientes Red Hat Enterprise Linux 8.4' --organization 'OpenNova' --lifecycle-environment 'Library' --content-view 'Default Organization View' --unlimited-hosts --release-version '8.4'
 Activation key created.
 ```
 
@@ -229,7 +229,7 @@ Listar la llave de activación
 ID | NAME   | HOST LIMIT     | LIFECYCLE ENVIRONMENT | CONTENT VIEW
 ---|--------|----------------|-----------------------|--------------------------
 1  | rhel8  | 1 of Unlimited | Library               | Default Organization View
-4  | rhel82 | 0 of Unlimited | Library               | Default Organization View
+4  | rhel84 | 0 of Unlimited | Library               | Default Organization View
 ---|--------|----------------|-----------------------|--------------------------
 ```
 
@@ -241,12 +241,12 @@ Verificar el id de la suscripción de Red Hat Enterprise Linux
 
 Agregar la suscripción a la llave de activación
 ```
-[nova@satellite ~]$ hammer activation-key add-subscription --subscription-id 2 --organization 'Default Organization' --name rhel82
+[nova@satellite ~]$ hammer activation-key add-subscription --subscription-id 2 --organization 'OpenNova' --name rhel84
 ```
 
 Habilitar el repositorio de herramientas satellite a la llave de activación
 ```
-[nova@satellite ~]$ hammer activation-key content-override --content-label satellite-tools-6.7-for-rhel-8-x86_64-rpms --value 1 --organization 'Default Organization' --name rhel82
+[nova@satellite ~]$ hammer activation-key content-override --content-label satellite-tools-6.9-for-rhel-8-x86_64-rpms --value 1 --organization 'OpenNova' --name rhel84
 ```
 
 Reutilizar el cliente asignado, **des-registrar y registrar** con la nueva llave de activación **rhel82**
@@ -254,7 +254,7 @@ Reutilizar el cliente asignado, **des-registrar y registrar** con la nueva llave
 [root@client01 ~]# subscription-manager unregister
 [root@client01 ~]# subscription-manager clean
 [root@client01 ~]# yum clean all
-[root@client01 ~]# subscription-manager register --org="Default_Organization" --activationkey="rhel82"
+[root@client01 ~]# subscription-manager register --org="OpenNova" --activationkey="rhel84"
 [root@client01 ~]# yum repolist
 [root@client01 ~]# yum list all
 ```
