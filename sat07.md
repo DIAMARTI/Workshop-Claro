@@ -224,7 +224,7 @@ Activation key created.
 
 Listar la llave de activación
 ```
-[nova@satellite ~]$ hammer activation-key list --organization 'Default Organization'
+[nova@satellite ~]$ hammer activation-key list --organization 'OpenNova'
 ---|--------|----------------|-----------------------|--------------------------
 ID | NAME   | HOST LIMIT     | LIFECYCLE ENVIRONMENT | CONTENT VIEW
 ---|--------|----------------|-----------------------|--------------------------
