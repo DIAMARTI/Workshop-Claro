@@ -269,6 +269,6 @@ ID | NAME  | HOST LIMIT     | LIFECYCLE ENVIRONMENT | CONTENT VIEW
 <br> Instalar el Red Hat Security Advisore: RHSA-2021:3548 por la herramienta grafica dentro del tab Errata.
 <br> Una vez registrado y validado, proceder a des-registrarlo para registrarlo por una llave de activación.
 <br>
-<br>**2. Registrar el cliente asignado mediante procedimiento de llave de activación se deberá crear la llave de activación AK_RHEL8_USERX como se muestra en la demostración, donde X es el numero de su usuario del 1 al 6**
-<br> Una vez creada la llave proceder a registrar el cliente asignado utilizando la llave de activación AK_RHEL8_USERX donde X es el numero de cliente del 1 al 6
+<br>**2. Registrar el cliente asignado mediante procedimiento de llave de activación se deberá crear la llave de activación AK_RHEL8_USER_X como se muestra en la demostración, donde X es el numero de su usuario del 1 al 6**
+<br> Una vez creada la llave proceder a registrar el cliente asignado utilizando la llave de activación AK_RHEL8_USER_X donde X es el numero de cliente del 1 al 6
 
