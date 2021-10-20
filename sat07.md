@@ -241,7 +241,7 @@ Verificar el id de la suscripción de Red Hat Enterprise Linux
 
 Agregar la suscripción a la llave de activación
 ```
-[nova@satellite ~]$ hammer activation-key add-subscription --subscription-id 2 --organization 'OpenNova' --name rhel84
+[nova@satellite ~]$ hammer activation-key add-subscription --subscription-id 4 --organization 'OpenNova' --name rhel84
 ```
 
 Habilitar el repositorio de herramientas satellite a la llave de activación
