@@ -536,7 +536,7 @@ User role [Oracle Database Admins] deleted.
 <br> Asociar el rol al usuario appsuser 
 <br>
 
-### 2. Crear una Organización y Ubicación utilizando la CLI hammer.
+### 2. Crear un usuario, grupo y rol utilizando la CLI hammer.
 <br>**Crear una usuario con los siguiente datos:**
 <br> Login: **dbasuser** 
 <br> Nombre: Administrador
