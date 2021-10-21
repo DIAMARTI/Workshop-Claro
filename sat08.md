@@ -218,17 +218,17 @@ Visualizar el estado de la sincronizacion de los productos
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat837.png?raw=true"width="800" height="400"></p>
 
 # Laboratorio de la Unidad: 
-<br>**1. Crear una credencial de nombre CustomX GPG KEY como se indica en la demostración, utilizar el procedimiento como referencia**
+<br>**1. Crear una credencial de nombre "CustomX GPG KEY" como se indica en la demostración, utilizar el procedimiento como referencia**
 <br> La llave gpg la podrá descargar del recurso compartido.
 <br>
-<br>**2. Crear un Producto de nombre CustomX como se indica en la demostración, utilizar el procedimiento como referencia**
-<br> El nombre del repositorio del Producto se llamara Java IBM y podrá descargar los paquetes del recurso compartido
+<br>**2. Crear un Producto de nombre "CustomX Java" como se indica en la demostración, utilizar el procedimiento como referencia**
+<br> El nombre del repositorio del Producto se llamara "Java IBM" y podrá descargar los paquetes del recurso compartido
 <br>
-<br>**3. Deberá actualializar la llave de activación rhel8 como se indica en la demostración, utilizar el procedimiento como referencia**
-<br> Deberá suscribir el producto CustomX a la llave de activación
+<br>**3. Deberá actualializar la llave de activación AK_RHEL8_USER_X como se indica en la demostración, utilizar el procedimiento como referencia**
+<br> Deberá suscribir el producto CustomX Java a la llave de activación
 <br>
-<br>**3. Re-registrar el cliente con la llave de activación rhel8 modificada como se indica en la demostración, utilizar el procedimiento como referencia**
-<br> Borrar el cliente asignado de la pagina de Host de contenido y luego aplicar los comandos subscription-manager para des-registrar u registrar el host de contenido con la nueva llave. Adicionalemente deberá instalar el paquete java-1.8.0-ibm.
+<br>**3. Re-registrar el cliente con la llave de activación AK_RHEL8_USER_X modificada como se indica en la demostración, utilizar el procedimiento como referencia**
+<br> Borrar el cliente asignado de la pagina de Host de contenido y luego aplicar los comandos subscription-manager para des-registrar u registrar el host de contenido con la nueva llave. Adicionalemente deberá instalar el paquete java-1.8.0-ibm, este deberá poder instalarse sin errores.
 <br>
-<br>**4. Crear un plan de sincronizacion llamado CustomX Sync Plan como se indica en la demostración, utilizar el procedimiento como referencia**
-<br> Asociar el producto Red Hat Enterprise Linux for x86_64 y deberá ejecutarse todos los viernes a las 11:45 pm.
+<br>**4. Crear un plan de sincronizacion llamado "CustomX Sync Plan" como se indica en la demostración, utilizar el procedimiento como referencia**
+<br> Asociar el producto "CustomX Java" y deberá ejecutarse todos los viernes a las 11:45 pm.
