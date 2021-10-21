@@ -48,7 +48,7 @@ Ubique el reporte del instructor y clonelo
 Genere su reporte personal mapeando su cliente asignado
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat902.png?raw=true"></p>
 
-<br>Instale un servidor web en su equipo asignado apoyandose con el repositorio del salon publicado en ftp://192.168.0.120/rhel8/
+<br>Instale un servidor web en su equipo asignado y carge el reporte de su cliente
 <br>`# yum install httpd -y`
 <br>`# systemctl enable httpd`
 <br>`# systemctl start httpd`
