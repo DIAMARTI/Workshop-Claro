@@ -95,7 +95,7 @@ Ahora regresamos a la vista de contenidos y los recursos empezaran a registrarse
 <br>3. Genere una nueva versión 2.0 de la vista de contenido Base que incluya los repositorios: **Red Hat Enterprise Linux 8 for x86_64 - AppStream RPMs 8** y **Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 RPMs**  y promuevalo a los ambientes: **DesarrolloX, CertificacionX y ProduccionX**.
 <br>
 <br>4. Genere una llave de activación para realizar un re-registro del clienteX de su laboratorio, utilizar los siguientes datos:
-       ActivationKey Name: **AK_USERX_BASE_PROD**.<br>
+       ActivationKey Name: **AK_BASE_RHEL8_USER_X**.<br>
        En ambiente seleccionar: **ProduccionX**<br>
        Vista de Contenido: **BaseX**<br>
        Tab de suscripciones: **Agregarle una Suscripcion disponible**<br>
