@@ -227,8 +227,8 @@ Visualizar el estado de la sincronizacion de los productos
 <br>**3. Deberá actualializar la llave de activación AK_RHEL8_USER_X como se indica en la demostración, utilizar el procedimiento como referencia**
 <br> Deberá suscribir el producto CustomX Java a la llave de activación
 <br>
-<br>**3. Re-registrar el cliente con la llave de activación AK_RHEL8_USER_X modificada como se indica en la demostración, utilizar el procedimiento como referencia**
+<br>**4. Re-registrar el cliente con la llave de activación AK_RHEL8_USER_X modificada como se indica en la demostración, utilizar el procedimiento como referencia**
 <br> Borrar el cliente asignado de la pagina de Host de contenido y luego aplicar los comandos subscription-manager para des-registrar u registrar el host de contenido con la nueva llave. Adicionalemente deberá instalar el paquete java-1.8.0-ibm, este deberá poder instalarse sin errores.
 <br>
-<br>**4. Crear un plan de sincronizacion llamado "CustomX Sync Plan" como se indica en la demostración, utilizar el procedimiento como referencia**
+<br>**5. Crear un plan de sincronizacion llamado "CustomX Sync Plan" como se indica en la demostración, utilizar el procedimiento como referencia**
 <br> Asociar el producto "CustomX Java" y deberá ejecutarse todos los viernes a las 11:45 pm.
