@@ -45,7 +45,7 @@ Clone el reporte que creo el instructor y genere el archivo de reporte que pueda
 Ubique el reporte del instructor y clonelo, el nombre del reporte clonado deberá ser: Reporte_User_X, donde x es el numero de su usuario del 1 al 6.
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat901.png?raw=true"></p>
 
-Genere su reporte personal utilizando el reporte clonado: Reporte_User_X, donde x es el numero de su usuario del 1 al 6, con el formato HTML y visualícelo.
+Genere su reporte personal utilizando el reporte clonado: **Reporte_User_X**, donde x es el numero de su usuario del 1 al 6, con el formato HTML y visualícelo.
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat902.png?raw=true"></p>
 
 <br>Instale un servidor web en su equipo asignado y carge el reporte de su cliente
