@@ -98,7 +98,10 @@ Espere que que termine de actualizarse, vuelva a examinar el servidor y busque s
 
 
 <h3><br><strong>Ejercicio propuesto 01:</strong></h3>
-Haga un análisis del kernel instalado  y proponga una actualización con sustento para luego ejecutarla
+Crear un usuario nuevo llamado UserX para luego realizar un procedimiento de backup full.
+Eliminar el UserX
+Restaurar el sistema a partir del backup-full realizado en pasos previos
+Validar la infraestructura
 
 <br><h3><strong>Ejercicio propuesto 02:</strong></h3>
 El desarrollador de la pagina web requiere gestionar el contenido del portal, por ello le pide instalar el siguiente RPM desde el servidor FTP del salón, instalelo con el comando:
