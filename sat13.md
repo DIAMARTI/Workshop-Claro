@@ -103,13 +103,13 @@ Eliminar el UserX
 Restaurar el sistema a partir del backup-full realizado en pasos previos
 Validar la infraestructura
 
-<br><h3><strong>Ejercicio propuesto 02:</strong></h3>
+<br><h3><strong>Ejercicio propuesto 02:(OPCIONAL)</strong></h3>
 El desarrollador de la pagina web requiere gestionar el contenido del portal, por ello le pide instalar el siguiente RPM desde el servidor FTP del salón, instalelo con el comando:
 <br>`# yum install git-2.18.2-1.el8_1.x86_64`
 
 Por linea de comandos intente hacer un análisis y proponga la actualización de ser necesario
 
-<br><h3><strong>Ejercicio prepuesto 03:</strong></h3>
+<br><h3><strong>Ejercicio prepuesto 03(OPCIONAL):</strong></h3>
 El mismo desarrallador ahora requiere contar con librerías del navegador firefox, por ello le pide instalar el paquete desde el recurso FTP con el comando
 <br>`# yum install firefox-68.6.0-1.el8_1.x86_64`
 
