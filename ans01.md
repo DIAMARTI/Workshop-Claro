@@ -1,5 +1,5 @@
-<h1>Introducción a Red Hat Satellite</h1>
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat100.png?raw=true"></p>
+<h1>Auttomation and Linux System Administration</h1>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.jpg?raw=true"width="600" height="400"></p>
 <p>
 <strong>Meta:</strong>
 <br>- Entendimiento de Red Hat Satellite como solución de administración, monitoreo y despliegue de Red Hat Enteprise Linux.
