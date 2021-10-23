@@ -21,8 +21,7 @@
 # Introducción a Ansible. (Teórico)
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.jpg?raw=true"width="800" height="400"></p>
 
-**¿Qué es Automatizacion de TI?**
-<br>
+### **¿Qué es la Automatizacion de TI?**
 <br>La automatización de TI o automatización de infraestructura consiste en utilizar un software para crear políticas y procesos que reduzcan o reemplacen la interacción manual con sistemas de TI.
 
 Beneficios:
@@ -31,15 +30,24 @@ Beneficios:
 - Simplificar tareas repetitivas.
 - Facilitar despliegues e integraciones.
 - Reducción del tiempo de ejecución de tareas.
+---
 
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans101.png?raw=true"width="600" height="400"></p>
 
-**¿Que es Red Hat Satellite Capsule Server?**
+### **¿Qué es Infraestructura como codigo?**
 <br>
-<br>Red Hat Satellite Capsule Server refleja el contenido de Red Hat Satellite Server para facilitar la federación de contenido en varias ubicaciones geográficas. Los sistemas host pueden extraer contenido del Capsule Server y no del Satellite Server central. Capsule Server también proporciona servicios localizados como Puppet Master, DHCP, DNS o TFTP. Los servidores cápsula lo ayudan a escalar su entorno de satélite a medida que aumenta el número de sus sistemas administrados
+<br>La infraestructura como código (IaC) es un enfoque para la gestión de infraestructuras de sistemas de TI que se basa en el uso de archivos de configuración repetibles para generar entornos de implementación consistentes para el desarrollo de CI/CD
 
-Los servidores cápsula reducen la carga en el servidor central, aumentan la redundancia y reducen el uso de ancho de banda
+Tipos de IaC:
+- [Terraform](https://www.terraform.io)
+- [CloudFormation](https://aws.amazon.com/es/cloudformation)
+- <a href="https://www.terraform.io" target="_blank" rel="noopener noreferrer">Terraform</a>.
+- <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
+<p>Check out <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a>.</p>
+- Azure ARM
+- Ansible
+- Chef, Puppet entre otros.
 
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat105.png?raw=true" width="400" height="400"></p>
 
 ### **Características y beneficios de Red Hat Satellite**
 <br>Red Hat Satellite automatiza muchas tareas relacionadas con la administración del sistema y se integra fácilmente en los marcos de flujo de trabajo existentes. La consola centralizada ofrece a los administradores una ubicación única para acceder a los informes y para aprovisionar, configurar y actualizar sistemas.
