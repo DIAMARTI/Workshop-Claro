@@ -21,9 +21,17 @@
 # Introducción a Ansible. (Teórico)
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.jpg?raw=true"width="800" height="400"></p>
 
-**¿Que es Red Hat Satellite?**
+**¿Qué es Automatizacion de TI?**
 <br>
-<br>Red Hat Satellite es una solución de administración de sistemas que hace que la infraestructura de Red Hat sea más fácil de implementar, escalar, administrar y mantener en entornos físicos, virtuales y en la nube. Esta herramienta de administración ayuda a los usuarios a aprovisionar, configurar y actualizar sistemas para que sigan funcionando de manera eficiente, con seguridad y en cumplimiento con varios estándares. Al automatizar la mayoría de las tareas de mantenimiento del sistema, Red Hat Satellite ayuda a las organizaciones a aumentar la eficiencia, reducir los costos operativos y permitir que TI responda mejor a las necesidades comerciales estratégicas.
+<br>La automatización de TI o automatización de infraestructura consiste en utilizar un software para crear políticas y procesos que reduzcan o reemplacen la interacción manual con sistemas de TI.
+
+Beneficios:
+- Ahorro de costos operativos.
+- Mitigar el error humano.
+- Simplificar tareas repetitivas.
+- Facilitar despliegues e integraciones.
+- Reducción del tiempo de ejecución de tareas.
+
 
 **¿Que es Red Hat Satellite Capsule Server?**
 <br>
