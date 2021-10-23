@@ -63,12 +63,9 @@ Tipos de IaC:
 <br>
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans103.jpg?raw=true"width="700" height="400"></p>
 
-| Característica | Beneficio |
-| --- | --- |
-| Vistas de contenido | Las vistas de contenido son colecciones de RPM, módulos Puppet, contenido de contenedor o contenido de OSTree refinado con filtros y reglas. Se publican y promueven a lo largo de los entornos de ciclo de vida, lo que permite la gestión del sistema de un extremo a otro.|
-| Integración de Red Hat Content Delivery Network (CDN) |Permite a los usuarios controlar la sincronización del contenido de Red Hat directamente desde la interfaz de usuario.|
-|Gestión del ciclo de vida| Permite la distribución, aprovisionamiento, configuración y entrega de contenido a través de Red Hat Satellite Capsule Server.|
-|Sincronización de contenido optimizada|Permite a los usuarios crear sistemas casi inmediatamente después de la instalación mientras el contenido se descarga en segundo plano.|
+---
+
+# Introducción a Red Hat Ansible Automation Platform. (Teórico)
 
 **Gestión de actualizaciones**
 <br>
