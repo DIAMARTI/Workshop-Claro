@@ -34,27 +34,34 @@ Beneficios:
 
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans101.png?raw=true"width="600" height="400"></p>
 
-### **¿Qué es Infraestructura como codigo?**
+### **¿Qué es Infraestructura como código?**
 <br>
 <br>La infraestructura como código (IaC) es un enfoque para la gestión de infraestructuras de sistemas de TI que se basa en el uso de archivos de configuración repetibles para generar entornos de implementación consistentes para el desarrollo de CI/CD
 
 Tipos de IaC:
 - [Terraform](https://www.terraform.io)
 - [CloudFormation](https://aws.amazon.com/es/cloudformation)
-- <a href="https://www.terraform.io" target="_blank" rel="noopener noreferrer">Terraform</a>.
-- <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
-<p>Check out <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a>.</p>
-- Azure ARM
-- Ansible
-- Chef, Puppet entre otros.
+- [Azure ARM](https://azure.microsoft.com/es-es/services/arm-templates/)
+- [Ansible](https://www.ansible.com)
+- [Chef](https://www.chef.io/products/chef-infra)
+- [Puppet](https://puppet.com)
+- [Saltstack](https://saltproject.io)
+- otros
+---
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans105.png?raw=true"width="500" height="230"></p>
 
+### **¿Qué es Ansible?**
+<br>**Ansible** es una plataforma de automatización de código abierto. Es un lenguaje de automatización simple que puede describir perfectamente una infraestructura de aplicaciones de TI en Ansible Playbooks.
 
-### **Características y beneficios de Red Hat Satellite**
-<br>Red Hat Satellite automatiza muchas tareas relacionadas con la administración del sistema y se integra fácilmente en los marcos de flujo de trabajo existentes. La consola centralizada ofrece a los administradores una ubicación única para acceder a los informes y para aprovisionar, configurar y actualizar sistemas.
-
-**Gestión de contenido**
+- Ansible es simple.
+- Ansible es potente.
+- Ansible no necesita agentes.
 <br>
-<br>Red Hat Satellite ayuda a garantizar la aplicación sistemática de contenido, incluidos los parches, en los sistemas implementados, en infraestructuras físicas, virtuales o en la nube, en todas las etapas. Este enfoque promueve una mayor consistencia y disponibilidad del sistema y libera a TI para responder más rápidamente a las necesidades y vulnerabilidades del negocio.
+
+**Arquitectura Ansible**
+<br>
+<br>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans103.jpg?raw=true"width="700" height="400"></p>
 
 | Característica | Beneficio |
 | --- | --- |
