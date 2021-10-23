@@ -1,17 +1,17 @@
-<h1>Ansible</h1>
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.jpg?raw=true"width="600" height="400"></p>
+<h1>Ansible Automation</h1>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.png?raw=true"width="800" height="400"></p>
 <p>
 <strong>Meta:</strong>
-<br>- Entendimiento de Red Hat Satellite como solución de administración, monitoreo y despliegue de Red Hat Enteprise Linux.
+<br>- Entendimiento Ansible Automation y Red Hat Automation Platform.
 </p>
 <p>
 <strong>Objetivos:</strong>
-<br>- Identificación y planificación de componentes de Red Hat Satellite (Demostración)
+<br>- Conceptos de Ansible y Arquitectura (Demostración)
 </p>
 <p>
 <strong>Secciones:</strong>
-<br>- Introducción a Red Hat Satellite. (Teórico)
-<br>- Identificar componentes de Red Hat Satellite. (Teórico)
+<br>- Introducción a Ansible. (Teórico)
+<br>- Introducción a Red Hat Ansible Automation Platform. (Teórico)
 <br>- Planificar escenarios de despliegue. (Teórico)
 </p>
 <p>
