@@ -6,20 +6,20 @@
 </p>
 <p>
 <strong>Objetivos:</strong>
-<br>- Conceptos de Ansible y Arquitectura (Demostración)
+<br>- Conceptos de Ansible y Arquitectura (Teórico)
 </p>
 <p>
 <strong>Secciones:</strong>
 <br>- Introducción a Ansible. (Teórico)
 <br>- Introducción a Red Hat Ansible Automation Platform. (Teórico)
-<br>- Planificar escenarios de despliegue. (Teórico)
+<br>- Planificar setup inicial. (Teórico) Demostración
 </p>
 <p>
 <strong>Laboratorios:</strong>
 </p>
 
-# Introducción a Red Hat Satellite. (Teórico)
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat106.png?raw=true"></p>
+# Introducción a Ansible. (Teórico)
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.jpg?raw=true"width="800" height="400"></p>
 
 **¿Que es Red Hat Satellite?**
 <br>
