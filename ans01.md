@@ -100,11 +100,8 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 
 # Planificar setup inicial Ansible. (Demostración)
 
-
-Red Hat Satellite 6 consta de varios proyectos de código abierto que están integrados, verificados, entregados y respaldados como Satellite 6. 
-<br>Consta de los siguientes proyectos de código abierto:
-
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat108.png?raw=true"width="700" height="280"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans106.png?raw=true"width="800" height="400"></p>
+<p>
 
 
 **Gestión de la configuración - Soporte Puppet 5**
