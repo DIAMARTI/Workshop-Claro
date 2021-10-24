@@ -12,7 +12,7 @@
 <strong>Secciones:</strong>
 <br>- Introducción a Ansible. (Teórico)
 <br>- Introducción a Red Hat Ansible Automation Platform. (Teórico)
-<br>- Planificar setup inicial. (Demostración) 
+<br>- Planificar setup inicial Ansible. (Demostración) 
 </p>
 <p>
 <strong>Laboratorios:</strong>
@@ -96,7 +96,9 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 | Red Hat Insights for Ansible Automation Platform| Red Hat Insights for Ansible Automation Platform permite a los arquitectos rastrear y solucionar problemas de éxito en el trabajo y medir cómo los equipos coordinan los procesos de automatización en los dominios de TI. También ayuda a los operadores y administradores a mantener Red Hat Ansible Automation Platform funcionando de manera eficiente y óptima, a identificar dónde fallan trabajos específicos e informar sobre proyectos de automatización en toda la infraestructura de un extremo a otro.|
 | Automation services catalog| El catálogo de servicios de automatización es un medio para que los usuarios administren, aprovisionen y retiren los recursos de automatización, para facilitar el modelado y la entrega. Brinda a los creadores de automatización y usuarios comerciales acceso de autoservicio en entornos físicos, virtuales, en la nube y de contenedores, lo que facilita la ejecución de proyectos de automatización. Simultáneamente brinda a los usuarios de automatización empresarial y de línea de negocios la gobernanza que necesitan para cumplir con los requisitos de cumplimiento y adquisiciones.|
 
-# Planificar setup inicial. (Demostración)
+---
+
+# Planificar setup inicial Ansible. (Demostración)
 
 
 Red Hat Satellite 6 consta de varios proyectos de código abierto que están integrados, verificados, entregados y respaldados como Satellite 6. 
