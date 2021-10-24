@@ -12,7 +12,7 @@
 <strong>Secciones:</strong>
 <br>- Introducción a Ansible. (Teórico)
 <br>- Introducción a Red Hat Ansible Automation Platform. (Teórico)
-<br>- Planificar setup inicial. (Teórico) Demostración
+<br>- Planificar setup inicial. (Demostración) 
 </p>
 <p>
 <strong>Laboratorios:</strong>
@@ -95,44 +95,8 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 | Ansible content tools | Ansible Automation Platform 2 incluye dos nuevas herramientas diseñadas para ayudar a que la creación y la implementación de entornos de ejecución sean una experiencia de creación más fluida. Se incluirán herramientas de contenido adicionales de Ansible en futuras versiones de la plataforma. El generador de entornos de ejecución (ansible-builder) es una herramienta de línea de comandos que ayuda a construir entornos Ansible en contenedores usando podman. Permite a los creadores y operadores de automatización crear entornos de ejecución personalizados con el contenido exacto de Ansible necesario para su automatización. El navegador de contenido de automatización (ansible-navigator) proporciona una interfaz de plataforma de nivel superior (a través de CLI o TUI) para los creadores de automatización de Ansible. Proporciona una experiencia de creación de contenido de automatización de nivel superior más coherente, coherente y predecible, diseñada para ayudar al desarrollador empresarial de Ansible. |
 | Red Hat Insights for Ansible Automation Platform| Red Hat Insights for Ansible Automation Platform permite a los arquitectos rastrear y solucionar problemas de éxito en el trabajo y medir cómo los equipos coordinan los procesos de automatización en los dominios de TI. También ayuda a los operadores y administradores a mantener Red Hat Ansible Automation Platform funcionando de manera eficiente y óptima, a identificar dónde fallan trabajos específicos e informar sobre proyectos de automatización en toda la infraestructura de un extremo a otro.|
 | Automation services catalog| El catálogo de servicios de automatización es un medio para que los usuarios administren, aprovisionen y retiren los recursos de automatización, para facilitar el modelado y la entrega. Brinda a los creadores de automatización y usuarios comerciales acceso de autoservicio en entornos físicos, virtuales, en la nube y de contenedores, lo que facilita la ejecución de proyectos de automatización. Simultáneamente brinda a los usuarios de automatización empresarial y de línea de negocios la gobernanza que necesitan para cumplir con los requisitos de cumplimiento y adquisiciones.|
-| Capacidad para definir y gestionar SOE | Garantice SOE obteniendo actualizaciones sobre parches de seguridad, actualizaciones y mejoras.|
-| Parche automatizado |Mejore rápidamente la seguridad del sistema parcheando cientos o miles de sistemas a la vez.|
-|Gestión del ciclo de vida| Permite la distribución, aprovisionamiento, configuración y entrega de contenido a través de Red Hat Satellite Capsule Server.|
-|Implementación y seguimiento de software de Red Hat y software de terceros |Implemente toda la infraestructura de Red Hat, así como el software de terceros, extrayendo todos esos bits de software en Satellite. Una vez que Satellite tiene ese contenido, también realiza un seguimiento de él, lo que mejora la seguridad y garantiza un mejor seguimiento de lo que se implementa en cada sistema.|
 
-**Gestión de Aprovisionamiento**
-<br>
-<br>Los administradores pueden aprovisionar en infraestructura virtualizada, bare metal y en entornos de nube pública o privada, todo desde una consola centralizada mediante un proceso simple
-
-| Característica | Beneficio |
-| --- | --- |
-| Aprovisionamiento en bare metal | Aprovisione y actualice rápidamente toda su infraestructura básica.|
-|Aprovisionamiento en Red Hat Virtualization, Red Hat OpenStack® Platform, VMware o varios proveedores de nube| Cree y administre fácilmente instancias en infraestructura virtualizada o en entornos de nube pública y privada.|
-|Aprovisionamiento mediante plantillas| Cree escenarios complejos de Kickstart y Preboot Execution Environment (PXE) con poderosas variables y fragmentos.|
-|System discovery|Descubra y busque en hosts no aprovisionados para una implementación rápida, incluso en entornos donde el Protocolo de configuración dinámica de host (DHCP) y PXE no están disponibles.|
-
-**Gestión de Configuración**
-<br>
-<br>Analice y corrija automáticamente la desviación y el control de la configuración, y aplique el estado final del host deseado, todo desde la interfaz de usuario de Red Hat Satellite. Esta interfaz le permite configurar de manera eficiente los sistemas Red Hat Enterprise Linux® para una mayor agilidad.
-
-| Característica | Beneficio |
-| --- | --- |
-| Ejecución remota | Automatiza los flujos de trabajo y permite a los usuarios realizar múltiples acciones contra grupos de sistemas, incluido el reinicio de un sistema después de la instalación de un parche y la realización de actualizaciones continuas en cientos de sistemas.|
-|Integración de Red Hat Insights| Utiliza análisis avanzados para ayudar a detectar riesgos, permite la creación de un plan Insights para remediar los riesgos y ayuda a ejecutar los Playbooks de Ansible® a través de la misma interfaz de satélite.|
-|Integración de Red Hat Ansible Automation Platform|Permite la ejecución remota, la gestión del estado deseado y la automatización de la gestión de la configuración.|
-
-**Gestión de suscripciones**
-<br>
-<br>Genere informes y mapee fácilmente sus productos Red Hat a sistemas registrados para una visibilidad de consumo de suscripción de un extremo a otro.
-
-| Característica | Beneficio |
-| --- | --- |
-| Gestión de suscripciones | Importe y administre fácilmente la distribución de suscripciones de software de Red Hat.|
-|Motor de informes integrado| Informe y mapee los productos comprados a los sistemas registrados dentro de Red Hat Satellite para una visibilidad de uso de suscripción de un extremo a otro.|
-
-
-
-# Identificar componentes de Red Hat Satellite. (Teórico)
+# Planificar setup inicial. (Demostración)
 
 
 Red Hat Satellite 6 consta de varios proyectos de código abierto que están integrados, verificados, entregados y respaldados como Satellite 6. 
@@ -140,46 +104,6 @@ Red Hat Satellite 6 consta de varios proyectos de código abierto que están int
 
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat108.png?raw=true"width="700" height="280"></p>
 
-### **Foreman**
-Foreman es una aplicación de código abierto que se utiliza para el aprovisionamiento y la gestión del ciclo de vida de sistemas físicos y virtuales. Foreman configura automáticamente estos sistemas utilizando varios métodos, incluidos los módulos kickstart y Puppet. Foreman también proporciona datos históricos para informes, auditorías y resolución de problemas.
-
-### **Katello**
-Katello es un complemento de Foreman para la gestión de suscripciones y repositorios. Proporciona un medio para suscribirse a los repositorios de Red Hat y descargar contenido. Puede crear y administrar diferentes versiones de este contenido y aplicarlas a sistemas específicos dentro de las etapas definidas por el usuario del ciclo de vida de la aplicación.
-
-### **Candlepin**
-Candlepin es un servicio dentro de Katello que se encarga de la gestión de suscripciones.
-
-### **Pulp**
-Pulp es un servicio dentro de Katello que se encarga de la gestión de contenido y repositorios. Pulp asegura un espacio de almacenamiento eficiente al no duplicar los paquetes RPM incluso cuando lo solicitan Content Views en diferentes organizaciones.
-
-### **Hammer**
-Hammer es una herramienta CLI que proporciona equivalentes de línea de comandos y shell de la mayoría de las funciones de la interfaz de usuario web.
-
-**REST API**
-Red Hat Satellite 6 incluye un servicio de API RESTful que permite a los administradores y desarrolladores del sistema escribir scripts personalizados y aplicaciones de terceros que interactúan con Red Hat Satellite.
-
-### **Puppet**
-Red Hat Satellite 6 incluye paquetes Puppet compatibles. El programa de instalación permite a los usuarios instalar y configurar Puppet Masters como parte de Red Hat Satellite Capsule Servers. Un módulo Puppet, que se ejecuta en un Puppet Master en Red Hat Satellite Server o Satellite Capsule Server, también es compatible con Red Hat.
-
-## Arquitecturas de cliente compatibles
-
-**Soporte de gestión de contenido**
-
-|Plataforma | Arquitecturas |
-| --- | --- |
-|Red Hat Enterprise Linux 8| x86_64, ppc_64, s390x |
-|Red Hat Enterprise Linux 7| x86_64, ppc64 (BE), ppc64le, aarch64, s390x|
-|Red Hat Enterprise Linux 6|x86_64, i386, s390x, ppc64 (BE)|
-|Red Hat Enterprise Linux 5|x86_64, i386, s390x|
-
-**Soporte de aprovisionamiento de host**
-
-|Plataforma | Arquitecturas |
-| --- | --- |
-|Red Hat Enterprise Linux 8 | x86_64 |
-|Red Hat Enterprise Linux 7 | x86_64 |
-|Red Hat Enterprise Linux 6 | x86_64, i386 |
-|Red Hat Enterprise Linux 5 | x86_64, i386 |
 
 **Gestión de la configuración - Soporte Puppet 5**
 
@@ -190,13 +114,3 @@ Red Hat Satellite 6 incluye paquetes Puppet compatibles. El programa de instalac
 |Red Hat Enterprise Linux 6 | x86_64, i386|
 |Red Hat Enterprise Linux 5 | x86_64, i386|
 
-# Planificar escenarios de despliegue. (Teórico)
-### **Arquitectura del sistema Red Hat Satellite 6**
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat101.png?raw=true" width="850" height="600"></p>
-
-
-### **Topología de satélite con cápsula interna**
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat103.png?raw=true" width="850" height="600"></p>
-
-### **Topología de satélite con cápsula aislada**
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/sat/sat102.png?raw=true" width="850" height="600"></p>
