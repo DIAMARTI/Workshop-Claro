@@ -120,7 +120,7 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 ---
 ## **Instalar Ansible en el Control Node**
 
-- Listar repositorios disponibles y validar que contamos con ansible-2.9-for-rhel-8-x86_64-rpms
+Listar repositorios disponibles y validar que contamos con ansible-2.9-for-rhel-8-x86_64-rpms
 
 ```
 [root@server09 ~]# subscription-manager repos --list
@@ -148,7 +148,7 @@ Repo URL:  https://satellite.opennova.pe/pulp/repos/OpenNova/Library/content/dis
 Enabled:   1
 ```
 
-- Habilitar en el nodo de control el repositorio **ansible-2.9-for-rhel-8-x86_64-rpms**
+Habilitar en el nodo de control el repositorio **ansible-2.9-for-rhel-8-x86_64-rpms**
 ```
 [root@server09 ~]# subscription-manager repos --enable=ansible-2.9-for-rhel-8-x86_64-rpms
 Repository 'ansible-2.9-for-rhel-8-x86_64-rpms' is enabled for this system.
@@ -162,7 +162,7 @@ rhel-8-for-x86_64-baseos-rpms                             Red Hat Enterprise Lin
 satellite-tools-6.9-for-rhel-8-x86_64-rpms                Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)
 ```
 
-- Instalar Python en el nodo de control
+Instalar Python en el nodo de control
 ```
 [root@server09 ~]# yum install platform-python -y
 Updating Subscription Management repositories.
@@ -214,7 +214,7 @@ Upgraded:
 Complete!
 ```
 
-- Instalar ansible en el nodo de control
+Instalar ansible en el nodo de control
 ```
 [root@server09 ~]# yum install -y ansible
 Updating Subscription Management repositories.
