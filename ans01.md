@@ -306,6 +306,22 @@ Installed:
 Complete!
 ```
 
+Crear usuario ansible en el nodo de control
+```
+[root@server09 ~]# useradd ansible
+[root@server09 ~]# id ansible
+uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
+```
+
+Configurarle permisos sudo al usuario ansible en el nodo de control
+```
+[root@server09 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
+
+[root@server09 ~]# cat /etc/sudoers.d/ansible
+ansible ALL=(ALL)       NOPASSWD: ALL
+```
+
+
 
 
 
