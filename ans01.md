@@ -322,6 +322,71 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
 
+## **Instalar Ansible en el Managed Node**
+```
+[root@client90 ~]# yum install platform-python -y
+Updating Subscription Management repositories.
+Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                                                  7.9 MB/s | 2.0 MB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                                                 26 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)                                                              43 kB/s | 2.8 kB     00:00
+Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)                                                                  25 kB/s | 2.1 kB     00:00
+Package platform-python-3.6.8-37.el8.x86_64 is already installed.
+Dependencies resolved.
+=====================================================================================================================================================
+ Package                           Architecture             Version                            Repository                                       Size
+=====================================================================================================================================================
+Upgrading:
+ platform-python                   x86_64                   3.6.8-38.el8_4                     rhel-8-for-x86_64-baseos-rpms                    84 k
+ python3-libs                      x86_64                   3.6.8-38.el8_4                     rhel-8-for-x86_64-baseos-rpms                   7.8 M
+
+Transaction Summary
+=====================================================================================================================================================
+Upgrade  2 Packages
+
+Total download size: 7.9 M
+Downloading Packages:
+(1/2): platform-python-3.6.8-38.el8_4.x86_64.rpm                                                                     818 kB/s |  84 kB     00:00
+(2/2): python3-libs-3.6.8-38.el8_4.x86_64.rpm                                                                         55 MB/s | 7.8 MB     00:00
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                 55 MB/s | 7.9 MB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                             1/1
+  Upgrading        : platform-python-3.6.8-38.el8_4.x86_64                                                                                       1/4
+  Running scriptlet: platform-python-3.6.8-38.el8_4.x86_64                                                                                       1/4
+  Upgrading        : python3-libs-3.6.8-38.el8_4.x86_64                                                                                          2/4
+  Cleanup          : python3-libs-3.6.8-37.el8.x86_64                                                                                            3/4
+  Cleanup          : platform-python-3.6.8-37.el8.x86_64                                                                                         4/4
+  Running scriptlet: platform-python-3.6.8-37.el8.x86_64                                                                                         4/4
+  Verifying        : python3-libs-3.6.8-38.el8_4.x86_64                                                                                          1/4
+  Verifying        : python3-libs-3.6.8-37.el8.x86_64                                                                                            2/4
+  Verifying        : platform-python-3.6.8-38.el8_4.x86_64                                                                                       3/4
+  Verifying        : platform-python-3.6.8-37.el8.x86_64                                                                                         4/4
+Installed products updated.
+Uploading Tracer Profile
+
+Upgraded:
+  platform-python-3.6.8-38.el8_4.x86_64                                      python3-libs-3.6.8-38.el8_4.x86_64
+
+Complete!
+```
+Crear usuario ansible en el nodo administrado
+```
+[root@client90 ~]# useradd ansible
+[root@client90 ~]# id ansible
+uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
+```
+
+Configurarle permisos sudo al usuario ansible en el nodo administrador
+```
+[root@client90 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
+
+[root@client90 ~]# cat /etc/sudoers.d/ansible
+ansible ALL=(ALL)       NOPASSWD: ALL
+```
 
 
 
