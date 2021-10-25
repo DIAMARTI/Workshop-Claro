@@ -23,3 +23,7 @@ Manual de procedimientos del workshop de la solución Red Hat Ansible versión 2
 <br><a href="ans07">- Inventories</a>
 <br><a href="ans08">- Credentials</a>
 <br><a href="ans10">- Templates /playbooks</a>
+<br>
+<br>
+<br>
+<br><a href="ans103">- Dia 03 - Ansible Tower /playbooks</a>
