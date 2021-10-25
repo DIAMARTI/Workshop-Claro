@@ -120,7 +120,7 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 ---
 ## **Instalar Ansible en el Control Node**
 
-Listar repositorios disponibles y validar que contamos con ansible-2.9-for-rhel-8-x86_64-rpms
+1. Listar repositorios disponibles y validar que contamos con ansible-2.9-for-rhel-8-x86_64-rpms
 
 ```
 [root@server09 ~]# subscription-manager repos --list
@@ -148,7 +148,7 @@ Repo URL:  https://satellite.opennova.pe/pulp/repos/OpenNova/Library/content/dis
 Enabled:   1
 ```
 
-Habilitar en el nodo de control el repositorio **ansible-2.9-for-rhel-8-x86_64-rpms**
+2. Habilitar en el nodo de control el repositorio **ansible-2.9-for-rhel-8-x86_64-rpms**
 ```
 [root@server09 ~]# subscription-manager repos --enable=ansible-2.9-for-rhel-8-x86_64-rpms
 Repository 'ansible-2.9-for-rhel-8-x86_64-rpms' is enabled for this system.
@@ -162,7 +162,7 @@ rhel-8-for-x86_64-baseos-rpms                             Red Hat Enterprise Lin
 satellite-tools-6.9-for-rhel-8-x86_64-rpms                Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)
 ```
 
-Instalar Python en el nodo de control
+3. Instalar Python en el nodo de control
 ```
 [root@server09 ~]# yum install platform-python -y
 Updating Subscription Management repositories.
@@ -214,7 +214,7 @@ Upgraded:
 Complete!
 ```
 
-Instalar ansible en el nodo de control
+4. Instalar ansible en el nodo de control
 ```
 [root@server09 ~]# yum install -y ansible
 Updating Subscription Management repositories.
@@ -306,14 +306,14 @@ Installed:
 Complete!
 ```
 
-Crear usuario ansible en el nodo de control
+5. Crear usuario ansible en el nodo de control
 ```
 [root@server09 ~]# useradd ansible
 [root@server09 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 ```
 
-Configurarle permisos sudo al usuario ansible en el nodo de control
+6. Configurarle permisos sudo al usuario ansible en el nodo de control
 ```
 [root@server09 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
 
@@ -321,8 +321,8 @@ Configurarle permisos sudo al usuario ansible en el nodo de control
 ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
-
-## **Instalar Python en el Managed Node**
+## **Instalar Requerimientos en el Managed Node**
+1. Instalar Python en el nodo administrado
 ```
 [root@client91 ~]# yum install platform-python -y
 Updating Subscription Management repositories.
@@ -373,14 +373,14 @@ Upgraded:
 
 Complete!
 ```
-Crear usuario ansible en el nodo administrado
+2. Crear usuario ansible en el nodo administrado
 ```
 [root@client91 ~]# useradd ansible
 [root@client91 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 ```
 
-Configurarle permisos sudo al usuario ansible en el nodo administrador
+3. Configurarle permisos sudo al usuario ansible en el nodo administrador
 ```
 [root@client91 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
 
@@ -388,7 +388,7 @@ Configurarle permisos sudo al usuario ansible en el nodo administrador
 ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
-Repetir esta configuración para los clientes: **clienteX2, clienteX3, cliente X4**. Donde X es el numero del usuario asignado. 
+Repetir los pasos del **1 al 3** para los clientes: **clienteX2, clienteX3, clienteX4**. Donde **X** es el **numero del usuario** asignado. 
 
 
 |Plataforma | Arquitecturas |
