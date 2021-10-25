@@ -104,8 +104,25 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 <p>
 
 ## **Requerimientos previos**
+
 ### **Control Node**
+
+- Suscripcion valida de Red Hat Ansible Automation Platform.
+- Registrarse al canal **ansible-2-for-rhel-8-x86_64-rpms** e instalar el paquete ansible con **yum install ansible**.
+- Tener instalado **python36** o **python27** del AppStream, para Red Hat Enterprise Linux 8 se puede utilizar **yum install platform-python**
+
+
 ### **Managed Node**
+
+- Suscripcion valida de Red Hat Enterprise Linux.
+- Python:2 (version:2.6 o superior) o Python:3 (version:3.5 o superior), para Red Hat Enterprise Linux 8 se puede utilizar **yum install platform-python**. También se puede utilizar **yum module install python36**.
+
+
+|Plataforma | Arquitecturas |
+| --- | --- |
+|Red Hat Enterprise Linux 8 | x86_64, ppc_64, s390x|
+
+
 
 
 
