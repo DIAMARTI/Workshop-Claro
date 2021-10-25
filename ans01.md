@@ -322,7 +322,7 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
 
-## **Instalar Ansible en el Managed Node**
+## **Instalar Python en el Managed Node**
 ```
 [root@client90 ~]# yum install platform-python -y
 Updating Subscription Management repositories.
