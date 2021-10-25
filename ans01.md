@@ -103,6 +103,10 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans106.png?raw=true"width="800" height="400"></p>
 <p>
 
+## **Requerimientos previos**
+
+
+
 
 **Gestión de la configuración - Soporte Puppet 5**
 
