@@ -324,7 +324,7 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 
 ## **Instalar Python en el Managed Node**
 ```
-[root@client90 ~]# yum install platform-python -y
+[root@client91 ~]# yum install platform-python -y
 Updating Subscription Management repositories.
 Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                                                  7.9 MB/s | 2.0 MB     00:00
 Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                                                 26 kB/s | 2.4 kB     00:00
@@ -375,19 +375,20 @@ Complete!
 ```
 Crear usuario ansible en el nodo administrado
 ```
-[root@client90 ~]# useradd ansible
-[root@client90 ~]# id ansible
+[root@client91 ~]# useradd ansible
+[root@client91 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 ```
 
 Configurarle permisos sudo al usuario ansible en el nodo administrador
 ```
-[root@client90 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
+[root@client91 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
 
-[root@client90 ~]# cat /etc/sudoers.d/ansible
+[root@client91 ~]# cat /etc/sudoers.d/ansible
 ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
+Repetir esta configuración para los clientes: **clienteX2, clienteX3, cliente X4**. Donde X es el numero del usuario asignado. 
 
 
 |Plataforma | Arquitecturas |
