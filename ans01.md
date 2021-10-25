@@ -212,7 +212,97 @@ Upgraded:
 
 Complete!
 ```
+Instalar ansible en el nodo de control
+```
+[root@server09 ~]# yum install -y ansible
+Updating Subscription Management repositories.
+Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                               28 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                             29 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)                                          37 kB/s | 2.8 kB     00:00
+Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)                                              29 kB/s | 2.1 kB     00:00
+Dependencies resolved.
+=================================================================================================================================
+ Package                         Architecture      Version                   Repository                                     Size
+=================================================================================================================================
+Installing:
+ ansible                         noarch            2.9.26-1.el8ae            ansible-2.9-for-rhel-8-x86_64-rpms             17 M
+Installing dependencies:
+ python3-babel                   noarch            2.5.1-5.el8               rhel-8-for-x86_64-appstream-rpms              4.8 M
+ python3-cffi                    x86_64            1.11.5-5.el8              rhel-8-for-x86_64-baseos-rpms                 238 k
+ python3-cryptography            x86_64            3.2.1-4.el8               rhel-8-for-x86_64-baseos-rpms                 559 k
+ python3-jinja2                  noarch            2.10.1-2.el8_0            rhel-8-for-x86_64-appstream-rpms              538 k
+ python3-markupsafe              x86_64            0.23-19.el8               rhel-8-for-x86_64-appstream-rpms               39 k
+ python3-ply                     noarch            3.9-9.el8                 rhel-8-for-x86_64-baseos-rpms                 111 k
+ python3-pycparser               noarch            2.14-14.el8               rhel-8-for-x86_64-baseos-rpms                 109 k
+ python3-pytz                    noarch            2017.2-9.el8              rhel-8-for-x86_64-appstream-rpms               54 k
+ python3-pyyaml                  x86_64            3.12-12.el8               rhel-8-for-x86_64-baseos-rpms                 193 k
+ sshpass                         x86_64            1.06-3.el8ae              ansible-2.9-for-rhel-8-x86_64-rpms             27 k
+Installing weak dependencies:
+ python3-jmespath                noarch            0.9.0-11.el8              rhel-8-for-x86_64-appstream-rpms               45 k
 
+Transaction Summary
+=================================================================================================================================
+Install  12 Packages
+
+Total download size: 24 M
+Installed size: 124 M
+Downloading Packages:
+(1/12): sshpass-1.06-3.el8ae.x86_64.rpm                                                          288 kB/s |  27 kB     00:00
+(2/12): python3-pyyaml-3.12-12.el8.x86_64.rpm                                                    1.7 MB/s | 193 kB     00:00
+(3/12): python3-pycparser-2.14-14.el8.noarch.rpm                                                 2.4 MB/s | 109 kB     00:00
+(4/12): python3-cffi-1.11.5-5.el8.x86_64.rpm                                                     5.2 MB/s | 238 kB     00:00
+(5/12): python3-cryptography-3.2.1-4.el8.x86_64.rpm                                               14 MB/s | 559 kB     00:00
+(6/12): python3-ply-3.9-9.el8.noarch.rpm                                                         2.6 MB/s | 111 kB     00:00
+(7/12): python3-jmespath-0.9.0-11.el8.noarch.rpm                                                 1.4 MB/s |  45 kB     00:00
+(8/12): python3-pytz-2017.2-9.el8.noarch.rpm                                                     1.6 MB/s |  54 kB     00:00
+(9/12): python3-markupsafe-0.23-19.el8.x86_64.rpm                                                897 kB/s |  39 kB     00:00
+(10/12): python3-jinja2-2.10.1-2.el8_0.noarch.rpm                                                 12 MB/s | 538 kB     00:00
+(11/12): ansible-2.9.26-1.el8ae.noarch.rpm                                                        52 MB/s |  17 MB     00:00
+(12/12): python3-babel-2.5.1-5.el8.noarch.rpm                                                     45 MB/s | 4.8 MB     00:00
+---------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                             64 MB/s |  24 MB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                         1/1
+  Installing       : python3-markupsafe-0.23-19.el8.x86_64                                                                  1/12
+  Installing       : python3-pytz-2017.2-9.el8.noarch                                                                       2/12
+  Installing       : python3-babel-2.5.1-5.el8.noarch                                                                       3/12
+  Installing       : python3-jinja2-2.10.1-2.el8_0.noarch                                                                   4/12
+  Installing       : python3-jmespath-0.9.0-11.el8.noarch                                                                   5/12
+  Installing       : python3-ply-3.9-9.el8.noarch                                                                           6/12
+  Installing       : python3-pycparser-2.14-14.el8.noarch                                                                   7/12
+  Installing       : python3-cffi-1.11.5-5.el8.x86_64                                                                       8/12
+  Installing       : python3-cryptography-3.2.1-4.el8.x86_64                                                                9/12
+  Installing       : python3-pyyaml-3.12-12.el8.x86_64                                                                     10/12
+  Installing       : sshpass-1.06-3.el8ae.x86_64                                                                           11/12
+  Installing       : ansible-2.9.26-1.el8ae.noarch                                                                         12/12
+  Running scriptlet: ansible-2.9.26-1.el8ae.noarch                                                                         12/12
+  Verifying        : ansible-2.9.26-1.el8ae.noarch                                                                          1/12
+  Verifying        : sshpass-1.06-3.el8ae.x86_64                                                                            2/12
+  Verifying        : python3-pyyaml-3.12-12.el8.x86_64                                                                      3/12
+  Verifying        : python3-pycparser-2.14-14.el8.noarch                                                                   4/12
+  Verifying        : python3-cffi-1.11.5-5.el8.x86_64                                                                       5/12
+  Verifying        : python3-cryptography-3.2.1-4.el8.x86_64                                                                6/12
+  Verifying        : python3-ply-3.9-9.el8.noarch                                                                           7/12
+  Verifying        : python3-jmespath-0.9.0-11.el8.noarch                                                                   8/12
+  Verifying        : python3-pytz-2017.2-9.el8.noarch                                                                       9/12
+  Verifying        : python3-markupsafe-0.23-19.el8.x86_64                                                                 10/12
+  Verifying        : python3-jinja2-2.10.1-2.el8_0.noarch                                                                  11/12
+  Verifying        : python3-babel-2.5.1-5.el8.noarch                                                                      12/12
+Installed products updated.
+Uploading Tracer Profile
+
+Installed:
+  ansible-2.9.26-1.el8ae.noarch               python3-babel-2.5.1-5.el8.noarch         python3-cffi-1.11.5-5.el8.x86_64
+  python3-cryptography-3.2.1-4.el8.x86_64     python3-jinja2-2.10.1-2.el8_0.noarch     python3-jmespath-0.9.0-11.el8.noarch
+  python3-markupsafe-0.23-19.el8.x86_64       python3-ply-3.9-9.el8.noarch             python3-pycparser-2.14-14.el8.noarch
+  python3-pytz-2017.2-9.el8.noarch            python3-pyyaml-3.12-12.el8.x86_64        sshpass-1.06-3.el8ae.x86_64
+
+Complete!
+```
 
 
 
