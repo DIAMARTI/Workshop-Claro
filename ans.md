@@ -26,4 +26,4 @@ Manual de procedimientos del workshop de la solución Red Hat Ansible versión 2
 <br>
 <br>
 <br>
-<br><a href="ans103">- Dia 03 - Ansible Tower /playbooks</a>
+<br><a href="ans103">- Dia 03 - Ansible Tower</a>
