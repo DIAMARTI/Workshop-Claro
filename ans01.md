@@ -119,8 +119,100 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 
 ---
 ## **Instalar Ansible en el Control Node**
+
+Listar repositorios dispobibles y validar que contamos con ansible-2.9-for-rhel-8-x86_64-rpms
 ```
+[root@server09 ~]# subscription-manager repos --list
++----------------------------------------------------------+
+    Available Repositories in /etc/yum.repos.d/redhat.repo
++----------------------------------------------------------+
+Repo ID:   rhel-8-for-x86_64-baseos-rpms
+Repo Name: Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)
+Repo URL:  https://satellite.opennova.pe/pulp/repos/OpenNova/Library/content/dist/rhel8/$releasever/x86_64/baseos/os
+Enabled:   1
+
+Repo ID:   satellite-tools-6.9-for-rhel-8-x86_64-rpms
+Repo Name: Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)
+Repo URL:  https://satellite.opennova.pe/pulp/repos/OpenNova/Library/content/dist/layered/rhel8/x86_64/sat-tools/6.9/os
+Enabled:   1
+
+Repo ID:   ansible-2.9-for-rhel-8-x86_64-rpms
+Repo Name: Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)
+Repo URL:  https://satellite.opennova.pe/pulp/repos/OpenNova/Library/content/dist/layered/rhel8/x86_64/ansible/2.9/os
+Enabled:   0
+
+Repo ID:   rhel-8-for-x86_64-appstream-rpms
+Repo Name: Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)
+Repo URL:  https://satellite.opennova.pe/pulp/repos/OpenNova/Library/content/dist/rhel8/$releasever/x86_64/appstream/os
+Enabled:   1
 ```
+
+Habilitar en el nodo de control el repositorio **ansible-2.9-for-rhel-8-x86_64-rpms**
+```
+[root@server09 ~]# subscription-manager repos --enable=ansible-2.9-for-rhel-8-x86_64-rpms
+Repository 'ansible-2.9-for-rhel-8-x86_64-rpms' is enabled for this system.
+
+[root@server09 ~]# yum repolist
+Updating Subscription Management repositories.
+repo id                                                   repo name
+ansible-2.9-for-rhel-8-x86_64-rpms                        Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)
+rhel-8-for-x86_64-appstream-rpms                          Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)
+rhel-8-for-x86_64-baseos-rpms                             Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)
+satellite-tools-6.9-for-rhel-8-x86_64-rpms                Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)
+```
+
+Instalar Python en el nodo de control
+```
+[root@server09 ~]# yum install platform-python -y
+Updating Subscription Management repositories.
+Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                                                  7.9 MB/s | 2.0 MB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                                                 26 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)                                                              43 kB/s | 2.8 kB     00:00
+Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)                                                                  25 kB/s | 2.1 kB     00:00
+Package platform-python-3.6.8-37.el8.x86_64 is already installed.
+Dependencies resolved.
+=====================================================================================================================================================
+ Package                           Architecture             Version                            Repository                                       Size
+=====================================================================================================================================================
+Upgrading:
+ platform-python                   x86_64                   3.6.8-38.el8_4                     rhel-8-for-x86_64-baseos-rpms                    84 k
+ python3-libs                      x86_64                   3.6.8-38.el8_4                     rhel-8-for-x86_64-baseos-rpms                   7.8 M
+
+Transaction Summary
+=====================================================================================================================================================
+Upgrade  2 Packages
+
+Total download size: 7.9 M
+Downloading Packages:
+(1/2): platform-python-3.6.8-38.el8_4.x86_64.rpm                                                                     818 kB/s |  84 kB     00:00
+(2/2): python3-libs-3.6.8-38.el8_4.x86_64.rpm                                                                         55 MB/s | 7.8 MB     00:00
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                 55 MB/s | 7.9 MB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                             1/1
+  Upgrading        : platform-python-3.6.8-38.el8_4.x86_64                                                                                       1/4
+  Running scriptlet: platform-python-3.6.8-38.el8_4.x86_64                                                                                       1/4
+  Upgrading        : python3-libs-3.6.8-38.el8_4.x86_64                                                                                          2/4
+  Cleanup          : python3-libs-3.6.8-37.el8.x86_64                                                                                            3/4
+  Cleanup          : platform-python-3.6.8-37.el8.x86_64                                                                                         4/4
+  Running scriptlet: platform-python-3.6.8-37.el8.x86_64                                                                                         4/4
+  Verifying        : python3-libs-3.6.8-38.el8_4.x86_64                                                                                          1/4
+  Verifying        : python3-libs-3.6.8-37.el8.x86_64                                                                                            2/4
+  Verifying        : platform-python-3.6.8-38.el8_4.x86_64                                                                                       3/4
+  Verifying        : platform-python-3.6.8-37.el8.x86_64                                                                                         4/4
+Installed products updated.
+Uploading Tracer Profile
+
+Upgraded:
+  platform-python-3.6.8-38.el8_4.x86_64                                      python3-libs-3.6.8-38.el8_4.x86_64
+
+Complete!
+```
+
 
 
 
