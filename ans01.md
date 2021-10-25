@@ -104,7 +104,8 @@ Red Hat Ansible Automation Platform ayuda a las organizaciones a adoptar una cul
 <p>
 
 ## **Requerimientos previos**
-
+### **Control Node**
+### **Managed Node**
 
 
 
