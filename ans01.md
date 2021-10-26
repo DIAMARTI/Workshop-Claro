@@ -309,7 +309,7 @@ Complete!
 ## **Instalar Requerimientos en el Managed Node**
 1. Instalar Python en el nodo administrado
 ```
-[root@client91 ~]# yum install platform-python -y
+[root@node91 ~]# yum install platform-python -y
 Updating Subscription Management repositories.
 Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                                                  7.9 MB/s | 2.0 MB     00:00
 Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                                                 26 kB/s | 2.4 kB     00:00
