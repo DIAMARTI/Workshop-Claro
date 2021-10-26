@@ -392,7 +392,12 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 [ansible@server09 ~]$ echo "autocmd filetype yaml setlocal ai ts=2 sw=2 et" > ~/.vimrc
 
+[ansible@server09 ~]$ mkdir ansible
+[ansible@server09 ~]$ cd ansible/
 
+[ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/inventory
+[ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/inventory.yml
+[ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/ansible.cfg
 ```
 
 
