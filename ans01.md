@@ -408,6 +408,8 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 [root@client91 ~]# useradd ansible
 [root@client91 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
+
+[root@client91 ~]# echo "redhat" | passwd stdin ansible
 ```
 
 2. Configurarle permisos sudo al usuario ansible en el nodo administrador
