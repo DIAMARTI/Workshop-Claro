@@ -405,18 +405,18 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 ## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
 1. Crear usuario ansible en el nodo administrado
 ```
-[root@client91 ~]# useradd ansible
-[root@client91 ~]# id ansible
+[root@node91 ~]# useradd ansible
+[root@node91 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 
-[root@client91 ~]# echo "redhat" | passwd stdin ansible
+[root@node91 ~]# echo "redhat" | passwd stdin ansible
 ```
 
 2. Configurarle permisos sudo al usuario ansible en el nodo administrador
 ```
-[root@client91 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
+[root@node91 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
 
-[root@client91 ~]# cat /etc/sudoers.d/ansible
+[root@node91 ~]# cat /etc/sudoers.d/ansible
 ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
