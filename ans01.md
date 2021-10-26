@@ -306,21 +306,6 @@ Installed:
 Complete!
 ```
 
-5. Crear usuario ansible en el nodo de control
-```
-[root@server09 ~]# useradd ansible
-[root@server09 ~]# id ansible
-uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
-```
-
-6. Configurarle permisos sudo al usuario ansible en el nodo de control
-```
-[root@server09 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
-
-[root@server09 ~]# cat /etc/sudoers.d/ansible
-ansible ALL=(ALL)       NOPASSWD: ALL
-```
-
 ## **Instalar Requerimientos en el Managed Node**
 1. Instalar Python en el nodo administrado
 ```
@@ -373,14 +358,54 @@ Upgraded:
 
 Complete!
 ```
-2. Crear usuario ansible en el nodo administrado
+Repetir los pasos del **1 al 3** para los clientes: **clienteX2, clienteX3, clienteX4**. Donde **X** es el **numero del usuario** asignado. 
+
+
+## **Configurar espacio de trabajo y recursos en el nodo de control**
+
+Se debe definir un usuario de automatización para toda la infraestructura, en nuestro taller el usuario ansible será el usuario de automatización, el mismo requiere cierta configuración tanto en el nodo de control como en los nodos administrador.
+
+1. Crear el usuario ansible en el nodo de control y asignarle el password redhat
+```
+[root@server09 ~]# useradd ansible
+[root@server09 ~]# id ansible
+uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
+
+[root@server09 ~]# echo "redhat" | passwd stdin ansible
+```
+
+2. Configurarle permisos sudo al usuario ansible en el nodo de control
+```
+[root@server09 ~]# echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
+
+[root@server09 ~]# cat /etc/sudoers.d/ansible
+ansible ALL=(ALL)       NOPASSWD: ALL
+```
+
+3. Crear par de llaves ssh para el usuario ansible
+```
+[root@server09 ~]# su - ansible
+[root@server09 ~]# ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
+```
+
+4. Configurar editor vim y crear espacio de trabajo
+```
+[ansible@server09 ~]$ echo "autocmd filetype yaml setlocal ai ts=2 sw=2 et" > ~/.vimrc
+
+
+```
+
+
+
+## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
+1. Crear usuario ansible en el nodo administrado
 ```
 [root@client91 ~]# useradd ansible
 [root@client91 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 ```
 
-3. Configurarle permisos sudo al usuario ansible en el nodo administrador
+2. Configurarle permisos sudo al usuario ansible en el nodo administrador
 ```
 [root@client91 ~]# echo "ansible ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/ansible
 
@@ -388,7 +413,7 @@ uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
-Repetir los pasos del **1 al 3** para los clientes: **clienteX2, clienteX3, clienteX4**. Donde **X** es el **numero del usuario** asignado. 
+## **Configurar espacio de trabajo y recursos en los nodos administrador (Procedimiento vía ansible)**
 
 
 |Plataforma | Arquitecturas |
