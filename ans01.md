@@ -400,6 +400,18 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 [ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/ansible.cfg
 ```
 
+5. Hacer un login inicial del usuario ansible desde el nodo de control hacia el usuario root de los nodos administrados, para que se haga un primer reconocimiento del archivos known_hosts del nodo de control.
+```
+[ansible@server09 ~]$ ssh root@node91.opennova.pe
+
+[ansible@server09 ~]$ ssh root@node92.opennova.pe
+
+[ansible@server09 ~]$ ssh root@node93.opennova.pe
+
+[ansible@server09 ~]$ ssh root@node94.opennova.pe
+```
+
+6. Revisar en la sesión el archivo inventory, inventory.yml y ansible.cfg para entender su función en el setup inicial.
 
 
 ## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
