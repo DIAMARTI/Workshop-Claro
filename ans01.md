@@ -440,9 +440,83 @@ Ansible Configuration
 7. Adicional al inventario la siguiente información:
 
 -  Agregar el grupo deploy el cual deberá contener los nodos: nodeX1, nodeX2, nodeX3, nodeX4. Donde **X** es el **numero del usuario** asignado del 1 al 6. 
+
+<br> Opción 01
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+
+[ansible@server09 ansible]$ vim inventory
+...
+[deploy]
+node91.opennova.pe
+node92.opennova.pe
+node93.opennova.pe
+node94.opennova.pe
+...
+```
+<br> Opción 02
+
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+
+[ansible@server09 ansible]$ vim inventory
+...
+[deploy]
+node9[1:4].opennova.pe
+...
+```
+
 - Agregar el grupo webservers el cual deberá contener los nodos: nodeX1, nodeX2. Donde **X** es el **numero del usuario** asignado del 1 al 6. 
 
-- Agregar el grupo anidado o nested group infra el cual deberá contener los grupos: webservers y deploy.
+<br> Opción 01
+
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+
+[ansible@server09 ansible]$ vim inventory
+...
+[webservers]
+node91.opennova.pe
+node92.opennova.pe
+...
+```
+<br> Opción 02
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+
+[ansible@server09 ansible]$ vim inventory
+...
+[webservers]
+node9[1:2].opennova.pe
+...
+```
+
+- Agregar el grupo anidado o nested group infra el cual deberá contener los grupos: webservers y servers.
+
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+
+[ansible@server09 ansible]$ vim inventory
+...
+[infra:children]
+webservers
+servers
+...
+```
+
+8. Consultar los módulos disponibles en ansible y revisar el modulo ping para utilizarlo en pruebas de conectividad iniciales.
+```
+[ansible@server09 ansible]$ ansible-doc -l
+
+[ansible@server09 ansible]$ ansible-doc ping
+```
+
+9. Realizar 
 
 
 
