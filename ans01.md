@@ -430,9 +430,12 @@ Ansible Configuration
 |Directiva | Descripción |
 | --- | --- |
 |inventory | Especifica la ruta al archivo de inventario.|
-|inventory | Especifica la ruta al archivo de inventario.|
-|inventory | Especifica la ruta al archivo de inventario.|
-|inventory | Especifica la ruta al archivo de inventario.|
+|remote_user | El nombre del usuario para iniciar sesión en los hosts administrados. Si no especificado, se utiliza el nombre del usuario actual.|
+|ask_pass | Si solicita o no una contraseña SSH. Puede ser false si usa autenticación de clave pública SSH.|
+|become | Ya sea para cambiar de usuario automáticamente en el host administrado (normalmente a root) después de conectarse. Esto también puede ser especificado en el playbook.|
+|become_method | Cómo cambiar de usuario (normalmente sudo, que es el predeterminado, pero su es una opción).|
+|become_user | El usuario al que cambiar en el host administrado (normalmente root, que es el predeterminado).|
+|become_ask_pass | Ya sea para solicitar una contraseña para su become_method. El valor predeterminado es false.|
 
 
 
