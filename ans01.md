@@ -964,7 +964,43 @@ node91.opennova.pe | CHANGED => {
 }
 ```
 
+5. Para validar la operación, modificar la configuración del /home/ansible/ansible/ansible.cfg del espacio de trabajo del usuario ansible como sigue:
+<br> Cambiar de:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = root
+ask_pass = True
 
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = True
+```
+
+A esta configuración:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = ansible
+ask_pass = False
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False
+```
+
+Posteriormente tratar de ejecutar el comando remoto **df -h** con el **modulo shell** en el **grupo deploy** y validar que ahora **no solicite credenciales**.
+```
+[ansible@server09 ansible]$ ansible prod -m shell -a "df -h"
+```
+
+Con esto ya tenemos el setup inicial de nuestro laboratorio configurado para ejecutar tareas de configuración.
 
 
 
