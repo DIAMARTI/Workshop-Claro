@@ -358,7 +358,7 @@ Upgraded:
 
 Complete!
 ```
-Repetir los pasos del **1 al 3** para los clientes: **clienteX2, clienteX3, clienteX4**. Donde **X** es el **numero del usuario** asignado. 
+Repetir los pasos del **1 al 3** para los clientes: **nodeX2, nodeX3, nodeX4**. Donde **X** es el **numero del usuario** asignado del 1 al 6. 
 
 
 ## **Configurar espacio de trabajo y recursos en el nodo de control**
