@@ -509,14 +509,89 @@ servers
 ...
 ```
 
-8. Consultar los módulos disponibles en ansible y revisar el modulo ping para utilizarlo en pruebas de conectividad iniciales.
+8. Verificar el inventario configurado de tal manera que se pueda validar los nodos y grupos configurados. Nota: como inicialmente las credenciales tanto para el usuario de conexión como para el usuario de escalamiento de privilegios es root utilizar esas credenciales iniciales.
+```
+[ansible@server09 ansible]$ ansible all --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible ungrouped --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible prod --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible dev --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible qa --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible deploy --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible webservers --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible servers --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+
+[ansible@server09 ansible]$ ansible infra --list-hosts
+SSH password: <ingresar contraseña>
+BECOME password[defaults to SSH password]: < ingresar contraseña>
+```
+
+9. Consultar los módulos disponibles en ansible y revisar el modulo ping para utilizarlo en pruebas de conectividad iniciales. Realizar la prueba de conectividad vía el modulo ping al grupo deploy.
 ```
 [ansible@server09 ansible]$ ansible-doc -l
 
 [ansible@server09 ansible]$ ansible-doc ping
 ```
 
-9. Realizar 
+Probar la conectividad utilizando el modulo ping
+```
+[ansible@server09 ansible]$ ansible deploy -m ping
+SSH password:
+BECOME password[defaults to SSH password]:
+node93.opennova.pe | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+node94.opennova.pe | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+node92.opennova.pe | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+node91.opennova.pe | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+
+10. Realizar 
 
 
 
