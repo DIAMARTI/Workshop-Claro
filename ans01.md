@@ -1072,7 +1072,7 @@ node91.opennova.pe | FAILED! => {
 
 Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodos administrador como indica el **punto 5**. de la seccion **Configurar espacio de trabajo y recursos en el nodo de control**
 
-
+**Requerimientos:**
 1. Instalar y/o Actualizar Python en el nodo de control.
 2. Instalar ansible en el nodo de control asignado.
 3. Instalar y/o Actualizar Python en los nodos administrados.
