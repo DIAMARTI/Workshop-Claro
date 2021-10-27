@@ -403,15 +403,26 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 5. Hacer un login inicial del usuario ansible desde el nodo de control hacia el usuario root de los nodos administrados, para que se haga un primer reconocimiento del archivos known_hosts en el nodo de control.
 ```
 [ansible@server09 ~]$ ssh root@node91.opennova.pe
+root@node91.opennova.pe's password: <ingresar credencial>
+[root@node91 ~]# exit
+logout
+Connection to node91.opennova.pe closed.
+```
+Repetir el paso 5 para los clientes: **nodeX2, nodeX3, nodeX4**. Donde **X** es el **numero del usuario** asignado del 1 al 6. 
 
-[ansible@server09 ~]$ ssh root@node92.opennova.pe
+6. Revisar en la sesión el archivo inventory, inventory.yml y ansible.cfg para entender su función en el setup inicial. De la misma manera inspeccionar los archivos de configuración por defecto **/etc/ansible/ansible.cfg** y **/etc/ansible/hosts**
 
-[ansible@server09 ~]$ ssh root@node93.opennova.pe
-
-[ansible@server09 ~]$ ssh root@node94.opennova.pe
+```
+[ansible@server09 ~]$ cat /etc/ansible/ansible.cfg
+[ansible@server09 ~]$ cat /etc/ansible/hosts
 ```
 
-6. Revisar en la sesión el archivo inventory, inventory.yml y ansible.cfg para entender su función en el setup inicial.
+Luego inspeccionar los archivos inventory y ansible.cfg en el espacio de trabajo del usuario ansible.
+
+```
+[ansible@server09 ansible]$ cat inventory
+[ansible@server09 ansible]$ cat ansible.cfg
+```
 
 
 ## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
