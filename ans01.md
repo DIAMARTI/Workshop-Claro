@@ -555,7 +555,6 @@ BECOME password[defaults to SSH password]: < ingresar contraseña>
 [ansible@server09 ansible]$ ansible-doc ping
 ```
 
-Probar la conectividad utilizando el modulo ping
 ```
 [ansible@server09 ansible]$ ansible deploy -m ping
 SSH password:
@@ -590,12 +589,14 @@ node91.opennova.pe | SUCCESS => {
 }
 ```
 
+10. Validar que el modulo shell con el comando df -h se pueda ejecutar en los nodos del grupo deploy
+```
+[ansible@server09 ansible]$ ansible deploy -m shell -a "df -h"
+SSH password:
+BECOME password[defaults to SSH password]:
+```
 
-10. Realizar 
-
-
-
-## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
+## **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento manual clientes)**
 1. Crear usuario ansible en el nodo administrado
 ```
 [root@node91 ~]# useradd ansible
@@ -613,7 +614,366 @@ uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 ansible ALL=(ALL)       NOPASSWD: ALL
 ```
 
-## **Configurar espacio de trabajo y recursos en los nodos administrador (Procedimiento vía ansible)**
+3. Copiar llaves ssh del usuario ansible del nodo de control hacia el usuario ansible del nodo administrado y validar que podamos logearnos sin contraseña.
+```
+[ansible@server09 ~]$ ssh-copy-id -i /home/ansible/.ssh/id_rsa.pub ansible@node91.opennova.pe
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ansible@node91.opennova.pe's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'ansible@node91.opennova.pe'"
+and check to make sure that only the key(s) you wanted were added.
+
+[ansible@server09 ~]$ ssh 'ansible@node91.opennova.pe'
+Last login: Wed Oct 27 15:50:39 2021
+[ansible@node91 ~]$ exit
+```
+
+## **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**
+
+1. En el nodo de control validar que el usuario ansible tenga el par de llaves ssh generadas. Este procedimiento lo debe ejecutar en su server0X, donde X es numero de su usuario asignado del 1 al 6.
+```
+[ansible@server09 ~]$ ls -l /home/ansible/.ssh/
+total 12
+-rw-------. 1 ansible ansible 2622 Oct 25 20:17 id_rsa
+-rw-r--r--. 1 ansible ansible  582 Oct 25 20:17 id_rsa.pub
+-rw-r--r--. 1 ansible ansible  776 Oct 25 20:55 known_hosts
+```
+
+2. Inspeccionar y discutir la operación de los siguientes comando add-hoc, como prueba inicial utilizar el grupo prod como referencia de ejecución. Para este procedimiento inspeccionar los módulos user, shell, copy, authorized_key.
+```
+[ansible@server09 ansible]$ ansible-doc user
+[ansible@server09 ansible]$ ansible prod -m user -a "name=ansible uid=1000 shell=/bin/bash state=present"
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+
+[ansible@server09 ansible]$ ansible-doc shell
+[ansible@server09 ansible]$ ansible prod -m shell -a "echo redhat | passwd --stind ansible"
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+
+[ansible@server09 ansible]$ ansible-doc copy
+[ansible@server09 ansible]$ ansible prod -m copy -a "content='ansible ALL=(ALL) NOPASSWD: ALL' dest=/etc/sudoers.d/ansible"
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+
+[ansible@server09 ansible]$ ansible-doc authorized_key
+[ansible@server09 ansible]$ansible prod -m authorized_key -a "user=ansible state=present key={{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+```
+
+Para validar la operación de prueba, modificar la configuración del /home/ansible/ansible/ansible.cfg del espacio de trabajo del usuario ansible como sigue:
+<br> Cambiar de:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = root
+ask_pass = True
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = True
+```
+
+A esta configuración:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = ansible
+ask_pass = False
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False
+```
+
+Posteriormente tratar de ejecutar el comando remoto **df -h** con el **modulo shell** en el **grupo prod** y validar que ahora **no solicite credenciales**.
+```
+[ansible@server09 ansible]$ ansible prod -m shell -a "df -h"
+```
+
+Una vez validado que el nodo de control puede ejecutar comandos remotos utilizando el usuario ansible como usuario de conexión sin contraseña y elevarse a root sin contraseña devolver la configuración de /home/ansible/ansible/ansible.cfg a su estado original para proceder a configurar todos los nodos del grupo deploy
+
+<br> Validar que la configuración quede como:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = root
+ask_pass = True
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = True
+```
+
+3. Crear en el espacio de trabajo /home/ansible/ansible un script en bash de nombre setup-adhoc.sh contenga lo siguiente:
+```
+[ansible@server09 ansible]$ vim setup-adhoc.sh
+#!/bin/bash
+#Create ansible user
+ansible prod -m user -a "name=ansible uid=1000 shell=/bin/bash state=present"
+
+#Set ansible user password
+ansible prod -m shell -a "echo redhat | passwd --stdin ansible"
+
+#Setup sudo privileges for ansible user
+ansible prod -m copy -a "content='ansible ALL=(ALL) NOPASSWD: ALL' dest=/etc/sudoers.d/ansible"
+
+#Copy ssh key from ansible user in control node to ansible user in managed nodes
+ansible prod -m authorized_key -a "user=ansible state=present key={{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+```
+
+4. Ejecutar y validar el correcto funcionamiento del script setup-adhoc.sh
+```
+[ansible@server09 ansible]$ bash setup-adhoc.sh
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+node92.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1000,
+    "home": "/home/ansible",
+    "name": "ansible",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1000
+}
+node94.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1000,
+    "home": "/home/ansible",
+    "name": "ansible",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1000
+}
+node93.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1000,
+    "home": "/home/ansible",
+    "name": "ansible",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1000
+}
+node91.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1000,
+    "home": "/home/ansible",
+    "name": "ansible",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1000
+}
+
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+node91.opennova.pe | CHANGED | rc=0 >>
+Changing password for user ansible.
+passwd: all authentication tokens updated successfully.
+node92.opennova.pe | CHANGED | rc=0 >>
+Changing password for user ansible.
+passwd: all authentication tokens updated successfully.
+node94.opennova.pe | CHANGED | rc=0 >>
+Changing password for user ansible.
+passwd: all authentication tokens updated successfully.
+node93.opennova.pe | CHANGED | rc=0 >>
+Changing password for user ansible.
+passwd: all authentication tokens updated successfully.
+
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+node93.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "checksum": "0e2acb1172a2aab3688a29dd3a644e77f3c6e53e",
+    "dest": "/etc/sudoers.d/ansible",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "94f8e667bc58a8600e3f092631926055",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 31,
+    "src": "/root/.ansible/tmp/ansible-tmp-1635369761.0412073-14725-228162569873209/source",
+    "state": "file",
+    "uid": 0
+}
+node94.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "checksum": "0e2acb1172a2aab3688a29dd3a644e77f3c6e53e",
+    "dest": "/etc/sudoers.d/ansible",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "94f8e667bc58a8600e3f092631926055",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 31,
+    "src": "/root/.ansible/tmp/ansible-tmp-1635369761.038752-14726-12846207559701/source",
+    "state": "file",
+    "uid": 0
+}
+node91.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "checksum": "0e2acb1172a2aab3688a29dd3a644e77f3c6e53e",
+    "dest": "/etc/sudoers.d/ansible",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "94f8e667bc58a8600e3f092631926055",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 31,
+    "src": "/root/.ansible/tmp/ansible-tmp-1635369761.0361688-14722-40549305685145/source",
+    "state": "file",
+    "uid": 0
+}
+node92.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "checksum": "0e2acb1172a2aab3688a29dd3a644e77f3c6e53e",
+    "dest": "/etc/sudoers.d/ansible",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "94f8e667bc58a8600e3f092631926055",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 31,
+    "src": "/root/.ansible/tmp/ansible-tmp-1635369761.0319064-14723-201151924444824/source",
+    "state": "file",
+    "uid": 0
+}
+
+SSH password: <ingresar_contraseña>
+BECOME password[defaults to SSH password]: <ingresar_contraseña>
+node92.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": null,
+    "exclusive": false,
+    "follow": false,
+    "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCneAf/+wPKW09WT4Yfc9ot+oP2By4ovKjMg1G0bkE81wiehd+JNv/HwzwN5xxO1fPMhJ+yisYgCZm/kRHvX4xeuEfjCu3MriSviNpb5/HmVdi/7fhyLDLEjpkwQ8a32QscFp8e+kmDqeBzFSBX4ne4IhOYFNSQSYbqU9ST7MYCUQtRZkLRXx5eQ+EpmWnSTDbIx4RKjElNDgZj4p+ylP9sPQprcAIct1HsPWQvy7OuOS3OZAVQk0wwcQjZsgwjE2XN8R+QuKSTd/JgPMz0RHfIpcti2TWbqh/SlC6YrML4KEWS1wNks33vAadIx7aW9R2UWQviUHqkqfRmOsgpHPq3MbSB6ieMU1K2izjFeLvgAJTJ4eTp+armp7761Ht7w6CwIbubofJQ1SlqJ3vK4V6oz2oEyrXTspMmp8uOHnveIhoUZ26waDowQ00WFqhJ2RseBXzLT6MtSm0j5frDVTfQGwbYnjvpLr2Neraw7GW+uyYrr00kXXhQfS5AFvw55OM= ansible@server09.opennova.pe",
+    "key_options": null,
+    "keyfile": "/home/ansible/.ssh/authorized_keys",
+    "manage_dir": true,
+    "path": null,
+    "state": "present",
+    "user": "ansible",
+    "validate_certs": true
+}
+node94.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": null,
+    "exclusive": false,
+    "follow": false,
+    "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCneAf/+wPKW09WT4Yfc9ot+oP2By4ovKjMg1G0bkE81wiehd+JNv/HwzwN5xxO1fPMhJ+yisYgCZm/kRHvX4xeuEfjCu3MriSviNpb5/HmVdi/7fhyLDLEjpkwQ8a32QscFp8e+kmDqeBzFSBX4ne4IhOYFNSQSYbqU9ST7MYCUQtRZkLRXx5eQ+EpmWnSTDbIx4RKjElNDgZj4p+ylP9sPQprcAIct1HsPWQvy7OuOS3OZAVQk0wwcQjZsgwjE2XN8R+QuKSTd/JgPMz0RHfIpcti2TWbqh/SlC6YrML4KEWS1wNks33vAadIx7aW9R2UWQviUHqkqfRmOsgpHPq3MbSB6ieMU1K2izjFeLvgAJTJ4eTp+armp7761Ht7w6CwIbubofJQ1SlqJ3vK4V6oz2oEyrXTspMmp8uOHnveIhoUZ26waDowQ00WFqhJ2RseBXzLT6MtSm0j5frDVTfQGwbYnjvpLr2Neraw7GW+uyYrr00kXXhQfS5AFvw55OM= ansible@server09.opennova.pe",
+    "key_options": null,
+    "keyfile": "/home/ansible/.ssh/authorized_keys",
+    "manage_dir": true,
+    "path": null,
+    "state": "present",
+    "user": "ansible",
+    "validate_certs": true
+}
+node93.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": null,
+    "exclusive": false,
+    "follow": false,
+    "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCneAf/+wPKW09WT4Yfc9ot+oP2By4ovKjMg1G0bkE81wiehd+JNv/HwzwN5xxO1fPMhJ+yisYgCZm/kRHvX4xeuEfjCu3MriSviNpb5/HmVdi/7fhyLDLEjpkwQ8a32QscFp8e+kmDqeBzFSBX4ne4IhOYFNSQSYbqU9ST7MYCUQtRZkLRXx5eQ+EpmWnSTDbIx4RKjElNDgZj4p+ylP9sPQprcAIct1HsPWQvy7OuOS3OZAVQk0wwcQjZsgwjE2XN8R+QuKSTd/JgPMz0RHfIpcti2TWbqh/SlC6YrML4KEWS1wNks33vAadIx7aW9R2UWQviUHqkqfRmOsgpHPq3MbSB6ieMU1K2izjFeLvgAJTJ4eTp+armp7761Ht7w6CwIbubofJQ1SlqJ3vK4V6oz2oEyrXTspMmp8uOHnveIhoUZ26waDowQ00WFqhJ2RseBXzLT6MtSm0j5frDVTfQGwbYnjvpLr2Neraw7GW+uyYrr00kXXhQfS5AFvw55OM= ansible@server09.opennova.pe",
+    "key_options": null,
+    "keyfile": "/home/ansible/.ssh/authorized_keys",
+    "manage_dir": true,
+    "path": null,
+    "state": "present",
+    "user": "ansible",
+    "validate_certs": true
+}
+node91.opennova.pe | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": null,
+    "exclusive": false,
+    "follow": false,
+    "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCneAf/+wPKW09WT4Yfc9ot+oP2By4ovKjMg1G0bkE81wiehd+JNv/HwzwN5xxO1fPMhJ+yisYgCZm/kRHvX4xeuEfjCu3MriSviNpb5/HmVdi/7fhyLDLEjpkwQ8a32QscFp8e+kmDqeBzFSBX4ne4IhOYFNSQSYbqU9ST7MYCUQtRZkLRXx5eQ+EpmWnSTDbIx4RKjElNDgZj4p+ylP9sPQprcAIct1HsPWQvy7OuOS3OZAVQk0wwcQjZsgwjE2XN8R+QuKSTd/JgPMz0RHfIpcti2TWbqh/SlC6YrML4KEWS1wNks33vAadIx7aW9R2UWQviUHqkqfRmOsgpHPq3MbSB6ieMU1K2izjFeLvgAJTJ4eTp+armp7761Ht7w6CwIbubofJQ1SlqJ3vK4V6oz2oEyrXTspMmp8uOHnveIhoUZ26waDowQ00WFqhJ2RseBXzLT6MtSm0j5frDVTfQGwbYnjvpLr2Neraw7GW+uyYrr00kXXhQfS5AFvw55OM= ansible@server09.opennova.pe",
+    "key_options": null,
+    "keyfile": "/home/ansible/.ssh/authorized_keys",
+    "manage_dir": true,
+    "path": null,
+    "state": "present",
+    "user": "ansible",
+    "validate_certs": true
+}
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 |Plataforma | Arquitecturas |
