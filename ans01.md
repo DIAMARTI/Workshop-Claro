@@ -424,6 +424,17 @@ Luego inspeccionar los archivos inventory y ansible.cfg en el espacio de trabajo
 [ansible@server09 ~]$ cat /home/ansible/ansible.cfg
 ```
 
+Para entender algunas directivas de configuración de ansible.cfg revisar la siguiente tabla:
+
+Ansible Configuration
+|Directiva | Descripción |
+| --- | --- |
+|inventory | Especifica la ruta al archivo de inventario.|
+|inventory | Especifica la ruta al archivo de inventario.|
+|inventory | Especifica la ruta al archivo de inventario.|
+|inventory | Especifica la ruta al archivo de inventario.|
+
+
 
 ## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
 1. Crear usuario ansible en el nodo administrado
