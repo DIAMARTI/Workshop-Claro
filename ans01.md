@@ -437,6 +437,13 @@ Ansible Configuration
 |become_user | El usuario al que cambiar en el host administrado (normalmente root, que es el predeterminado).|
 |become_ask_pass | Ya sea para solicitar una contraseña para su become_method. El valor predeterminado es false.|
 
+7. Adicional al inventario la siguiente información:
+
+-  Agregar el grupo deploy el cual deberá contener los nodos: nodeX1, nodeX2, nodeX3, nodeX4. Donde **X** es el **numero del usuario** asignado del 1 al 6. 
+- Agregar el grupo webservers el cual deberá contener los nodos: nodeX1, nodeX2. Donde **X** es el **numero del usuario** asignado del 1 al 6. 
+
+- Agregar el grupo anidado o nested group infra el cual deberá contener los grupos: webservers y deploy.
+
 
 
 ## **Configurar espacio de trabajo y recursos en los nodos administrados (Procedimiento manual clientes)**
