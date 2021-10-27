@@ -632,6 +632,59 @@ Last login: Wed Oct 27 15:50:39 2021
 [ansible@node91 ~]$ exit
 ```
 
+Para validar la operación de prueba del procedimiento manual, modificar la configuración del /home/ansible/ansible/ansible.cfg del espacio de trabajo del usuario ansible como sigue:
+<br> Cambiar de:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = root
+ask_pass = True
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = True
+```
+
+A esta configuración:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = ansible
+ask_pass = False
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False
+```
+
+Posteriormente tratar de ejecutar el comando remoto **df -h** con el **modulo shell** en el **grupo prod** y validar que ahora **no solicite credenciales**.
+```
+[ansible@server09 ansible]$ ansible prod -m shell -a "df -h"
+```
+
+Una vez validado que el nodo de control puede ejecutar comandos remotos utilizando el usuario ansible como usuario de conexión sin contraseña y elevarse a root sin contraseña devolver la configuración de /home/ansible/ansible/ansible.cfg a su estado original para proceder a configurar todos los nodos del grupo deploy
+
+<br> Validar que la configuración quede como:
+```
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = root
+ask_pass = True
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = True
+```
+
 ## **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**
 
 1. En el nodo de control validar que el usuario ansible tenga el par de llaves ssh generadas. Este procedimiento lo debe ejecutar en su server0X, donde X es numero de su usuario asignado del 1 al 6.
@@ -1002,6 +1055,42 @@ Posteriormente tratar de ejecutar el comando remoto **df -h** con el **modulo sh
 
 Con esto ya tenemos el setup inicial de nuestro laboratorio configurado para ejecutar tareas de configuración.
 
+# Laboratorio: Setup Inicial Ansible
+
+NOTA: 
+- Las tareas a ejecutarse en el nodo de control serán en la estación server0X.opennova.pe, donde X es el numero de usuario del 1 al 6 respectivamente. 
+- Las tareas a ejecutarse en los nodos administrados serán en las estaciones: nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe, donde X es el numero de usuario del 1 al 6 respectivamente. 
+- Si al probar la conectividad via el modulo ping de ansible hacia los nodos administrador le sale el siguiente mensaje:
+```
+[ansible@server09 ansible]$ ansible -m ping prod
+SSH password:
+BECOME password[defaults to SSH password]:
+node91.opennova.pe | FAILED! => {
+    "msg": "Using a SSH password instead of a key is not possible because Host Key checking is enabled and sshpass does not support this.  Please add this host's fingerprint to your known_hosts file to manage this host."
+}
+```
+
+Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodos administrador como indica el **punto 5**. de la seccion **Configurar espacio de trabajo y recursos en el nodo de control**
+
+
+1. Instalar y/o Actualizar Python en el nodo de control.
+2. Instalar ansible en el nodo de control asignado.
+3. Instalar y/o Actualizar Python en los nodos administrados.
+4. En el nodo de control realizar lo siguiente:
+- Crear el usuario ansible.
+- Asignar la contraseña redhat.
+- Crear un directorio de trabajo de nombre ansible.
+- Configurar el editor vim para que pueda interpretar correctamente ansible. (Sino tiene vim instalado puede instalarlo)
+- En el directorio de trabajo ansible descargar de ftp://classroom.opennova.pe los archivos: inventory, ansible.cfg.
+5. Al inventario agregarle los siguientes grupos:
+- Agregar el grupo webservers el cual debe contener los nodos: nodeX1.opennova.pe  y nodeX2.opennova.pe. (Revisar la nota inicial).
+- Agregar el grupo deploy en cual debe contener los nodos: nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe.(Revisar la nota inicial).
+- Agregar el grupo anidado infra el cual debe contener los grupos: webservers y deploy.
+- Modificar el inventario de tal manera que todos los objetos ya pre configurados correspondan a su ambiente de laboratorio. Cambiar nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe por sus respectivos recursos asignados. (Revisar la nota inicial).
+- Finalmente mover el recurso desagrupado nodeX4.opennova.pe dentro del grupo qa. (Revisar la nota inicial).
+6. Listar los host que pertenecen a los grupos: prod, dev, qa, webservers, deploy, servers, infra, all y ungrouped y verificar que estan de acorde al inventario.
+7. Para el nodoX1.opennova.pe realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento manual clientes)**.
+8. Para los nodos del grupo deploy realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**. Al final de este punto usted deberá tener su ambiente de ansible configurado de tal modo que el usuario de conexión hacia todos los nodos sea ansible sin solicitud de contraseña y el usuario de escalamiento de privilegios sea root sin solicitud de contaseña.
 
 
 
@@ -1009,10 +1098,4 @@ Con esto ya tenemos el setup inicial de nuestro laboratorio configurado para eje
 
 
 
-
-
-
-|Plataforma | Arquitecturas |
-| --- | --- |
-|Red Hat Enterprise Linux 8 | x86_64, ppc_64, s390x|
 
