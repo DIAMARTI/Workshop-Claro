@@ -15,7 +15,7 @@ Manual de procedimientos del workshop de la solución Red Hat Ansible versión 2
 
 <h2>Tabla de contenidos</h2>
 <br><a href="ans01">- Qué es Ansible</a>
-<br><a href="ans02">- Qué es un playbook y Cómo funciona un playbook</a>
+<br><a href="ans02">- Qué es un playbook y como funciona un playbook</a>
 <br><a href="ans04">- Qué es Ansible Tower</a>
 <br><a href="ans05">- Acceso interfaz web</a>
 <br><a href="ans06">- Projects / source code repositories (Git, etc.)</a>
