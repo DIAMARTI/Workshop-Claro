@@ -308,7 +308,7 @@ Complete!
 
 Adicionalmente instalar las herramientas de trabajo con las que este familiarizado incluir vim y wget para el laboratorio.
 ```
-[root@server09 ~]# yum install net-tools bash-completion bind-utils git vim -y
+[root@server09 ~]# yum install net-tools bash-completion bind-utils git vim tree -y
 ```
 
 ## **Instalar Requerimientos en el Managed Node**
