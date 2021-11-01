@@ -801,4 +801,29 @@ ftp: connect: No route to host
 ftp>
 ```
 
-7. Crear un rol llamado apache y descargarle el siguiente contenido
+7. Crear un rol llamado apache y configurarlo con los siguientes archivos:
+<br> Crear el directorio roles dentro del espacio de trabajo /home/ansible/ansible
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+[ansible@server09 ansible]$ mkdir roles
+[ansible@server09 ansible]$ cd roles/
+```
+
+Agregar la directiva roles_path dentro del archivo ansible.cfg del espacio de trabajo
+```
+[ansible@server09 ansible]$ pwd
+/home/ansible/ansible
+[ansible@server09 ansible]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+remote_user = ansible
+ask_pass = False
+roles_path = ./roles:/usr/share/ansible/roles:/etc/ansible/roles
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False
+```
