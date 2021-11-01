@@ -698,6 +698,12 @@ become_ask_pass = True
 
 ## **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**
 
+Nota: Antes de comenzar validar que el usuario ansible y el archivo /etc/sudoers.d/ansible no existan en los nodos administrados. En este caso como estamos trabajando con el nodox1.opennova.pe, validar que no existan estos recursos.
+```
+[root@node91 ~]# userdel -r ansible
+[root@node91 ~]# rm -rf /etc/sudoers.d/ansible
+```
+
 1. En el nodo de control validar que el usuario ansible tenga el par de llaves ssh generadas. Este procedimiento lo debe ejecutar en su server0X, donde X es numero de su usuario asignado del 1 al 6.
 ```
 [ansible@server09 ~]$ ls -l /home/ansible/.ssh/
