@@ -306,6 +306,11 @@ Installed:
 Complete!
 ```
 
+Adicionalmente instalar las herramientas de trabajo con las que este familiarizado incluir vim y wget para el laboratorio.
+```
+[root@server09 ~]# yum install net-tools bash-completion bind-utils git vim -y
+```
+
 ## **Instalar Requerimientos en el Managed Node**
 1. Instalar Python en el nodo administrado
 ```
