@@ -1088,6 +1088,7 @@ Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodo
 - Agregar el grupo anidado infra el cual debe contener los grupos: webservers y deploy.
 - Modificar el inventario de tal manera que todos los objetos ya pre configurados correspondan a su ambiente de laboratorio. Cambiar nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe por sus respectivos recursos asignados. (Revisar la nota inicial).
 - Finalmente mover el recurso desagrupado nodeX4.opennova.pe dentro del grupo qa. (Revisar la nota inicial).
+- Actualizar las direcciones ip del nodo4 y del nodo de control de su entorno, con los datos proporcionados en el taller. 
 6. Listar los host que pertenecen a los grupos: prod, dev, qa, webservers, deploy, servers, infra, all y ungrouped y verificar que estan de acorde al inventario.
 7. Para el nodoX1.opennova.pe realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento manual clientes)**.
 8. Para los nodos del grupo deploy realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**. Al final de este punto usted deberá tener su ambiente de ansible configurado de tal modo que el usuario de conexión hacia todos los nodos sea ansible sin solicitud de contraseña y el usuario de escalamiento de privilegios sea root sin solicitud de contaseña.
