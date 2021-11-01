@@ -1097,7 +1097,12 @@ Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodo
 - Actualizar las direcciones ip del nodo4 y del nodo de control de su entorno, con los datos proporcionados en el taller. 
 6. Listar los host que pertenecen a los grupos: prod, dev, qa, webservers, deploy, servers, infra, all y ungrouped y verificar que estan de acorde al inventario.
 7. Para el nodoX1.opennova.pe realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento manual clientes)**.
-8. Para los nodos del grupo deploy realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**. Al final de este punto usted deberá tener su ambiente de ansible configurado de tal modo que el usuario de conexión hacia todos los nodos sea ansible sin solicitud de contraseña y el usuario de escalamiento de privilegios sea root sin solicitud de contaseña.
+8. Para los nodos del grupo deploy realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**. 
+9. Al final de este punto usted deberá tener su ambiente de ansible configurado de tal modo que el usuario de conexión hacia todos los nodos sea ansible sin solicitud de contraseña y el usuario de escalamiento de privilegios sea root sin solicitud de contaseña.
+Al ejecutar este comando no debería pedir contraseña y deberían responder todos los nodos.
+```
+[ansible@server09 ansible]$ ansible deploy -m ping 
+```
 
 
 
