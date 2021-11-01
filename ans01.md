@@ -400,6 +400,12 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 [ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/ansible.cfg
 ```
 
+Nota: Una vez descargado el archivo inventory-template renonmbrarlo a inventory y reemplazar donde indique X con el numero de su usuario asignado del 1 al 6.
+
+```
+[ansible@server09 ansible]$ mv inventory-template inventory
+```
+
 5. Hacer un login inicial del usuario ansible desde el nodo de control hacia el usuario root de los nodos administrados, para que se haga un primer reconocimiento del archivos known_hosts en el nodo de control.
 ```
 [ansible@server09 ~]$ ssh root@node91.opennova.pe
