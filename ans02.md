@@ -827,3 +827,94 @@ become_method = sudo
 become_user = root
 become_ask_pass = False
 ```
+
+Crear un rol de nombre apache dentro del espacio de trabajo /home/ansible/ansible/roles
+
+```
+[ansible@server09 ansible]$ cd roles/
+
+[ansible@server09 roles]$ ansible-galaxy init apache
+- Role apache was created successfully
+
+[ansible@server09 roles]$ tree apache/
+apache/
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+```
+
+Dentro del directorio tasks agregar la siguiente información dentro del archivo main.yml:
+```
+- name: "Install httpd package on prod servers"
+  yum:
+    name: "{{ web_pkg }}"
+    state: present
+
+- name: "Install firewalld package on prod servers"
+  yum:
+    name: "{{ fw_pkg }}"
+    state: present
+
+- name: "Create a custom index.html from jinja2 template"
+  template:
+    src: index.j2
+    dest: /var/www/html/index.html
+    owner: apache
+    group: apache
+    mode: '0644'
+
+- name: "Startup httpd service on prod servers"
+  service:
+    name: "{{ web_svc }}"
+    state: started
+    enabled: yes
+
+- name: "Startup firewalld service on prod servers"
+  service:
+    name: "{{ fw_svc }}"
+    state: started
+    enabled: yes
+
+- name: "Open port 80/tcp on firewalld"
+  firewalld:
+   service: "{{ fw_svc_name }}"
+   permanent: yes
+   immediate: yes
+   state: enabled
+```
+
+Dentro del directorio templates agregar la siguiente informacion dentro del archivo index.j2:
+```
+Testing webserver on {{ ansible_facts.fqdn }} with ip address {{ ansible_facts.default_ipv4.address }}
+```
+
+Dentro del direcotio vars agregar la siguiente informacion dentro del archivo main.yml
+```
+web_pkg: httpd
+web_svc: httpd
+fw_pkg: firewalld
+fw_svc: firewalld
+fw_svc_name: http
+```
+
+Crear un playbook de nombre main_role_apache.yaml dentro del espacio de trabajo /home/ansible/ansible con la siguiente informacion:
+```
+---
+- name: Install Apache from roles
+  hosts: webservers
+  roles:
+    - role: apache
+```
