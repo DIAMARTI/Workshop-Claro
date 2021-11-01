@@ -63,6 +63,8 @@ Cuando Ansible comienza a funcionar, puede hacer un seguimiento del estado de un
 
 Ansible incluye un "modo de verificación" que le muestra lo que la plataforma podría hacer, pero sin que se implementen cambios concretos. De este modo, usted puede validar los playbooks y los comandos específicos antes de llevar a cabo una modificación en el estado del sistema. 
 
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans204.png?raw=true"></p>
+
 Los controladores en Ansible (handlers) sirven para ejecutar una tarea específica luego de que se haya realizado un cambio en el sistema. Los activan las tareas, y se ejecutan una sola vez, después de todos los demás plays del playbook. 
 
 Las variables, que son un concepto de Ansible que le permite modificar la ejecución de los playbooks, sirven para explicar las diferencias entre los sistemas, como las versiones de los paquetes o las rutas de los archivos. Ansible posibilita la ejecución de playbooks en diferentes sistemas. 
