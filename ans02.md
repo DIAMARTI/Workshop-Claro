@@ -63,7 +63,7 @@ Cuando Ansible comienza a funcionar, puede hacer un seguimiento del estado de un
 
 Ansible incluye un "modo de verificación" que le muestra lo que la plataforma podría hacer, pero sin que se implementen cambios concretos. De este modo, usted puede validar los playbooks y los comandos específicos antes de llevar a cabo una modificación en el estado del sistema. 
 
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans204.png?raw=true"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans204.png?raw=true"width="800" height="400"></p>
 
 Los controladores en Ansible (handlers) sirven para ejecutar una tarea específica luego de que se haya realizado un cambio en el sistema. Los activan las tareas, y se ejecutan una sola vez, después de todos los demás plays del playbook. 
 
@@ -80,9 +80,10 @@ Las funciones de Ansible (Roles) son un tipo de playbook especial completamente 
 Una colección puede contener varias funciones (Roles) y módulos específicos que no estan necesariamente en una instalación de ansible, lo cual posibilita el intercambio sencillo de contenido a través de Automation Hub y Ansible Galaxy. 
 <br>
 #### Con ansible podemos automatizar toda la infraestructura tecnológica.
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans206.png?raw=true"width="700" height="600"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans206.png?raw=true"width="600" height="500"></p>
 <br>
 
 ---
 
 # Trabajando con Playbooks y Roles Ansible. (Demostración)
+
