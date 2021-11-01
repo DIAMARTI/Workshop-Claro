@@ -19,7 +19,7 @@
 </p>
 
 # Ansible funcionamiento y comandos adhoc. (Teórico)
-<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans100.jpg?raw=true"width="800" height="400"></p>
+<p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans203.png?raw=true"width="800" height="400"></p>
 
 ### **¿Cómo funciona Ansible?**
 Ansible se conecta a los nodos y les inserta pequeños programas denominados módulos, los cuales permiten llevar a cabo tareas de automatización en la plataforma.
@@ -75,5 +75,5 @@ Para trabajar con Ansible, también tendrá que comprender de qué se tratan las
 
 Las funciones de Ansible (Roles) son un tipo de playbook especial completamente autónomo y portátil que incluye las tareas, las variables, las plantillas de configuración y otros archivos de soporte que son necesarios para completar una organización compleja. 
 
-Una colección puede contener varias funciones, lo cual posibilita el intercambio sencillo de contenido a través de Automation Hub y Ansible Galaxy. 
+Una colección puede contener varias funciones (Roles) y módulos específicos que no estan necesariamente en una instalación de ansible, lo cual posibilita el intercambio sencillo de contenido a través de Automation Hub y Ansible Galaxy. 
 <br>
