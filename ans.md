@@ -16,14 +16,5 @@ Manual de procedimientos del workshop de la solución Red Hat Ansible versión 2
 <h2>Tabla de contenidos</h2>
 <br><a href="ans01">- Qué es Ansible</a>
 <br><a href="ans02">- Qué es un playbook y como funciona un playbook</a>
-<br><a href="ans04">- Qué es Ansible Tower</a>
-<br><a href="ans05">- Acceso interfaz web</a>
-<br><a href="ans06">- Projects / source code repositories (Git, etc.)</a>
-<br><a href="ans07">- Inventories</a>
-<br><a href="ans08">- Credentials</a>
-<br><a href="ans10">- Templates /playbooks</a>
-<br>
-<br>
-<br>
-<br><a href="ans103">- Dia 03 - Que es Ansible Tower</a>
-<br><a href="ans104">- Dia 04 - Operaciones avanzadas con Ansible Tower</a>
+<br><a href="ans103">- Que es Ansible Tower</a>
+<br><a href="ans104">- Operaciones avanzadas con Ansible Tower</a>
