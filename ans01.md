@@ -426,8 +426,8 @@ Repetir el paso 5 para los clientes: **nodeX2, nodeX3, nodeX4**. Donde **X** es 
 Luego inspeccionar los archivos inventory y ansible.cfg en el espacio de trabajo del usuario ansible.
 
 ```
-[ansible@server09 ~]$ cat /home/ansible/inventory
-[ansible@server09 ~]$ cat /home/ansible/ansible.cfg
+[ansible@server09 ~]$ cat /home/ansible/ansible/inventory
+[ansible@server09 ~]$ cat /home/ansible/ansible/ansible.cfg
 ```
 
 Para entender algunas directivas de configuración de ansible.cfg revisar la siguiente tabla:
