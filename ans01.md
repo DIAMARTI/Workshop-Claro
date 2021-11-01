@@ -609,7 +609,7 @@ BECOME password[defaults to SSH password]:
 [root@node91 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 
-[root@node91 ~]# echo "redhat" | passwd stdin ansible
+[root@node91 ~]# echo "redhat" | passwd --stdin ansible
 ```
 
 2. Configurarle permisos sudo al usuario ansible en el nodo administrador
