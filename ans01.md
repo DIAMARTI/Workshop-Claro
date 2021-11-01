@@ -715,7 +715,7 @@ SSH password: <ingresar_contraseña>
 BECOME password[defaults to SSH password]: <ingresar_contraseña>
 
 [ansible@server09 ansible]$ ansible-doc shell
-[ansible@server09 ansible]$ ansible prod -m shell -a "echo redhat | passwd --stind ansible"
+[ansible@server09 ansible]$ ansible prod -m shell -a "echo redhat | passwd --stdin ansible"
 SSH password: <ingresar_contraseña>
 BECOME password[defaults to SSH password]: <ingresar_contraseña>
 
@@ -788,16 +788,16 @@ become_ask_pass = True
 [ansible@server09 ansible]$ vim setup-adhoc.sh
 #!/bin/bash
 #Create ansible user
-ansible prod -m user -a "name=ansible uid=1000 shell=/bin/bash state=present"
+ansible deploy -m user -a "name=ansible uid=1000 shell=/bin/bash state=present"
 
 #Set ansible user password
-ansible prod -m shell -a "echo redhat | passwd --stdin ansible"
+ansible deploy -m shell -a "echo redhat | passwd --stdin ansible"
 
 #Setup sudo privileges for ansible user
-ansible prod -m copy -a "content='ansible ALL=(ALL) NOPASSWD: ALL' dest=/etc/sudoers.d/ansible"
+ansible deploy -m copy -a "content='ansible ALL=(ALL) NOPASSWD: ALL' dest=/etc/sudoers.d/ansible"
 
 #Copy ssh key from ansible user in control node to ansible user in managed nodes
-ansible prod -m authorized_key -a "user=ansible state=present key={{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+ansible deploy -m authorized_key -a "user=ansible state=present key={{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
 ```
 
 4. Ejecutar y validar el correcto funcionamiento del script setup-adhoc.sh
@@ -1061,7 +1061,7 @@ become_ask_pass = False
 
 Posteriormente tratar de ejecutar el comando remoto **df -h** con el **modulo shell** en el **grupo deploy** y validar que ahora **no solicite credenciales**.
 ```
-[ansible@server09 ansible]$ ansible prod -m shell -a "df -h"
+[ansible@server09 ansible]$ ansible deploy -m shell -a "df -h"
 ```
 
 Con esto ya tenemos el setup inicial de nuestro laboratorio configurado para ejecutar tareas de configuración.
@@ -1098,15 +1098,19 @@ Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodo
 - Agregar el grupo deploy en cual debe contener los nodos: nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe.(Revisar la nota inicial).
 - Agregar el grupo anidado infra el cual debe contener los grupos: webservers y deploy.
 - Modificar el inventario de tal manera que todos los objetos ya pre configurados correspondan a su ambiente de laboratorio. Cambiar nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe por sus respectivos recursos asignados. (Revisar la nota inicial).
-- Finalmente mover el recurso desagrupado nodeX4.opennova.pe dentro del grupo qa. (Revisar la nota inicial).
+- Mover el recurso desagrupado nodeX4.opennova.pe dentro del grupo qa. (Revisar la nota inicial).
 - Actualizar las direcciones ip del nodo4 y del nodo de control de su entorno, con los datos proporcionados en el taller. 
 6. Listar los host que pertenecen a los grupos: prod, dev, qa, webservers, deploy, servers, infra, all y ungrouped y verificar que estan de acorde al inventario.
 7. Para el nodoX1.opennova.pe realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento manual clientes)**.
 8. Para los nodos del grupo deploy realizar el procedimiento de **Configurar nodos administrados para trabajar con usuario ansible vía llaves ssh(Procedimiento vía nodo de control)**. 
 9. Al final de este punto usted deberá tener su ambiente de ansible configurado de tal modo que el usuario de conexión hacia todos los nodos sea ansible sin solicitud de contraseña y el usuario de escalamiento de privilegios sea root sin solicitud de contaseña.
-Al ejecutar este comando no debería pedir contraseña y deberían responder todos los nodos.
+Al ejecutar estos comando todos los nodos deberían responder sin solicitar contraseña.
 ```
 [ansible@server09 ansible]$ ansible deploy -m ping 
+```
+
+```
+[root@server09 ~]# ansible deploy -m shell -a "df -h"
 ```
 
 
