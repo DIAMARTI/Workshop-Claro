@@ -255,3 +255,550 @@ PLAY RECAP *********************************************************************
 control_node               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 node91.opennova.pe         : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
+
+2. Crear un playbook para desinstalar HTTPD Server, revisar las directivas y discutirlas.
+
+<br> Crear el playbook de nombre **uninstall_webserver.yaml** dentro del directorio de trabajo /home/ansible/ansible que contenga la siguiente informacion:
+```
+---
+- name: "Uninstall HTTPD Server Playbook"
+  hosts: prod
+  tasks:
+    - name: "Remove index.html from HTTPD Server"
+      file:
+        path: /var/www/html/index.html
+        state: absent
+    - name: "Uninstall httpd package on prod servers"
+      yum:
+        name: httpd
+        state: absent
+    - name: "Close port 80/tcp on firewalld"
+      firewalld:
+        service: http
+        permanent: yes
+        immediate: yes
+        state: disabled
+```
+
+<br> Ejecutarlo y validar que el webserver desplegado en prod no esta habilitado.
+```
+[ansible@server09 ansible]$ ansible-playbook uninstall_webserver.yaml
+
+PLAY [Uninstall HTTPD Server Playbook] **************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Remove index.html from HTTPD Server] **********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Uninstall httpd package on prod servers] ******************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Close port 80/tcp on firewalld] ***************************************************************************************************************
+changed: [node91.opennova.pe]
+
+PLAY RECAP ******************************************************************************************************************************************
+node91.opennova.pe         : ok=4    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Al ejecutar el comando curl no nos debe dar respuesta
+```
+[ansible@server09 ansible]$ curl -si http://node91.opennova.pe
+```
+
+3. Crear un playbook para instalación de HTTPD Server que utilice variables dentro del playbook, revisar las directivas y discutirlas.
+
+<br> Crear el playbook de nombre **install_webserver_vars.yaml** dentro del directorio de trabajo /home/ansible/ansible que contenga la siguiente informacion:
+```
+---
+- name: Install HTTPD Server Playbook
+  hosts: prod
+  vars:
+    web_pkg: httpd
+    web_svc: httpd
+    web_fw_svc: http
+    fw_pkg: firewalld
+    fw_svc: firewalld
+    py_pkg: python3-PyMySQL
+
+  tasks:
+    - name: "Install httpd package on prod servers"
+      yum:
+        name:
+          - "{{ web_pkg }}"
+          - "{{ py_pkg }}"
+        state: present
+
+    - name: "Install firewalld package on prod servers"
+      yum:
+        name: "{{ fw_pkg }}"
+        state: present
+
+    - name: "Create a custom index.html"
+      copy:
+        dest: "/var/www/html/index.html"
+        content: "My first webserver deployed with ansible 2.9"
+
+    - name: "Startup httpd service on prod servers"
+      service:
+        name: "{{ web_svc }}"
+        state: started
+        enabled: yes
+
+    - name: "Startup firewalld service on prod servers"
+      service:
+        name: "{{ fw_svc }}"
+        state: started
+        enabled: yes
+
+    - name: "Open port 80/tcp on firewalld"
+      firewalld:
+        service: "{{ web_fw_svc}}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+
+- name: "Test httpd access from workstation"
+  hosts: control_node
+  become: no
+  tasks:
+    - name: "Connect to prod webserver"
+      uri:
+        url: http://node91.opennova.pe/index.html
+        return_content: yes
+        status_code: 200
+```
+Revisar si no existe algún error de sintaxis con el siguiente comando:
+```
+[ansible@server09 ansible]$ ansible-playbook --syntax-check install_webserver_vars.yaml
+
+playbook: install_webserver_vars.yaml
+```
+
+Ejecutar una prueba de corrida del playbook install_webserver_vars.yaml
+```
+[ansible@server09 ansible]$ ansible-playbook --check install_webserver_vars.yaml
+
+PLAY [Install HTTPD Server Playbook] ****************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Install httpd package on prod servers] ********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Install firewalld package on prod servers] ****************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Create a custom index.html] *******************************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Startup httpd service on prod servers] ********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Startup firewalld service on prod servers] ****************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Open port 80/tcp on firewalld] ****************************************************************************************************************
+changed: [node91.opennova.pe]
+
+PLAY [Test httpd access from workstation] ***********************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [control_node]
+
+TASK [Connect to prod webserver] ********************************************************************************************************************
+skipping: [control_node]
+
+PLAY RECAP ******************************************************************************************************************************************
+control_node               : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+node91.opennova.pe         : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Ejecutar el playbook con el comando **ansible-playbook install_webserver_vars.yaml**
+```
+[ansible@server09 ansible]$ ansible-playbook install_webserver_vars.yaml
+
+PLAY [Install HTTPD Server Playbook] ****************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Install httpd package on prod servers] ********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Install firewalld package on prod servers] ****************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Create a custom index.html] *******************************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Startup httpd service on prod servers] ********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Startup firewalld service on prod servers] ****************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Open port 80/tcp on firewalld] ****************************************************************************************************************
+changed: [node91.opennova.pe]
+
+PLAY [Test httpd access from workstation] ***********************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [control_node]
+
+TASK [Connect to prod webserver] ********************************************************************************************************************
+ok: [control_node]
+
+PLAY RECAP ******************************************************************************************************************************************
+control_node               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node91.opennova.pe         : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Validar con el comando curl que tengamos acceso al servidor web desplegado sobre produccion
+```
+[ansible@server09 ansible]$ curl -si http://node91.opennova.pe
+HTTP/1.1 200 OK
+Date: Mon, 01 Nov 2021 20:31:48 GMT
+Server: Apache/2.4.37 (Red Hat Enterprise Linux)
+Last-Modified: Mon, 01 Nov 2021 20:28:52 GMT
+ETag: "2c-5cfc00672a52b"
+Accept-Ranges: bytes
+Content-Length: 44
+Content-Type: text/html; charset=UTF-8
+
+My first webserver deployed with ansible 2.9
+```
+
+4. Crear un playbook para instalación de HTTPD Server que utilice variables de archivos dentro del playbook, revisar las directivas y discutirlas.
+
+<br> Crear el playbook de nombre **install_webserver_vars_file.yaml** dentro del directorio de trabajo /home/ansible/ansible que contenga la siguiente información: 
+```
+---
+- name: Install HTTPD Server Playbook
+  hosts: prod
+  vars_files:
+    - vars/webvars.yml
+  tasks:
+    - name: "Install httpd package on prod servers"
+      yum:
+        name:
+          - "{{ web_pkg }}"
+          - "{{ py_pkg }}"
+        state: present
+
+    - name: "Install firewalld package on prod servers"
+      yum:
+        name: "{{ fw_pkg }}"
+        state: present
+
+    - name: "Create a custom index.html"
+      copy:
+        dest: "/var/www/html/index.html"
+        content: "My first webserver deployed with ansible 2.9"
+
+    - name: "Startup httpd service on prod servers"
+      service:
+        name: "{{ web_svc }}"
+        state: started
+        enabled: yes
+
+    - name: "Startup firewalld service on prod servers"
+      service:
+        name: "{{ fw_svc }}"
+        state: started
+        enabled: yes
+
+    - name: "Open port 80/tcp on firewalld"
+      firewalld:
+        service: "{{ web_fw_svc}}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+
+- name: "Test httpd access from workstation"
+  hosts: control_node
+  become: no
+  tasks:
+    - name: "Connect to prod webserver"
+      uri:
+        url: http://node91.opennova.pe/index.html
+        return_content: yes
+        status_code: 200
+```
+
+Crear el directorio vars con el archivos webvars.yml dentro del directorio de trabajo * /home/ansible/ansible/vars/webvars.yml
+```
+[ansible@server09 ansible]$ mkdir -p /home/ansible/ansible/vars/
+```
+Dentro de este directorio crear el archivo **webvars.yml** que contenga la siguiente informacion:
+```
+---
+web_pkg: httpd
+web_svc: httpd
+web_fw_svc: http
+fw_pkg: firewalld
+fw_svc: firewalld
+py_pkg: python3-PyMySQL
+```
+
+Revisar si no existe algún error de sintaxis con el siguiente comando:
+```
+[ansible@server09 ansible]$ ansible-playbook --syntax-check install_webserver_vars_file.yml
+
+playbook: install_webserver_vars_file.yml
+```
+
+Ejecutar una prueba de corrida del playbook install_webserver_vars_file.yaml
+```
+[ansible@server09 ansible]$ ansible-playbook install_webserver_vars_file.yml
+
+PLAY [Install HTTPD Server Playbook] ****************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Install httpd package on prod servers] ********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Install firewalld package on prod servers] ****************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Create a custom index.html] *******************************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Startup httpd service on prod servers] ********************************************************************************************************
+changed: [node91.opennova.pe]
+
+TASK [Startup firewalld service on prod servers] ****************************************************************************************************
+ok: [node91.opennova.pe]
+
+TASK [Open port 80/tcp on firewalld] ****************************************************************************************************************
+changed: [node91.opennova.pe]
+
+PLAY [Test httpd access from workstation] ***********************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [control_node]
+
+TASK [Connect to prod webserver] ********************************************************************************************************************
+ok: [control_node]
+
+PLAY RECAP ******************************************************************************************************************************************
+control_node               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node91.opennova.pe         : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Validar con el comando curl que tengamos acceso al servidor web desplegado sobre produccion
+```
+[ansible@server09 ansible]$ curl -si http://node91.opennova.pe
+HTTP/1.1 200 OK
+Date: Mon, 01 Nov 2021 20:31:48 GMT
+Server: Apache/2.4.37 (Red Hat Enterprise Linux)
+Last-Modified: Mon, 01 Nov 2021 20:28:52 GMT
+ETag: "2c-5cfc00672a52b"
+Accept-Ranges: bytes
+Content-Length: 44
+Content-Type: text/html; charset=UTF-8
+
+My first webserver deployed with ansible 2.9
+```
+
+5. Crear un playbook para instalación de VSFTPD Server  revisar las directivas y discutirlas.
+
+<br> Crear el playbook de nombre **install_ftpserver.yaml** dentro del directorio de trabajo /home/ansible/ansible/ftp que contenga la siguiente información:
+
+```
+[ansible@server09 ansible]$ mkdir /home/ansible/ansible/ftp
+[ansible@server09 ansible]$ cd /home/ansible/ansible/ftp/
+```
+
+Crear el archivo con install_ftpserver.yaml dentro de /home/ansible/ansible/ftp/ con la siguiente información:
+```
+---
+- name: "Deploy FTP Server"
+  hosts: dev,qa
+  become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    ftp_pkg: vsftpd
+    ftp_svc: vsftpd
+    fw_pkg: firewalld
+    fw_svc: firewalld
+    fw_svc_name: ftp
+  tasks:
+    - name: "Install FTP server"
+      yum:
+        name: "{{ ftp_pkg }}"
+        state: present
+
+    - name: "Startup and Enable FTP server"
+      service:
+        name: "{{ ftp_svc }}"
+        state: started
+        enabled: yes
+
+    - name: "Install firewalld package on prod servers"
+      yum:
+        name: "{{ fw_pkg }}"
+        state: present
+
+    - name: "Startup firewalld service on prod servers"
+      service:
+        name: "{{ fw_svc }}"
+        state: started
+        enabled: yes
+
+    - name: "Open ftp service port 21/tcp on firewalld"
+      firewalld:
+        service: "{{ fw_svc_name }}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+
+    - name: "Configure anonymous access for vsftpd"
+      replace:
+        path: /etc/vsftpd/vsftpd.conf
+        regexp: '^anonymous_enable=NO'
+        replace: 'anonymous_enable=YES'
+      notify: restart vsftpd
+
+  handlers:
+    - name: restart vsftpd
+      service:
+        name: vsftpd
+        state: restarted
+```
+
+En el nodo de contro instalar el cliente ftp para probar la conexión ftp hacia los nodos de los ambientes dev y qa.
+```
+[ansible@server09 ftp]$ sudo yum install -y ftp
+Updating Subscription Management repositories.
+Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                                                   34 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                                                 29 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)                                                              38 kB/s | 2.8 kB     00:00
+Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)                                                                  20 kB/s | 2.1 kB     00:00
+Dependencies resolved.
+=====================================================================================================================================================
+ Package                  Architecture                Version                            Repository                                             Size
+=====================================================================================================================================================
+Installing:
+ ftp                      x86_64                      0.17-78.el8                        rhel-8-for-x86_64-appstream-rpms                       70 k
+
+Transaction Summary
+=====================================================================================================================================================
+Install  1 Package
+
+Total download size: 70 k
+Installed size: 112 k
+Downloading Packages:
+ftp-0.17-78.el8.x86_64.rpm                                                                                            60 kB/s |  70 kB     00:01
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                 60 kB/s |  70 kB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                             1/1
+  Installing       : ftp-0.17-78.el8.x86_64                                                                                                      1/1
+  Running scriptlet: ftp-0.17-78.el8.x86_64                                                                                                      1/1
+  Verifying        : ftp-0.17-78.el8.x86_64                                                                                                      1/1
+Installed products updated.
+Uploading Tracer Profile
+
+Installed:
+  ftp-0.17-78.el8.x86_64
+
+Complete!
+```
+
+Probar conexión a los nodos de los ambientes de dev y qa.
+```
+[ansible@server09 ftp]$ ftp node92.opennova.pe
+Connected to node92.opennova.pe (192.168.10.92).
+220 (vsFTPd 3.0.3)
+Name (node92.opennova.pe:ansible): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> quit
+```
+```
+[ansible@server09 ftp]$ ftp node93.opennova.pe
+Connected to node93.opennova.pe (192.168.10.93).
+220 (vsFTPd 3.0.3)
+Name (node93.opennova.pe:ansible): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> quit
+221 Goodbye.
+```
+
+6. Crear un playbook para desinstalar VSFTPD Server, revisar las directivas y discutirlas.
+
+<br> Crear el playbook de nombre **uninstall_ftpserver.yaml** dentro del directorio de trabajo /home/ansible/ansible/ftp que contenga la siguiente información:
+```
+---
+- name: "Uninstall VSFTPD Server Playbook"
+  hosts: dev,qa
+  become: true
+  become_method: sudo
+  become_user: root
+  tasks:
+    - name: "Uninstall vsftpd package on prod servers"
+      yum:
+        name: vsftpd
+        state: absent
+    - name: "Close port 21/tcp on firewalld"
+      firewalld:
+        service: ftp
+        permanent: yes
+        immediate: yes
+        state: disabled
+```
+
+Para desinstalar el servicio vsftpd ejecutar el siguiente comando:
+```
+[ansible@server09 ftp]$ pwd
+/home/ansible/ansible/ftp
+
+[ansible@server09 ftp]$ ansible-playbook -i ~/ansible/inventory uninstall_ftpserver.yaml
+
+PLAY [Uninstall VSFTPD Server Playbook] **************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************************
+ok: [node93.opennova.pe]
+ok: [node92.opennova.pe]
+
+TASK [Uninstall vsftpd package on prod servers] ******************************************************************************************************
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+TASK [Close port 21/tcp on firewalld] ****************************************************************************************************************
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+PLAY RECAP *******************************************************************************************************************************************
+node92.opennova.pe         : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node93.opennova.pe         : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Validar que no se pueda conectar al servicio ftp en los nodos de los grupos de dev y qa.
+```
+[ansible@server09 ftp]$ ftp node93.opennova.pe
+ftp: connect: No route to host
+ftp> quit
+[ansible@server09 ftp]$ ftp node92.opennova.pe
+ftp: connect: No route to host
+ftp>
+```
+
+7. Crear un rol llamado apache y descargarle el siguiente contenido
