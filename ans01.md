@@ -1087,7 +1087,7 @@ Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodo
 - Asignar la contraseña redhat.
 - Crear un directorio de trabajo de nombre ansible.
 - Configurar el editor vim para que pueda interpretar correctamente ansible. (Sino tiene vim instalado puede instalarlo)
-- En el directorio de trabajo ansible descargar de ftp://classroom.opennova.pe los archivos: inventory, ansible.cfg.
+- En el directorio de trabajo ansible descargar de ftp://classroom.opennova.pe los archivos: inventory-template, ansible.cfg.
 5. Al inventario agregarle los siguientes grupos:
 - Agregar el grupo webservers el cual debe contener los nodos: nodeX1.opennova.pe  y nodeX2.opennova.pe. (Revisar la nota inicial).
 - Agregar el grupo deploy en cual debe contener los nodos: nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe.(Revisar la nota inicial).
