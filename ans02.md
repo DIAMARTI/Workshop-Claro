@@ -79,6 +79,10 @@ Las funciones de Ansible (Roles) son un tipo de playbook especial completamente 
 
 Una colección puede contener varias funciones (Roles) y módulos específicos que no estan necesariamente en una instalación de ansible, lo cual posibilita el intercambio sencillo de contenido a través de Automation Hub y Ansible Galaxy. 
 <br>
-#### Con ansible podemos automatizar toda la infraestructura tecnologica.
+#### Con ansible podemos automatizar toda la infraestructura tecnológica.
 <p align="left"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans206.png?raw=true"width="700" height="600"></p>
 <br>
+
+---
+
+# Trabajando con Playbooks y Roles Ansible. (Demostración)
