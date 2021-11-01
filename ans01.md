@@ -371,7 +371,7 @@ Se debe definir un usuario de automatización para toda la infraestructura, en n
 [root@server09 ~]# id ansible
 uid=1000(ansible) gid=1000(ansible) groups=1000(ansible)
 
-[root@server09 ~]# echo "redhat" | passwd stdin ansible
+[root@server09 ~]# echo "redhat" | passwd --stdin ansible
 ```
 
 2. Configurarle permisos sudo al usuario ansible en el nodo de control
@@ -395,7 +395,7 @@ ansible ALL=(ALL)       NOPASSWD: ALL
 [ansible@server09 ~]$ mkdir ansible
 [ansible@server09 ~]$ cd ansible/
 
-[ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/inventory
+[ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/inventory-template
 [ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/inventory.yml
 [ansible@server09 ~]$ wget ftp://classroom.opennova.pe/ansible/ansible.cfg
 ```
