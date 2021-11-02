@@ -15,7 +15,7 @@
 <br>- Trabajando con Ansible Playbooks y Roles. (Demostración) 
 </p>
 <p>
-<strong>Laboratorios:</strong>
+<strong>Laboratorio:</strong>
 </p>
 
 # Ansible funcionamiento y comandos adhoc. (Teórico)
@@ -1392,3 +1392,31 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^? idm.opennova.pe               0   8     0     -     +0ns[   +0ns] +/-    0ns
 ```
+
+# Laboratorio: Trabajando con Ansible Playbooks y Roles
+
+NOTA: 
+- Las tareas a ejecutarse en el nodo de control serán en la estación server0X.opennova.pe, donde X es el numero de usuario del 1 al 6 respectivamente. 
+- Las tareas a ejecutarse en los nodos administrados serán en las estaciones: nodeX1.opennova.pe, nodeX2.opennova.pe, nodeX3.opennova.pe, nodeX4.opennova.pe, donde X es el numero de usuario del 1 al 6 respectivamente. 
+- Si al probar la conectividad via el modulo ping de ansible hacia los nodos administrador le sale el siguiente mensaje:
+```
+[ansible@server09 ansible]$ ansible -m ping prod
+SSH password:
+BECOME password[defaults to SSH password]:
+node91.opennova.pe | FAILED! => {
+    "msg": "Using a SSH password instead of a key is not possible because Host Key checking is enabled and sshpass does not support this.  Please add this host's fingerprint to your known_hosts file to manage this host."
+}
+```
+
+Debe establecer la conexión ssh inicial desde el nodo de control hacia los nodos administrador como indica el **punto 5**. de la seccion **Configurar espacio de trabajo y recursos en el nodo de control**
+
+**Requerimientos:**
+1. Dentro del espacio de trabajo **/home/ansible/ansible** crear los siguientes playbooks.
+* Crear un playbook de nombre **install_webserver.yaml** que contenga la informacion del **punto 1**, modificar el parametro hosts y ejecutarlo en **webservers**
+* Crear un playbook de nombre **uninstall_webserver.yaml** que contenga la informacion del **punto 2**, modificar el parametro hosts  y ejecutarlo en **dev**
+* Crear un playbook de nombre **install_webserver_vars.yaml** que contenga la informacion del **punto 3**, modificar el paremtro hosts y ejecutarlo en **nodeX3.opennova.pe**, donde **X** es el numero de su usuario del **1 al 6**.
+* Crear un playbook de nombre **install_webserver_vars_file.yaml** que contenga la informacion del **punto 4**, modificar el parametro hosts y ejecutarlo en **dev**.
+* Crear un playbook de nombre **install_ftpserver.yaml** que contenga la informacino del **punto 5**, este playbook debera estar dentro del directorio **/home/ansible/ansible/ftp**, modificar el parametro hosts para ejecutarlo en **dev y qa**
+* Crear un playbook de nombre **uninstall_ftpserver.yaml** que contenga la informacion del **punto 6**, este playbook debera estar dentro del directorio **/home/ansible/ansible/ftp**, modificar el parametro hosts para ejecutarlo en **dev**
+* Crear un **rol** llamado **apache** utilizar el procedimiento del **punto 7**, para ejecutar este rol debemos crear un playbook llamado **main_role_apache.yaml** dentro del espacio de trabajo **/home/ansible/ansible**, ejecutar este playbook en **nodeX4.opennova.pe** donde **X** es el numero de su usuario del **1 al 6**.
+*  Instalar el paquete **rhel-system-roles**, de tal manera que el contenido sea accesible al usuario ansible configurado (revisar la directiva **roles_path** en **ansible.cfg** de su espacio de trabajo), crear un playbook llamado **timesync.yaml** dentro del espacio de trabajo **/home/ansible/ansible** que contenga la informacion del **punto 8**, modificar el parametro hosts para ejecutarlo en el grupo **servers**.
