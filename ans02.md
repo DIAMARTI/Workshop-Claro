@@ -918,3 +918,477 @@ Crear un playbook de nombre main_role_apache.yaml dentro del espacio de trabajo 
   roles:
     - role: apache
 ```
+
+Ejecutar el playbook main_role_apache.yaml desde el espacio de trabajo /home/ansible/ansible
+```
+[ansible@server09 ansible]$ ansible-playbook main_role_apache.yaml
+
+PLAY [Install Apache from roles] ********************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node94.opennova.pe]
+
+TASK [apache : Install httpd package on prod servers] ***********************************************************************************************
+changed: [node94.opennova.pe]
+
+TASK [apache : Install firewalld package on prod servers] *******************************************************************************************
+ok: [node94.opennova.pe]
+
+TASK [apache : Create a custom index.html from jinja2 template] *************************************************************************************
+changed: [node94.opennova.pe]
+
+TASK [apache : Startup httpd service on prod servers] ***********************************************************************************************
+changed: [node94.opennova.pe]
+
+TASK [apache : Startup firewalld service on prod servers] *******************************************************************************************
+ok: [node94.opennova.pe]
+
+TASK [apache : Open port 80/tcp on firewalld] *******************************************************************************************************
+changed: [node94.opennova.pe]
+
+PLAY RECAP ******************************************************************************************************************************************
+node94.opennova.pe         : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Validar que el servicio web este accesible en el nodoX4 correspondiente y contenta el mensaje indicado en el template index.j2
+```
+[ansible@server09 ansible]$ curl -si http://node94.opennova.pe
+HTTP/1.1 200 OK
+Date: Tue, 02 Nov 2021 00:04:28 GMT
+Server: Apache/2.4.37 (Red Hat Enterprise Linux)
+Last-Modified: Tue, 02 Nov 2021 00:03:02 GMT
+ETag: "5e-5cfc30462a921"
+Accept-Ranges: bytes
+Content-Length: 94
+Content-Type: text/html; charset=UTF-8
+
+Testing webserver on node94.opennova.pe.10.168.192.in-addr.arpa with ip address 192.168.10.94
+```
+
+8. Instalar roles del paquete rhel-system-roles los cuales habilitara algunos roles:
+```
+[ansible@server09 ansible]$ sudo yum install rhel-system-roles
+Updating Subscription Management repositories.
+Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)                                                                   25 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)                                                                 27 kB/s | 2.4 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)                                                              28 kB/s | 2.8 kB     00:00
+Red Hat Satellite Tools 6.9 for RHEL 8 x86_64 (RPMs)                                                                  24 kB/s | 2.1 kB     00:00
+Dependencies resolved.
+=====================================================================================================================================================
+ Package                             Architecture             Version                       Repository                                          Size
+=====================================================================================================================================================
+Installing:
+ rhel-system-roles                   noarch                   1.0.1-1.el8                   rhel-8-for-x86_64-appstream-rpms                   1.1 M
+
+Transaction Summary
+=====================================================================================================================================================
+Install  1 Package
+
+Total download size: 1.1 M
+Installed size: 7.0 M
+Is this ok [y/N]: y
+Downloading Packages:
+rhel-system-roles-1.0.1-1.el8.noarch.rpm                                                                             836 kB/s | 1.1 MB     00:01
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                835 kB/s | 1.1 MB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                             1/1
+  Installing       : rhel-system-roles-1.0.1-1.el8.noarch                                                                                        1/1
+  Verifying        : rhel-system-roles-1.0.1-1.el8.noarch                                                                                        1/1
+Installed products updated.
+Uploading Tracer Profile
+
+Installed:
+  rhel-system-roles-1.0.1-1.el8.noarch
+
+Complete!
+```
+Validar que tengamos los roles accesibles
+```
+[ansible@server09 ansible]$ ansible-galaxy list
+# /home/ansible/ansible/roles
+- apache, (unknown version)
+# /usr/share/ansible/roles
+- linux-system-roles.certificate, (unknown version)
+- linux-system-roles.crypto_policies, (unknown version)
+- linux-system-roles.ha_cluster, (unknown version)
+- linux-system-roles.kdump, (unknown version)
+- linux-system-roles.kernel_settings, (unknown version)
+- linux-system-roles.logging, (unknown version)
+- linux-system-roles.metrics, (unknown version)
+- linux-system-roles.nbde_client, (unknown version)
+- linux-system-roles.nbde_server, (unknown version)
+- linux-system-roles.network, (unknown version)
+- linux-system-roles.postfix, (unknown version)
+- linux-system-roles.selinux, (unknown version)
+- linux-system-roles.ssh, (unknown version)
+- linux-system-roles.sshd, (unknown version)
+- linux-system-roles.storage, (unknown version)
+- linux-system-roles.timesync, (unknown version)
+- linux-system-roles.tlog, (unknown version)
+- rhel-system-roles.certificate, (unknown version)
+- rhel-system-roles.crypto_policies, (unknown version)
+- rhel-system-roles.ha_cluster, (unknown version)
+- rhel-system-roles.kdump, (unknown version)
+- rhel-system-roles.kernel_settings, (unknown version)
+- rhel-system-roles.logging, (unknown version)
+- rhel-system-roles.metrics, (unknown version)
+- rhel-system-roles.nbde_client, (unknown version)
+- rhel-system-roles.nbde_server, (unknown version)
+- rhel-system-roles.network, (unknown version)
+- rhel-system-roles.postfix, (unknown version)
+- rhel-system-roles.selinux, (unknown version)
+- rhel-system-roles.ssh, (unknown version)
+- rhel-system-roles.sshd, (unknown version)
+- rhel-system-roles.storage, (unknown version)
+- rhel-system-roles.timesync, (unknown version)
+- rhel-system-roles.tlog, (unknown version)
+# /etc/ansible/roles
+```
+
+Crear un playbook de nombre timesync.yaml que este en el espacio de trabajo /home/ansible/ansible/ que contenga la siguiente informacion:
+```
+---
+- name: Use a RHEL system role
+  hosts: pro
+  vars:
+    timesync_ntp_servers:
+      - hostname: idm.opennova.pe
+        iburst: yes
+    timesync_ntp_provider: chrony
+    timezone: UTC
+  roles:
+    - rhel-system-roles.timesync
+  tasks:
+    - name: "TIMEZONE CONFIGURATION"
+      timezone:
+        name: "{{ timezone }}"
+      notify: restart crond
+  handlers:
+    - name: restart crond
+      service:
+        name: crond
+        state: restarted
+```
+
+Ejecutar el playbook timesync.yaml y analizar la salida
+```
+[ansible@server09 ansible]$ ansible-playbook timesync.yaml
+
+PLAY [Use a RHEL system role] ***********************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node94.opennova.pe]
+ok: [node93.opennova.pe]
+ok: [node92.opennova.pe]
+ok: [node91.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Check if only NTP is needed] *************************************************************************************
+ok: [node91.opennova.pe]
+ok: [node92.opennova.pe]
+ok: [node93.opennova.pe]
+ok: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Check if single PTP is needed] ***********************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Check if both NTP and PTP are needed] ****************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Determine current NTP provider] **********************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Select NTP provider] *********************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Install chrony] **************************************************************************************************
+changed: [node91.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node93.opennova.pe]
+changed: [node92.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Install ntp] *****************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Install linuxptp] ************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Run phc_ctl on PTP interface] ************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Check if PTP interface supports HW timestamping] *****************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Get chrony version] **********************************************************************************************
+ok: [node91.opennova.pe]
+ok: [node93.opennova.pe]
+ok: [node94.opennova.pe]
+ok: [node92.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Get ntp version] *************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate chrony.conf file] ***************************************************************************************
+changed: [node91.opennova.pe]
+changed: [node93.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node92.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate chronyd sysconfig file] *********************************************************************************
+changed: [node91.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate ntp.conf file] ******************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate ntpd sysconfig file] ************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate ptp4l.conf file] ****************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate ptp4l sysconfig file] ***********************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate phc2sys sysconfig file] *********************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Generate timemaster.conf file] ***********************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Update network sysconfig file] ***********************************************************************************
+changed: [node91.opennova.pe]
+changed: [node92.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node93.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Disable chronyd] *************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Disable ntpd] ****************************************************************************************************
+fatal: [node93.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpd: host"}
+...ignoring
+fatal: [node94.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpd: host"}
+...ignoring
+fatal: [node91.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpd: host"}
+...ignoring
+fatal: [node92.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpd: host"}
+...ignoring
+
+TASK [rhel-system-roles.timesync : Disable ntpdate] *************************************************************************************************
+fatal: [node94.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpdate: host"}
+...ignoring
+fatal: [node92.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpdate: host"}
+...ignoring
+fatal: [node93.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpdate: host"}
+...ignoring
+fatal: [node91.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntpdate: host"}
+...ignoring
+
+TASK [rhel-system-roles.timesync : Disable sntp] ****************************************************************************************************
+fatal: [node91.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service sntp: host"}
+...ignoring
+fatal: [node92.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service sntp: host"}
+...ignoring
+fatal: [node93.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service sntp: host"}
+...ignoring
+fatal: [node94.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service sntp: host"}
+...ignoring
+
+TASK [rhel-system-roles.timesync : Disable ptp4l] ***************************************************************************************************
+fatal: [node91.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ptp4l: host"}
+...ignoring
+fatal: [node93.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ptp4l: host"}
+...ignoring
+fatal: [node94.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ptp4l: host"}
+...ignoring
+fatal: [node92.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service ptp4l: host"}
+...ignoring
+
+TASK [rhel-system-roles.timesync : Disable phc2sys] *************************************************************************************************
+fatal: [node91.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service phc2sys: host"}
+...ignoring
+fatal: [node94.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service phc2sys: host"}
+...ignoring
+fatal: [node93.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service phc2sys: host"}
+...ignoring
+fatal: [node92.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service phc2sys: host"}
+...ignoring
+
+TASK [rhel-system-roles.timesync : Disable timemaster] **********************************************************************************************
+fatal: [node91.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service timemaster: host"}
+...ignoring
+fatal: [node93.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service timemaster: host"}
+...ignoring
+fatal: [node94.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service timemaster: host"}
+...ignoring
+fatal: [node92.opennova.pe]: FAILED! => {"changed": false, "msg": "Could not find the requested service timemaster: host"}
+...ignoring
+
+TASK [rhel-system-roles.timesync : Enable chronyd] **************************************************************************************************
+changed: [node91.opennova.pe]
+changed: [node93.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node92.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Enable ntpd] *****************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Enable ptp4l] ****************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Enable phc2sys] **************************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [rhel-system-roles.timesync : Enable timemaster] ***********************************************************************************************
+skipping: [node91.opennova.pe]
+skipping: [node92.opennova.pe]
+skipping: [node93.opennova.pe]
+skipping: [node94.opennova.pe]
+
+TASK [TIMEZONE CONFIGURATION] ***********************************************************************************************************************
+ok: [node91.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+RUNNING HANDLER [rhel-system-roles.timesync : restart chronyd] **************************************************************************************
+changed: [node93.opennova.pe]
+changed: [node94.opennova.pe]
+changed: [node92.opennova.pe]
+
+RUNNING HANDLER [restart crond] *********************************************************************************************************************
+changed: [node94.opennova.pe]
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+PLAY RECAP ******************************************************************************************************************************************
+node91.opennova.pe         : ok=17   changed=8    unreachable=0    failed=0    skipped=20   rescued=0    ignored=6
+node92.opennova.pe         : ok=17   changed=8    unreachable=0    failed=0    skipped=20   rescued=0    ignored=6
+node93.opennova.pe         : ok=17   changed=8    unreachable=0    failed=0    skipped=20   rescued=0    ignored=6
+node94.opennova.pe         : ok=17   changed=8    unreachable=0    failed=0    skipped=20   rescued=0    ignored=6
+```
+
+En cualquiera siguiente comando adhoc para validar la sincronizacion.
+```
+[ansible@server09 ansible]$ ansible servers -m shell -a "chronyc sources -v"
+node94.opennova.pe | CHANGED | rc=0 >>
+210 Number of sources = 1
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? idm.opennova.pe               0   8     0     -     +0ns[   +0ns] +/-    0ns
+node92.opennova.pe | CHANGED | rc=0 >>
+210 Number of sources = 1
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? idm.opennova.pe               0   8     0     -     +0ns[   +0ns] +/-    0ns
+node91.opennova.pe | CHANGED | rc=0 >>
+210 Number of sources = 1
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? idm.opennova.pe               0   8     0     -     +0ns[   +0ns] +/-    0ns
+node93.opennova.pe | CHANGED | rc=0 >>
+210 Number of sources = 1
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? idm.opennova.pe               0   8     0     -     +0ns[   +0ns] +/-    0ns
+```
