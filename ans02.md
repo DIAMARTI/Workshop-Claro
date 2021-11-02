@@ -1054,7 +1054,7 @@ Crear un playbook de nombre timesync.yaml que este en el espacio de trabajo /hom
 ```
 ---
 - name: Use a RHEL system role
-  hosts: pro
+  hosts: servers
   vars:
     timesync_ntp_servers:
       - hostname: idm.opennova.pe
