@@ -196,7 +196,7 @@ node91.opennova.pe         : ok=7    changed=4    unreachable=0    failed=0    s
 
 Finalmente ejecutar el playbook con el comando **ansible-playbook install_webserver.yaml -v**
 ```
-[ansible@server09 ansible]$ ansible-playbook uninstall_webserver.yaml -v
+[ansible@server09 ansible]$ ansible-playbook install_webserver.yaml -v
 Using /home/ansible/ansible/ansible.cfg as config file
 
 PLAY [Uninstall HTTPD Server Playbook] **************************************************************************************************************
