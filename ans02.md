@@ -672,7 +672,50 @@ Crear el archivo con install_ftpserver.yaml dentro de /home/ansible/ansible/ftp/
         state: restarted
 ```
 
-En el nodo de contro instalar el cliente ftp para probar la conexión ftp hacia los nodos de los ambientes dev y qa.
+Ejecutar el playbook install_ftpserver.yaml
+
+```[ansible@server09 ftp]$ ansible-playbook -i ~/ansible/inventory install_ftpserver.yaml
+
+PLAY [Deploy FTP Server] ****************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [node93.opennova.pe]
+ok: [node92.opennova.pe]
+
+TASK [Install FTP server] ***************************************************************************************************************************
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+TASK [Startup and Enable FTP server] ****************************************************************************************************************
+changed: [node93.opennova.pe]
+changed: [node92.opennova.pe]
+
+TASK [Install firewalld package on prod servers] ****************************************************************************************************
+ok: [node92.opennova.pe]
+ok: [node93.opennova.pe]
+
+TASK [Startup firewalld service on prod servers] ****************************************************************************************************
+ok: [node93.opennova.pe]
+ok: [node92.opennova.pe]
+
+TASK [Open ftp service port 21/tcp on firewalld] ****************************************************************************************************
+changed: [node93.opennova.pe]
+changed: [node92.opennova.pe]
+
+TASK [Configure anonymous access for vsftpd] ********************************************************************************************************
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+RUNNING HANDLER [restart vsftpd] ********************************************************************************************************************
+changed: [node92.opennova.pe]
+changed: [node93.opennova.pe]
+
+PLAY RECAP ******************************************************************************************************************************************
+node92.opennova.pe         : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node93.opennova.pe         : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=
+```
+
+En el nodo de control instalar el cliente ftp para probar la conexión ftp hacia los nodos de los ambientes dev y qa.
 ```
 [ansible@server09 ftp]$ sudo yum install -y ftp
 Updating Subscription Management repositories.
