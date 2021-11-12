@@ -12,7 +12,7 @@
 
 <h3><a href="wiki/ans">Red Hat Ansible</a></h3>
 
-<h4><a href="wiki/ans">Red Hat Openshift Container Platform</a></h4>
+<h3><a href="wiki/ans">Red Hat Openshift Container Platform</a></h3>
 
 
 
