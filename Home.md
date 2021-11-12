@@ -14,7 +14,7 @@
 
 <h3><a href="wiki/ans">Red Hat Openshift Container Platform</a></h3>
 
-
+<br>
 
 | Nombre | Correo | Estación | IP | Client name | Client IP | User |
 | --- | --- | --- | --- | --- | --- | --- |
