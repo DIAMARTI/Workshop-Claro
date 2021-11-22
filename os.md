@@ -15,7 +15,7 @@ Manual de procedimientos del workshop de la solución Red Hat OpenShit 4.8 sobre
 
 <h2>Tabla de contenidos</h2>
 <br><a href="os01">- Dia 01</a>
-<br><a href="os01">- Dia 02</a>
-<br><a href="os01">- Dia 03</a>
-<br><a href="os01">- Dia 04</a>
-<br><a href="os01">- Dia 05</a>
+<br><a href="os02">- Dia 02</a>
+<br><a href="os03">- Dia 03</a>
+<br><a href="os04">- Dia 04</a>
+<br><a href="os05">- Dia 05</a>
