@@ -1,6 +1,6 @@
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/ans/ans01.png?raw=true" alt="ANS logo">
+<p align="center"><img src="https://github.com/workshopopennova/workshopclaro/blob/main/images/os000.png?raw=true" alt="OS logo">
 </p>
-<h1 align="center">Red Hat Ansible</h1>
+<h1 align="center">Red Hat OpenShift</h1>
 <p align="center">
 <br>Workshop elaborado para el cliente Claro Puerto Rico
   <br><a href="https://www.redhat.com"><strong>Red Hat</strong></a>
@@ -11,7 +11,7 @@
 
 <h2>Alcance</h2>
 
-Manual de procedimientos del workshop de la solución Red Hat Ansible versión 2.9 sobre plataforma Red Hat Enterprise Linux 8.4
+Manual de procedimientos del workshop de la solución Red Hat OpenShit 4.8 sobre plataforma Red Hat Enterprise Linux 8.4
 
 <h2>Tabla de contenidos</h2>
 <br><a href="ans01">- Qué es Ansible</a>
