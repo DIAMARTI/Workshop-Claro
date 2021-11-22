@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/workshopopennova/workshopclaro/blob/main/images/os000.png?raw=true" alt="OS logo">
 </p>
-<h1 align="center">Red Hat OpenShift</h1>
+<h1 align="center">Red Hat Openshift Container Platform</h1>
 <p align="center">
 <br>Workshop elaborado para el cliente Claro Puerto Rico
   <br><a href="https://www.redhat.com"><strong>Red Hat</strong></a>
@@ -14,7 +14,8 @@
 Manual de procedimientos del workshop de la solución Red Hat OpenShit 4.8 sobre plataforma Red Hat Enterprise Linux 8.4
 
 <h2>Tabla de contenidos</h2>
-<br><a href="ans01">- Qué es Ansible</a>
-<br><a href="ans02">- Qué es un playbook y como funciona un playbook</a>
-<br><a href="ans103">- Que es Ansible Tower</a>
-<br><a href="ans104">- Operaciones avanzadas con Ansible Tower</a>
+<br><a href="os01">- Dia 01</a>
+<br><a href="os01">- Dia 02</a>
+<br><a href="os01">- Dia 03</a>
+<br><a href="os01">- Dia 04</a>
+<br><a href="os01">- Dia 05</a>
