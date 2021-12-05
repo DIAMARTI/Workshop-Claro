@@ -14,8 +14,8 @@
 Manual de procedimientos del workshop de la solución Red Hat OpenShit 4.8 sobre plataforma Red Hat Enterprise Linux 8.4
 
 <h2>Tabla de contenidos</h2>
-<br><a href="os01">- Dia 01</a>
-<br><a href="os02">- Dia 02</a>
-<br><a href="os03">- Dia 03</a>
-<br><a href="os04">- Dia 04</a>
-<br><a href="os05">- Dia 05</a>
+<br><a href="os01">- OpenShift Dia 01</a>
+<br><a href="os02">- OpenShift Dia 02</a>
+<br><a href="os03">- OpenShift Dia 03</a>
+<br><a href="os04">- OpenShft Dia 04</a>
+<br><a href="os05">- OpenShift Dia 05</a>
