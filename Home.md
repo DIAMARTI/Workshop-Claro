@@ -16,12 +16,12 @@
 
 <br>
 
-| Nombre | Correo | Estación | IP | Client name | Client IP | User |
-| --- | --- | --- | --- | --- | --- | --- |
-|Ileana Martinez  |     | server01  | 192.168.10.171| node11 a node14 | 192.168.10.11 a 192.168.10.14 |  imartinez |
-|Ileana Gonzalez  |     | server02  | 192.168.10.172| node21 a node24 | 192.168.10.21 a 192.168.10.24 |  igonzales |
-|Pedro Rodriguez    |     | server03  | 192.168.10.173| node31 a node34 | 192.168.10.31 a 192.168.10.34 | prodriguez |
-|Jose Correa     |     | server04  | 192.168.10.174| node41 a node44 | 192.168.10.41 a 192.168.10.44 |  jcorrea|
-|Annabelle Quiñones     |     | server05  | 192.168.10.175| node51 a node54 | 192.168.10.51 a 192.168.10.54 | aquinones|
-|Raymond Bernard     |     | server06  | 192.168.10.176| node61 a node65 | 192.168.10.61 a 192.168.10.64 |  rbernard|
+| Nombre | Correo | Estación | IP | VNC | User |
+| --- | --- | --- | --- | --- | --- | 
+|Ileana Martinez  |     | client01  | 192.168.10.181| 192.168.10.181:5901 |  root y developer |
+|Ileana Gonzalez  |     | client02  | 192.168.10.182|  192.168.10.182:5901 |  root y developer |
+|Pedro Rodriguez    |     | client03  | 192.168.10.183|  192.168.10.183:5901 | root y developer  |
+|Jose Correa     |     | client04  | 192.168.10.184|  192.168.10.184:5901 |  root y developer |
+|Annabelle Quiñones     |     | client05  | 192.168.10.185|  192.168.10.185:5901| root y developer |
+|Raymond Bernard     |     | client06  | 192.168.10.186| 192.168.10.186:5901|  root y developer |
 
