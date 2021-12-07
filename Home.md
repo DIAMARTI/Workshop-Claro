@@ -18,8 +18,8 @@
 
 | Nombre | Correo | Estación | IP | VNC | User |
 | --- | --- | --- | --- | --- | --- | 
-|Ileana Martinez  |     | client01  | 192.168.10.181| 192.168.10.181:5901 |  root y developer |
-|Ileana Gonzalez  |     | client02  | 192.168.10.182|  192.168.10.182:5901 |  root y developer |
+|Ileana Gonzalez  |     | client01  | 192.168.10.181| 192.168.10.181:5901 |  root y developer |
+|Ileana Martinez  |     | client02  | 192.168.10.182|  192.168.10.182:5901 |  root y developer |
 |Pedro Rodriguez    |     | client03  | 192.168.10.183|  192.168.10.183:5901 | root y developer  |
 |Jose Correa     |     | client04  | 192.168.10.184|  192.168.10.184:5901 |  root y developer |
 |Annabelle Quiñones     |     | client05  | 192.168.10.185|  192.168.10.185:5901| root y developer |
